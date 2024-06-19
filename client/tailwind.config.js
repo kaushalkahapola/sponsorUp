@@ -12,8 +12,5 @@ export default {
     },
   },
   plugins: [],
-  // paths: {
-  //   // fonts: './src/assets/fonts',
-  // },
 }
 
