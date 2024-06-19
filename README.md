@@ -14,14 +14,21 @@
 
 ### To Run Both Server and Frontend:
 
-1. In the project root directory, run:
+1. Navigate to the client directory:
+
+    ```bash
+    cd client
+    ```
+
+2. Start the frontend:
+
     ```bash
     npm run dev
     ```
 
-### To Run Only the Server:
+2. To Run the Server:
 
-1. Navigate to the server directory:
+    Navigate to the server directory:
     ```bash
     cd server
     ```
