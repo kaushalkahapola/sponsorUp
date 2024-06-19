@@ -8,6 +8,8 @@
     npm install
     ```
 
+    in both the `client` and `server` directories.
+
 3. **Create a `.env` file in the server directory and add your environment variables:**
 
 ## Running the Application
