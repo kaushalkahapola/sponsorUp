@@ -1,8 +1,40 @@
-# React + Vite
+1. **Clone the repository:**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+2. **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. **Create a `.env` file in the server directory and add your environment variables:**
+
+## Running the Application
+
+### To Run Both Server and Frontend:
+
+1. In the project root directory, run:
+    ```bash
+    npm run dev
+    ```
+
+### To Run Only the Server:
+
+1. Navigate to the server directory:
+    ```bash
+    cd server
+    ```
+
+2. Start the server with nodemon:
+    ```bash
+    npx nodemon index.js
+    ```
+    If you have `nodemon` installed globally, you can simply run:
+    ```bash
+    nodemon index.js
+    ```
+
+---
+
+**Note for Team Members:** This setup is for development purposes only. Do not commit your `.env` file to the repository. Add it to your `.gitignore` file:
+```gitignore
+.env
