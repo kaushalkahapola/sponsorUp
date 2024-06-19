@@ -12,8 +12,8 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Vite + React + Express</h1>
+    <div className="h-screen font-poppins font-bold flex flex-col items-center justify-center text-5xl">
+      <h1 className=''>Vite + React + Express</h1>
       {data ? <Message text={data.message} /> : <p>Loading...</p>}
     </div>
   );
