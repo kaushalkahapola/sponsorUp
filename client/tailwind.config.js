@@ -25,6 +25,11 @@ export default {
           100: "#1E1E2D",
           200: "#232533",
         },
+        white: {
+          DEFAULT: "#fff",
+          100: "#f8f9fa",
+          200: "#f1f3f5",
+        },
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
