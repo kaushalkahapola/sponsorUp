@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Flex, Box, Avatar, Badge } from "@radix-ui/themes";
+import { Button } from "./Buttons";
 
 const SponsorCard = ({
   name = "Company Name",
@@ -65,6 +66,7 @@ const SponsorCard = ({
                 </Flex>
               </Box>
             </Flex>
+            <Button text="learn more" />
           </Flex>
         </Card>
       </Box>
