@@ -66,7 +66,9 @@ const SponsorCard = ({
                 </Flex>
               </Box>
             </Flex>
+            <div className="text-sm">
             <Button text="learn more" />
+            </div>
           </Flex>
         </Card>
       </Box>

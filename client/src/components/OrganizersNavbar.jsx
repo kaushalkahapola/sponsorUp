@@ -41,7 +41,7 @@ const OrganizersNavbar = () => {
           <Flex>
             <Box>
               <Flex gap="3" align="center">
-                <Button text="+ Create Event"/>
+                <div className="text-sm"><Button text="+ Create Event"/></div>
                 <DropdownMenu.Root>
                   <DropdownMenu.Trigger>
                     <Avatar
