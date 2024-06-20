@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 /**
  * Button component.
  *
- * @param {Object} props - The component props.
+ * @param {Object} props - The component props
  * @param {string} props.id - The id of the button.
  * @param {string} props.text - The text to display on the button.
  * @param {Function} props.onClick - The function to be called when the button is clicked.
