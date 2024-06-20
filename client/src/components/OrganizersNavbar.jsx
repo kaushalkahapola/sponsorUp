@@ -8,6 +8,7 @@ import {
   Link,
   Text,
 } from "@radix-ui/themes";
+import { Button } from "./Buttons";
 
 const OrganizersNavbar = () => {
   const links = [
@@ -25,8 +26,8 @@ const OrganizersNavbar = () => {
     <nav className="border-b mb-6 px-5 font-poppins">
       <Container>
         <Flex align="center" py="3" justify="between">
-          <Flex gap="5" align="center">
-            <Link href="/" className="text-gray-400 font-bold text-xl">Sponsor<span className="text-primary">Up</span> </Link>
+          <Flex gap='6' align="center">
+            <Link href="/" className="text-gray-400 font-bold text-2xl">Sponsor<span className="text-primary">Up</span> </Link>
             <ul className="flex space-x-6 text-sm">
               {links.map((link, index) => (
                 <li key={index}>
@@ -40,6 +41,7 @@ const OrganizersNavbar = () => {
           <Flex>
             <Box>
               <Flex gap="3" align="center">
+                <Button text="+ Create Event"/>
                 <DropdownMenu.Root>
                   <DropdownMenu.Trigger>
                     <Avatar
