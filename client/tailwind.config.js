@@ -19,11 +19,17 @@ export default {
           200: "#adb5bd",
           300: "#6c757d",
           400: "#495057",
+          500: "#343a40",
         },
         black: {
           DEFAULT: "#000",
           100: "#1E1E2D",
           200: "#232533",
+        },
+        white: {
+          DEFAULT: "#fff",
+          100: "#f8f9fa",
+          200: "#f1f3f5",
         },
       },
       fontFamily: {
