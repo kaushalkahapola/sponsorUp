@@ -3,14 +3,19 @@ import React, { useEffect, useState } from "react";
 /**
  * Button component.
  *
- * @param {Object} props - The component props
+ * @param {Object} props - The component props.
  * @param {string} props.id - The id of the button.
  * @param {string} props.text - The text to display on the button.
  * @param {Function} props.onClick - The function to be called when the button is clicked.
  * @param {string} props.variant - The variant of the button (optional).
  * @returns {JSX.Element} The rendered Button component.
  */
-const Button = ({ id, text, onClick, variant = "primary" }) => {
+const Button = ({
+  id = "btn-" + Math.floor(Math.random() * 10000),
+  text = "Click Me",
+  onClick = () => console.log(text + " clicked"),
+  variant = "primary",
+}) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -21,17 +26,19 @@ const Button = ({ id, text, onClick, variant = "primary" }) => {
     }, 100); // Adjust the duration as needed
   };
 
+  const baseClasses =
+    "font-normal py-2 px-4 rounded transition duration-150 ease-in-out transform shadow-md";
+  const primaryClasses = "text-white bg-primary hover:bg-primary-700";
+  const secondaryClasses =
+    "text-primary bg-gray-200 hover:bg-primary hover:text-white";
+
+  const variantClasses =
+    variant === "primary" ? primaryClasses : secondaryClasses;
+  const clickEffectClasses = clicked ? "scale-100" : "hover:scale-105";
+
   return (
     <button
-      className={`font-normal ${
-        variant === "primary"
-          ? "text-white bg-primary hover:bg-primary-700"
-          : "text-primary bg-gray-200 hover:bg-primary hover:text-white"
-      } py-2 px-4 rounded transition duration-150 ease-in-out transform hover:scale-105 shadow-md ${
-        clicked
-          ? "transition duration-100 ease-in-out transform hover:scale-100"
-          : ""
-      }`}
+      className={`${baseClasses} ${variantClasses} ${clickEffectClasses}`}
       onClick={handleClick}
       id={id}
     >
