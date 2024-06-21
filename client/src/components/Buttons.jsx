@@ -3,14 +3,19 @@ import React, { useEffect, useState } from "react";
 /**
  * Button component.
  *
- * @param {Object} props - The component props
+ * @param {Object} props - The component props.
  * @param {string} props.id - The id of the button.
  * @param {string} props.text - The text to display on the button.
  * @param {Function} props.onClick - The function to be called when the button is clicked.
  * @param {string} props.variant - The variant of the button (optional).
  * @returns {JSX.Element} The rendered Button component.
  */
-const Button = ({ id, text, onClick, variant = "primary" }) => {
+const Button = ({
+  id = "btn-" + Math.floor(Math.random() * 10000),
+  text = "Click Me",
+  onClick = () => console.log(text + " clicked"),
+  variant = "primary",
+}) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -21,17 +26,19 @@ const Button = ({ id, text, onClick, variant = "primary" }) => {
     }, 100); // Adjust the duration as needed
   };
 
+  const baseClasses =
+    "font-normal py-2 px-4 rounded transition duration-150 ease-in-out transform shadow-md";
+  const primaryClasses = "text-white bg-primary hover:bg-primary-700";
+  const secondaryClasses =
+    "text-primary bg-gray-100 hover:bg-primary hover:text-white";
+
+  const variantClasses =
+    variant === "primary" ? primaryClasses : secondaryClasses;
+  const clickEffectClasses = clicked ? "scale-100" : "hover:scale-105";
+
   return (
     <button
-      className={`font-normal ${
-        variant === "primary"
-          ? "text-white bg-primary hover:bg-primary-700"
-          : "text-primary bg-gray-200 hover:bg-primary hover:text-white"
-      } py-2 px-4 rounded transition duration-150 ease-in-out transform hover:scale-105 shadow-md ${
-        clicked
-          ? "transition duration-100 ease-in-out transform hover:scale-100"
-          : ""
-      }`}
+      className={`${baseClasses} ${variantClasses} ${clickEffectClasses}`}
       onClick={handleClick}
       id={id}
     >
@@ -51,7 +58,12 @@ const Button = ({ id, text, onClick, variant = "primary" }) => {
  * @param {Function} props.setSelected - A function to update the selected buttons.
  * @returns {JSX.Element} The rendered ButtonsGroup component.
  */
-const ButtonsGroup = ({ texts, selectable_number, selected, setSelected }) => {
+const ButtonsGroup = ({
+  texts = [],
+  selectable_number = 1,
+  selected = [],
+  setSelected = () => {},
+}) => {
   const handleClick = (index) => {
     if (selected.includes(index)) {
       setSelected(selected.filter((item) => item !== index));
@@ -62,6 +74,14 @@ const ButtonsGroup = ({ texts, selectable_number, selected, setSelected }) => {
     }
   };
 
+  // Define class names separately
+  const baseClasses =
+    "font-normal py-3 px-6 rounded-full shadow-md transition duration-150 ease-in-out transform";
+  const selectedClasses = "bg-primary text-white";
+  const notSelectedClasses = "bg-gray-100 text-black";
+  const hoverableClasses = "hover:bg-primary hover:text-white hover:scale-105";
+  const clickedClasses = "hover:scale-95";
+
   return (
     <div className="flex flex-row space-x-4">
       {texts.map((text, index) => {
@@ -71,13 +91,11 @@ const ButtonsGroup = ({ texts, selectable_number, selected, setSelected }) => {
         return (
           <button
             key={index}
-            className={`${
-              isSelected ? "bg-primary text-white" : "bg-gray-200 text-gray-400"
-            } font-normal py-3 px-6 rounded-full shadow-md transition duration-150 ease-in-out transform ${
-              isHoverable
-                ? "hover:bg-primary hover:text-white hover:scale-105"
-                : ""
-            } ${isSelected ? "hover:scale-95" : ""}`}
+            className={`${baseClasses} ${
+              isSelected ? selectedClasses : notSelectedClasses
+            } ${isHoverable ? hoverableClasses : ""} ${
+              isSelected ? clickedClasses : ""
+            }`}
             onClick={() => handleClick(index)}
             disabled={!isHoverable}
           >
