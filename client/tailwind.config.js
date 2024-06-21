@@ -15,6 +15,7 @@ export default {
         },
         gray: {
           DEFAULT: "#6c757d",
+          50: "#f8f9fa",
           100: "#ced4da",
           200: "#adb5bd",
           300: "#6c757d",
