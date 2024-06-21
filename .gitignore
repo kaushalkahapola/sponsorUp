@@ -13,7 +13,7 @@ dist-ssr
 *.local
 .env
 # Test.js 
-test.js
+client/src/pages/Test.js
 
 # Editor directories and files
 .vscode/*
