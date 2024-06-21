@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 .env
+# Test.js 
+test.js
 
 # Editor directories and files
 .vscode/*
@@ -23,6 +25,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Test.js
-client/src/pages/Test.js
