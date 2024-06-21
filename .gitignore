@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+**/Test.jsx
 
 # Editor directories and files
 .vscode/*
