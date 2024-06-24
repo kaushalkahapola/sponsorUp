@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ReactQuill from 'react-quill'; // Install react-quill here
+// install <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> in html.index ( for undo and redo icons)
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
 // Undo and Redo functions
