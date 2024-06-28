@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { InputField, InputDescri, Inputdrpd } from './Input';
 import { InputContext } from './Inputcontext';
 
+//This is just input fields examples
+
 const Page = () => {
   const {
     username,
