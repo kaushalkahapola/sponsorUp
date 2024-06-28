@@ -24,8 +24,8 @@ const Button = ({
 }) => {
   const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
-    onClick();
+  const handleClick = (e) => {
+    onClick(e);
     setClicked(true);
     setTimeout(() => {
       setClicked(false);
