@@ -7,9 +7,13 @@ const InputProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [description, setDescription] = useState('');
-  const [dropdownValue, setDropdownValue] = useState('Music');
+  const [dropdownValues, setDropdownValues] = useState({});
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
+
+  const setDropdownValue = (name, value) => {
+    setDropdownValues((prev) => ({ ...prev, [name]: value }));
+  };
 
   const value = {
     username,
@@ -20,7 +24,7 @@ const InputProvider = ({ children }) => {
     setPassword,
     description,
     setDescription,
-    dropdownValue,
+    dropdownValues,
     setDropdownValue,
     quantity,
     setQuantity,
