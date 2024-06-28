@@ -64,27 +64,27 @@ const InputDescri = ({ value, onChange, className = '' }) => {
   );
 };
 
-const dropdownOptions = ['Music', 'Entertainment', 'Movies', 'Arts'];
-
 /**
  * Inputdrpd component.
  *
  * @param {Object} props - The component props.
+ * @param {string} props.name - The name to identify the dropdown.
  * @param {string} props.value - The value of the selected dropdown option.
  * @param {Function} props.onChange - The function to be called when the dropdown value changes.
+ * @param {string[]} props.options - The options for the dropdown.
  * @param {string} props.className - Additional classes for styling (optional).
  * @returns {JSX.Element} The rendered Inputdrpd component.
  */
-const Inputdrpd = ({ value, onChange, className = '' }) => {
+const Inputdrpd = ({ name, value, onChange, options, className = '' }) => {
   return (
     <div className={`flex flex-col items-center p-4 ${className}`}>
       <div className="relative w-full mb-4">
         <select
           value={value}
-          onChange={onChange}
+          onChange={(e) => onChange(name, e.target.value)}
           className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-10 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         >
-          {dropdownOptions.map((option) => (
+          {options.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>
@@ -97,5 +97,4 @@ const Inputdrpd = ({ value, onChange, className = '' }) => {
     </div>
   );
 };
-
-export { InputField, InputDescri, Inputdrpd, dropdownOptions };
+export { InputField, InputDescri, Inputdrpd };
