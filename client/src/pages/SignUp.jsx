@@ -1,18 +1,55 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Button } from "../components/Buttons";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const emailSignUp = async (email, password, confirmPassword) => {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("Password should be at least 6 characters long.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("/api/emailSignUp", {
+        email,
+        password,
+      });
+
+      if (response.data.error) {
+        alert(response.data.error);
+        return;
+      }
+
+      alert("User signed up successfully");
+      console.log(response.data);
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.error || "An unexpected error occurred.";
+      alert(errorMessage);
+      console.error("Error signing up:", errorMessage);
+    }
+  };
+
+  const GoogleSignUp = async () => {
+    //google signup
+  };
 
   const handleClick = (e) => {
     const id = e.target.id;
-    if (id === "signin-btn") {
-      console.log(`Sign In button clicked ${email} ${password} ${rememberMe}`);
+    if (id === "signup-btn") {
+      emailSignUp(email, password, confirmPassword);
     } else if (id === "google-btn") {
-      console.log("Google button clicked");
+      GoogleSignUp();
     } else if (id === "facebook-btn") {
       console.log("Facebook button clicked");
     }
@@ -37,7 +74,6 @@ const SignUp = () => {
               className="w-full px-3 py-2 border border-gray-300 rounded bg-gray-100 text-black"
               type="email"
               id="email"
-              name="email"
               required
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -73,9 +109,8 @@ const SignUp = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded bg-gray-100 text-black"
                 type={showPassword ? "text" : "password"}
                 id="password-confirm"
-                name="password"
                 required
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <button
                 type="button"
@@ -101,6 +136,7 @@ const SignUp = () => {
               id="google-btn"
               text="Google"
               icon={<FaGoogle className="text-red-500 mr-2" />}
+              onClick={handleClick}
             />
             <Button
               variant="secondary"
