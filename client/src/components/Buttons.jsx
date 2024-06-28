@@ -8,6 +8,9 @@ import React, { useEffect, useState } from "react";
  * @param {string} props.text - The text to display on the button.
  * @param {Function} props.onClick - The function to be called when the button is clicked.
  * @param {string} props.variant - The variant of the button (optional).
+ * @param {string} props.minWidth - The minimum width of the button (optional).
+ * @param {string} props.minHeight - The minimum height of the button (optional).
+ * @param {JSX.Element} props.icon - The icon to be displayed on the button (optional).
  * @returns {JSX.Element} The rendered Button component.
  */
 const Button = ({
@@ -15,6 +18,9 @@ const Button = ({
   text = "Click Me",
   onClick = () => console.log(text + " clicked"),
   variant = "primary",
+  minWidth,
+  minHeight,
+  icon,
 }) => {
   const [clicked, setClicked] = useState(false);
 
@@ -27,21 +33,28 @@ const Button = ({
   };
 
   const baseClasses =
-    "font-normal py-2 px-4 rounded transition duration-150 ease-in-out transform shadow-md";
+    "font-normal py-2 px-4 rounded transition duration-150 ease-in-out transform shadow-md flex items-center justify-center";
   const primaryClasses = "text-white bg-primary hover:bg-primary-700";
   const secondaryClasses =
-    "text-primary bg-gray-100 hover:bg-primary hover:text-white";
+    "text-black bg-gray-100 hover:bg-primary hover:text-white";
 
   const variantClasses =
     variant === "primary" ? primaryClasses : secondaryClasses;
   const clickEffectClasses = clicked ? "scale-100" : "hover:scale-105";
+
+  const style = {
+    minWidth: minWidth || undefined,
+    minHeight: minHeight || undefined,
+  };
 
   return (
     <button
       className={`${baseClasses} ${variantClasses} ${clickEffectClasses}`}
       onClick={handleClick}
       id={id}
+      style={style}
     >
+      {icon && <span className="mr-2">{icon}</span>}
       {text}
     </button>
   );
@@ -56,6 +69,8 @@ const Button = ({
  * @param {number} props.selectable_number - The maximum number of buttons that can be selected.
  * @param {number[]} props.selected - An array of indices representing the currently selected buttons.
  * @param {Function} props.setSelected - A function to update the selected buttons.
+ * @param {string} props.minWidth - The minimum width of the buttons (optional).
+ * @param {string} props.minHeight - The minimum height of the buttons (optional).
  * @returns {JSX.Element} The rendered ButtonsGroup component.
  */
 const ButtonsGroup = ({
@@ -63,6 +78,8 @@ const ButtonsGroup = ({
   selectable_number = 1,
   selected = [],
   setSelected = () => {},
+  minWidth,
+  minHeight,
 }) => {
   const handleClick = (index) => {
     if (selected.includes(index)) {
@@ -82,6 +99,11 @@ const ButtonsGroup = ({
   const hoverableClasses = "hover:bg-primary hover:text-white hover:scale-105";
   const clickedClasses = "hover:scale-95";
 
+  const style = {
+    minWidth: minWidth || undefined,
+    minHeight: minHeight || undefined,
+  };
+
   return (
     <div className="flex flex-row space-x-4">
       {texts.map((text, index) => {
@@ -98,6 +120,7 @@ const ButtonsGroup = ({
             }`}
             onClick={() => handleClick(index)}
             disabled={!isHoverable}
+            style={style}
           >
             {text}
           </button>
