@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { InputField, InputDescri, Inputdrpd } from './Input';
 import { InputContext } from './Inputcontext';
 
-const InputPage = () => {
+const Page = () => {
   const {
     username,
     setUsername,
@@ -12,7 +12,7 @@ const InputPage = () => {
     setPassword,
     description,
     setDescription,
-    dropdownValue,
+    dropdownValues,
     setDropdownValue,
     quantity,
     setQuantity,
@@ -48,8 +48,16 @@ const InputPage = () => {
         onChange={(e) => setDescription(e.target.value)}
       />
       <Inputdrpd
-        value={dropdownValue}
-        onChange={(e) => setDropdownValue(e.target.value)}
+        name="category"
+        value={dropdownValues.category || ''}
+        onChange={setDropdownValue}
+        options={['Music', 'Entertainment', 'Movies', 'Arts']}
+      />
+      <Inputdrpd
+        name="genre"
+        value={dropdownValues.genre || ''}
+        onChange={setDropdownValue}
+        options={['Rock', 'Jazz', 'Pop', 'Classical']}
       />
       <InputField
         label="Quantity"
@@ -69,4 +77,4 @@ const InputPage = () => {
   );
 };
 
-export default InputPage;
+export default Page;
