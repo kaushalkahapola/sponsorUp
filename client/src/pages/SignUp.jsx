@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Button } from "../components/Buttons";
 import signUpFn from "../firebase/SignUp";
+import GoogleSignIn from "../firebase/GoogleSignIn";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -30,16 +31,12 @@ const SignUp = () => {
     }
   };
 
-  const GoogleSignUp = async () => {
-    //google signup
-  };
-
   const handleClick = (e) => {
     const id = e.target.id;
     if (id === "signup-btn") {
       emailSignUp(email, password, confirmPassword);
     } else if (id === "google-btn") {
-      GoogleSignUp();
+      GoogleSignIn();
     } else if (id === "facebook-btn") {
       console.log("Facebook button clicked");
     }

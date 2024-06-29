@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Button } from "../components/Buttons";
 import signInFn from "../firebase/SignIn";
+import GoogleSignIn from "../firebase/GoogleSignIn";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const SignIn = () => {
     if (id === "signin-btn") {
       signInFn(email, password);
     } else if (id === "google-btn") {
-      console.log("Google button clicked");
+      GoogleSignIn();
     } else if (id === "facebook-btn") {
       console.log("Facebook button clicked");
     }
@@ -92,6 +93,7 @@ const SignIn = () => {
               variant="secondary"
               id="google-btn"
               text="Google"
+              onClick={handleClick}
               icon={<FaGoogle className="text-red-500 mr-2" />}
             />
             <Button
