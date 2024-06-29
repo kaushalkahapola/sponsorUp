@@ -23,11 +23,6 @@ export const emailSignUp = async (req, res) => {
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
   }
-  if (password.length < 6) {
-    return res
-      .status(400)
-      .json({ error: "Password must be at least 6 characters" });
-  }
 
   try {
     const user = await admin.auth().createUser({

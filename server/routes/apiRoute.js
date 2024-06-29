@@ -1,4 +1,5 @@
 import express from "express";
+import { validateEmailSignUp } from '../middlewares/validationMiddleware.js';
 import {
   getApiMessage,
   examplePost,
@@ -9,4 +10,4 @@ export const router = express.Router();
 
 router.get("/", getApiMessage);
 router.post("/create", examplePost);
-router.post("/emailSignUp", emailSignUp);
+router.post("/signup",validateEmailSignUp, emailSignUp);
