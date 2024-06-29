@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Button } from "../components/Buttons";
+import signInFn from "../firebase/SignIn";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ const SignIn = () => {
   const handleClick = (e) => {
     const id = e.target.id;
     if (id === "signin-btn") {
-      console.log(`Sign In button clicked ${email} ${password} ${rememberMe}`);
+      signInFn(email, password);
     } else if (id === "google-btn") {
       console.log("Google button clicked");
     } else if (id === "facebook-btn") {

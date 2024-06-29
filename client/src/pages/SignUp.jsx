@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Button } from "../components/Buttons";
+import signUpFn from "../firebase/SignUp";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -20,18 +21,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axios.post("/api/emailSignUp", {
-        email,
-        password,
-      });
-
-      if (response.data.error) {
-        alert(response.data.error);
-        return;
-      }
-
-      alert("User signed up successfully");
-      console.log(response.data);
+      signUpFn(email, password);
     } catch (error) {
       const errorMessage =
         error.response?.data?.error || "An unexpected error occurred.";
