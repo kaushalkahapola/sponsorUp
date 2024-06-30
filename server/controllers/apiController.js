@@ -41,3 +41,20 @@ export const emailSignUp = async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
 };
+
+//email signin to get a token
+export const emailSignIn = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required" });
+  }
+
+  try {
+    const user = await admin.auth().getUserByEmail(email);
+    const token = await admin.auth().createCustomToken(user.uid);
+    return res.json({ token });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
