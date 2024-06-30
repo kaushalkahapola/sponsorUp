@@ -11,7 +11,7 @@ export const createEvent = async (req, res) => {
   const { id } = await db.collection("events").add(data);
   res.json({
     data: { id: id, ...data },
-    message: "Event created successfully",
+    message: "Event created successfully.",
   });
 };
 
