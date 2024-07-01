@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Header = () => {
+const HomeHeader = () => {
     let Links = [
         { name: "Services", link: "/" },
         { name: "Pricing", link: "/" },
@@ -37,4 +37,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default HomeHeader;
