@@ -11,75 +11,70 @@ import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
  * @returns {JSX.Element} - The rendered component.
  */
 const AlbumCarousel = ({ album, autoChangeInterval = 5000 }) => {
-  //handle empty
-  if (!album || album.length === 0) {
-    return null;
-  }
   const [albumIndex, setAlbumIndex] = useState(0);
   const [timer, setTimer] = useState(null);
 
   useEffect(() => {
-    // Clear previous timer
-    if (timer) {
-      clearTimeout(timer);
+    if (!album || album.length === 0) {
+      return;
     }
 
-    // Set new timer for auto image change
-    const newTimer = setTimeout(() => {
-      setAlbumIndex((prevIndex) =>
-        prevIndex === album.length - 1 ? 0 : prevIndex + 1
-      );
-    }, autoChangeInterval);
+    const resetTimer = () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      const newTimer = setTimeout(() => {
+        setAlbumIndex((prevIndex) =>
+          prevIndex === album.length - 1 ? 0 : prevIndex + 1
+        );
+      }, autoChangeInterval);
+      setTimer(newTimer);
+    };
 
-    setTimer(newTimer);
+    resetTimer();
 
-    // Clean up timer on component unmount or album change
     return () => {
-      clearTimeout(newTimer);
+      if (timer) {
+        clearTimeout(timer);
+      }
     };
   }, [albumIndex, album, autoChangeInterval]);
 
-  // Handle previous image click
   const prevImage = () => {
     setAlbumIndex((prevIndex) =>
       prevIndex === 0 ? album.length - 1 : prevIndex - 1
     );
-    resetTimer();
   };
 
-  // Handle next image click
   const nextImage = () => {
     setAlbumIndex((prevIndex) =>
       prevIndex === album.length - 1 ? 0 : prevIndex + 1
     );
-    resetTimer();
   };
 
-  // Reset timer on manual image change
-  const resetTimer = () => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    const newTimer = setTimeout(() => {
-      setAlbumIndex((prevIndex) =>
-        prevIndex === album.length - 1 ? 0 : prevIndex + 1
-      );
-    }, autoChangeInterval);
-    setTimer(newTimer);
-  };
+  if (!album || album.length === 0) {
+    return null;
+  }
 
-  // Render component
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      {/* Album Carousel */}
       <div className="p-4 relative">
         <div className="text-lg font-bold mb-4">Album</div>
         <div className="relative overflow-hidden rounded-lg shadow-sm">
-          <img
-            className="object-cover w-full h-64 transition-transform duration-500 transform translate-x-[-${albumIndex * 100}%]"
-            src={album[albumIndex]}
-            alt={`Album ${albumIndex}`}
-          />
+          <div
+            className="flex transition-transform duration-500"
+            style={{ transform: `translateX(-${albumIndex * 100}%)` }}
+          >
+            {album.map((image, index) => (
+              <div key={index} className="w-full flex-shrink-0">
+                <img
+                  className="object-cover w-full h-64"
+                  src={image}
+                  alt={`Album ${index}`}
+                />
+              </div>
+            ))}
+          </div>
           <div className="absolute inset-y-0 left-0 flex items-center">
             <button
               className="px-3 py-1 bg-gray-800 text-white rounded-l hover:bg-gray-700 focus:outline-none"
@@ -97,7 +92,6 @@ const AlbumCarousel = ({ album, autoChangeInterval = 5000 }) => {
             </button>
           </div>
         </div>
-        {/* Dots */}
         <div className="flex justify-center mt-2">
           {album.map((_, index) => (
             <div
