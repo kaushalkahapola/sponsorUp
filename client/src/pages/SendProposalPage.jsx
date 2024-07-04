@@ -9,13 +9,6 @@ import { Button as CustomButton } from "../components/Buttons";
 
 import { auth } from "../firebase/firebase";
 
-// Sample album URLs for demonstration
-const album = [
-  "https://picsum.photos/400/400",
-  "https://picsum.photos/400/400",
-  "https://picsum.photos/400/400",
-];
-
 const SendProposalPage = () => {
   const [event, setEvent] = useState({});
 
@@ -41,6 +34,12 @@ const SendProposalPage = () => {
         location: "Sample Venue",
         datetime: "2022-12-31T23:59:59.999Z",
         organizer: "Sample Organizer",
+        coverImage: "https://picsum.photos/400/200",
+        album: [
+          "https://picsum.photos/400",
+          "https://picsum.photos/300",
+          "https://picsum.photos/500",
+        ],
         coverImage: "https://picsum.photos/400/200",
       };
       setEvent(fetchedEvent);
@@ -92,7 +91,7 @@ const SendProposalPage = () => {
               <div className="mb-8">
                 <EventCard event={event} />
               </div>
-              <AlbumCarousel album={album} />
+              <AlbumCarousel album={event?.album} />
             </div>
           </div>
           {/* Left Side Content */}
