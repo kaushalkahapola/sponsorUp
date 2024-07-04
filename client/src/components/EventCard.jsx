@@ -1,6 +1,9 @@
 import React from "react";
 import { Card, Flex, Box, Badge } from "@radix-ui/themes";
 import { Button } from "./Buttons";
+import { MdLocationOn } from "react-icons/md";
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { FaUserTie } from "react-icons/fa";
 
 /**
  * EventCard component displays information about an event.
@@ -103,16 +106,29 @@ const EventCard = ({
     fontWeight: "bold",
     marginBottom: "4px",
   };
-
   const infoStyle = {
     fontSize: "16px",
     marginBottom: "0px",
   };
 
-  const organizerStyle = {
-    alignSelf: "flex-end",
-    marginTop: "0px",
+  const placeTimeStyle = {
+    display: "flex",
+    alignItems: "center",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
     fontSize: "14px",
+    marginTop: "4px",
+  };
+
+  const organizerStyle = {
+    display: "flex",
+    alignSelf: "flex-end",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    marginTop: "0px",
+    fontSize: "12px",
     color: "rgba(255, 255, 255, 0.7)",
   };
 
@@ -137,10 +153,25 @@ const EventCard = ({
               <img src={coverImage} alt={title} style={coverImageStyle} />
               <Box style={overlayStyle}>
                 <Box style={titleStyle}>{title}</Box>
-                <Box style={infoStyle}>
-                  {location} - {formatDateTime(datetime)}
+                <Box
+                  style={{
+                    ...infoStyle,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div style={placeTimeStyle}>
+                    <MdLocationOn className="me-1" /> {location}
+                  </div>
+                  <div style={placeTimeStyle}>
+                    <AiOutlineClockCircle className="me-1" />{" "}
+                    {formatDateTime(datetime)}
+                  </div>
                 </Box>
-                <Box style={organizerStyle}>{organizer}</Box>
+                <Box style={organizerStyle}>
+                  <FaUserTie className="me-1" />
+                  {organizer}
+                </Box>
               </Box>
             </Box>
             <Flex direction="column" align="start" justify="center" gapY="4">
