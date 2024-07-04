@@ -12,6 +12,8 @@ import CreateEventPage from "./pages/CreateEventPage";
 import "./App.css";
 import SendProposalPage from "./pages/SendProposalPage";
 import EventCard from "./components/EventCard";
+import SearchSponsors from "./pages/SearchSponsors";
+import Test from "./pages/Test";
 
 function App() {
   // just a simple useEffect to check if the user is signed in or not
@@ -49,6 +51,8 @@ function App() {
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/events/new" element={<CreateEventPage />} />
           <Route path="/sendproposal" element={<SendProposalPage />} />
+          <Route path="/sponsors" element={<SearchSponsors />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </Router>
     </Theme>

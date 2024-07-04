@@ -1,44 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const categoriesData = [
   {
     id: 1,
-    name: 'Category',
+    name: "Category",
     items: [
-      { id: 11, name: 'All' },
-      { id: 12, name: 'Trending' },
-      { id: 13, name: 'Upcoming' },
-      { id: 14, name: 'Music' },
-      { id: 15, name: 'Sport' },
-      { id: 16, name: 'Exhibition' },
-      { id: 17, name: 'Business' },
-      { id: 18, name: 'Photography' },
+      { id: 11, name: "All" },
+      { id: 12, name: "Trending" },
+      { id: 13, name: "Upcoming" },
+      { id: 14, name: "Music" },
+      { id: 15, name: "Sport" },
+      { id: 16, name: "Exhibition" },
+      { id: 17, name: "Business" },
+      { id: 18, name: "Photography" },
     ],
   },
   {
     id: 2,
-    name: 'Pricing',
+    name: "Pricing",
     items: [
-      { id: 21, name: 'Below $100' },
-      { id: 22, name: 'Above $100' },
+      { id: 21, name: "Below $100" },
+      { id: 22, name: "Above $100" },
     ],
   },
   {
     id: 3,
-    name: 'Type',
+    name: "Type",
     items: [
-      { id: 31, name: 'Online' },
-      { id: 32, name: 'Outdoor' },
+      { id: 31, name: "Online" },
+      { id: 32, name: "Outdoor" },
     ],
   },
   {
     id: 4,
-    name: 'Language',
+    name: "Language",
     items: [
-      { id: 41, name: 'English' },
-      { id: 42, name: 'German' },
-      { id: 43, name: 'French' },
-      { id: 44, name: 'Spanish' },
+      { id: 41, name: "English" },
+      { id: 42, name: "German" },
+      { id: 43, name: "French" },
+      { id: 44, name: "Spanish" },
     ],
   },
 ];
@@ -59,7 +59,7 @@ function Filters() {
   };
 
   const handleApplyFilters = () => {
-    console.log('Selected categories:', selectedCategories);
+    console.log("Selected categories:", selectedCategories);
   };
 
   return (
@@ -88,7 +88,9 @@ function Filters() {
                 ))}
                 <button
                   className="text-sm text-purple-500 focus:outline-none"
-                  onClick={() => console.log('See more clicked for', category.name)}
+                  onClick={() =>
+                    console.log("See more clicked for", category.name)
+                  }
                 >
                   Show more
                 </button>
@@ -111,10 +113,6 @@ function Filters() {
             </button>
           </div>
         </div>
-      </div>
-      <div className=" p-4">
-        {/* The body */}
-        <p>Suggestions</p>
       </div>
     </div>
   );
