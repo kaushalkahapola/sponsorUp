@@ -80,8 +80,8 @@ const SendProposalPage = () => {
   return (
     <>
       <OrganizersNavbar />
-      <Container>
-        <Grid gap="8" mdCols="520px 1fr" className="md:flex">
+      <Container className="">
+        <Grid gap="8" mdCols="1fr 2fr" className="md:flex">
           {/* Right Side Content (Album Sidebar) */}
           <div className="bg-white rounded-md shadow-md p-6 md:mt-0 md:ml-8">
             <Heading className="text-3xl md:text-4xl font-bold text-center my-8">
@@ -115,7 +115,7 @@ const SendProposalPage = () => {
                     <MdNavigateBefore />
                   </Button>
                   {/* Package Carousel */}
-                  <div className="relative flex-grow overflow-hidden rounded-lg shadow-md max-w-[320px]">
+                  <div className="relative flex-grow overflow-hidden rounded-lg shadow-md max-w-[480px]">
                     <div className="flex transition-transform duration-300 ease-in-out transform -translate-x-[${currentPackage * 100}%]">
                       {proposalData.sponsorshipPackages.map((pkg, index) => (
                         <div
@@ -134,9 +134,10 @@ const SendProposalPage = () => {
                                 Benefits
                               </Heading>
                               <textarea
-                                className="w-full h-32 px-3 py-2 border border-gray-300 rounded bg-white text-black resize-vertical"
+                                className="w-full h-52 px-3 py-2 border border-gray-300 rounded bg-white text-black resize-vertical"
                                 name="benefits"
                                 value={pkg.benefits}
+                                placeholder="Why choose this package...?"
                                 onChange={(e) =>
                                   handlePackageChange(
                                     index,
@@ -155,13 +156,15 @@ const SendProposalPage = () => {
                                 className="w-full px-3 py-2 border border-gray-300 rounded bg-white text-black"
                                 name="cost"
                                 value={pkg.cost}
-                                onChange={(e) =>
-                                  handlePackageChange(
-                                    index,
-                                    "cost",
-                                    e.target.value
-                                  )
-                                }
+                                placeholder="Price in LKR..."
+                                onChange={(e) => {
+                                  const value = e.target.value;
+                                  const floatRegex =
+                                    /^[+-]?([0-9]*[.])?[0-9]*$/;
+                                  if (floatRegex.test(value) || value === "") {
+                                    handlePackageChange(index, "cost", value);
+                                  }
+                                }}
                               />
                             </div>
                           </div>
