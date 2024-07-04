@@ -7,6 +7,9 @@ import '@radix-ui/themes/styles.css'
 import { auth } from './firebase/firebase';
 import { Button } from "./components/Buttons";
 import SignOutFn from "./firebase/SignOut";
+import LandingPage from "./pages/LandingPage";
+import CreateEventPage from "./pages/CreateEventPage";
+import './App.css';
 
 
 
@@ -40,6 +43,8 @@ function App() {
           />}/>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/events/new" element={<CreateEventPage  />} />
         </Routes>
       </Router>
     </Theme>

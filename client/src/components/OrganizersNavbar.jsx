@@ -9,8 +9,11 @@ import {
   Text,
 } from "@radix-ui/themes";
 import { Button } from "./Buttons";
+import { useNavigate } from "react-router-dom";
 
 const OrganizersNavbar = () => {
+  const navigate = useNavigate();
+
   const links = [
     {
       label: "Home",
@@ -22,8 +25,12 @@ const OrganizersNavbar = () => {
     },
   ];
 
+  const onClick = () => {
+    navigate("/events/new");
+  };
+
   return (
-    <nav className="border-b mb-6 px-5 font-poppins">
+    <nav className="fixed-navbar border-b mb-6 px-5 font-poppins bg-white">
       <Container>
         <Flex align="center" py="3" justify="between">
           <Flex gap='6' align="center">
@@ -41,7 +48,7 @@ const OrganizersNavbar = () => {
           <Flex>
             <Box>
               <Flex gap="3" align="center">
-                <div className="text-sm"><Button text="+ Create Event"/></div>
+                <div className="text-sm"><Button text="+ Create Event" onClick={onClick} /></div>
                 <DropdownMenu.Root>
                   <DropdownMenu.Trigger>
                     <Avatar
