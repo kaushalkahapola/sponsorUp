@@ -1,12 +1,12 @@
 import React from 'react';
-import HomeHeader from './assets/components/HomeHeader';
+import HomeHeader from './components/HomeHeader';
 import { EnvelopeClosedIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import TBImage from './assets/TB.png'; 
 import BAHImage from './assets/BAH.png';
 import MPImage from './assets/MP.png'; 
 import MCImage from './assets/MC.png';
 import OABImage from './assets/OAB.png'; 
-import Footer from './assets/components/Footer'; 
+import Footer from './components/Footer'; 
 
 const LandingPage = () => {
     return (
