@@ -11,6 +11,10 @@ import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
  * @returns {JSX.Element} - The rendered component.
  */
 const AlbumCarousel = ({ album, autoChangeInterval = 5000 }) => {
+  //handle empty
+  if (!album || album.length === 0) {
+    return null;
+  }
   const [albumIndex, setAlbumIndex] = useState(0);
   const [timer, setTimer] = useState(null);
 
