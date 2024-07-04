@@ -141,6 +141,15 @@ const PackageCarousel = ({
   nextPackage,
   prevPackage,
 }) => {
+  const [visible, setVisible] = useState(true);
+  const timeout = 500;
+  useEffect(() => {
+    //when changed setvisible for a certain time false and back to visible
+    setVisible(false);
+    setTimeout(() => {
+      setVisible(true);
+    }, timeout);
+  }, [currentPackage]);
   return (
     <div className="mt-8">
       <Heading className="text-2xl font-bold my-4 text-center">
@@ -159,7 +168,11 @@ const PackageCarousel = ({
         </Button>
         {/* Package Carousel */}
         <div className="relative flex-grow overflow-hidden rounded-lg shadow-md max-w-[480px]">
-          <div className="flex transition-transform duration-300 ease-in-out transform -translate-x-[${currentPackage * 100}%]">
+          <div
+            className={`transition-opacity duration-${
+              timeout / 2
+            } ease-in-out ${visible ? "opacity-100" : "opacity-0"}`}
+          >
             {proposalData.sponsorshipPackages.map((pkg, index) => (
               <div
                 key={index}
@@ -180,7 +193,7 @@ const PackageCarousel = ({
                       className="w-full h-52 px-3 py-2 border border-gray-300 rounded bg-white text-black resize-vertical"
                       name="benefits"
                       value={pkg.benefits}
-                      placeholder="Why choose this package...?"
+                      placeholder={`Why choose this package ${index + 1}...?`}
                       onChange={(e) =>
                         handlePackageChange(index, "benefits", e.target.value)
                       }
