@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
 /**
@@ -7,28 +7,64 @@ import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
  * @component
  * @param {Object} props - The component props.
  * @param {Array<string>} props.album - The array of album images.
+ * @param {number} [autoChangeInterval=5000] - The interval in milliseconds for automatic image change.
  * @returns {JSX.Element} - The rendered component.
  */
-const AlbumCarousel = ({ album }) => {
+const AlbumCarousel = ({ album, autoChangeInterval = 5000 }) => {
   const [albumIndex, setAlbumIndex] = useState(0);
+  const [timer, setTimer] = useState(null);
 
-  //handle empty
-  if (!album || album.length === 0) {
-    return null;
-  }
+  useEffect(() => {
+    // Clear previous timer
+    if (timer) {
+      clearTimeout(timer);
+    }
 
-  const nextImage = () => {
-    setAlbumIndex((prevIndex) =>
-      prevIndex === album.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+    // Set new timer for auto image change
+    const newTimer = setTimeout(() => {
+      setAlbumIndex((prevIndex) =>
+        prevIndex === album.length - 1 ? 0 : prevIndex + 1
+      );
+    }, autoChangeInterval);
 
+    setTimer(newTimer);
+
+    // Clean up timer on component unmount or album change
+    return () => {
+      clearTimeout(newTimer);
+    };
+  }, [albumIndex, album, autoChangeInterval]);
+
+  // Handle previous image click
   const prevImage = () => {
     setAlbumIndex((prevIndex) =>
       prevIndex === 0 ? album.length - 1 : prevIndex - 1
     );
+    resetTimer();
   };
 
+  // Handle next image click
+  const nextImage = () => {
+    setAlbumIndex((prevIndex) =>
+      prevIndex === album.length - 1 ? 0 : prevIndex + 1
+    );
+    resetTimer();
+  };
+
+  // Reset timer on manual image change
+  const resetTimer = () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    const newTimer = setTimeout(() => {
+      setAlbumIndex((prevIndex) =>
+        prevIndex === album.length - 1 ? 0 : prevIndex + 1
+      );
+    }, autoChangeInterval);
+    setTimer(newTimer);
+  };
+
+  // Render component
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       {/* Album Carousel */}
