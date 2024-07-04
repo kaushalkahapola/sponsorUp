@@ -12,13 +12,21 @@ function redoChange() {
   this.quill.history.redo();
 }
 
-const RichTextEditor = () => {
-  const [editorHtml, setEditorHtml] = useState("");
+/**
+ * RichTextEditor component for editing and formatting rich text content.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.editorHtml - The HTML content of the editor.
+ * @param {function} props.setEditorHtml - The function to update the editor's HTML content.
+ * @returns {JSX.Element} The RichTextEditor component.
+ */
+const RichTextEditor = ({ editorHtml, setEditorHtml }) => {
+  //const [editorHtml, setEditorHtml] = useState("");
   const quillRef = useRef(null);
 
   const handleChange = (html) => {
     setEditorHtml(html);
-    console.log(editorHtml);
   };
 
   const modules = {
@@ -55,7 +63,14 @@ const RichTextEditor = () => {
   ];
 
   return (
-    <div style={{ fontFamily: "Arial", fontSize: "20px", color: "#333" }}>
+    <div
+      style={{
+        fontFamily: "Arial",
+        fontSize: "20px",
+        color: "black",
+        background: "white",
+      }}
+    >
       <div id="toolbar">
         <select
           className="ql-header"
