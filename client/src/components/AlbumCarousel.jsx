@@ -1,8 +1,21 @@
 import React, { useState } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
+/**
+ * Renders a carousel component for displaying album images.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Array<string>} props.album - The array of album images.
+ * @returns {JSX.Element} - The rendered component.
+ */
 const AlbumCarousel = ({ album }) => {
   const [albumIndex, setAlbumIndex] = useState(0);
+
+  //handle empty
+  if (!album || album.length === 0) {
+    return null;
+  }
 
   const nextImage = () => {
     setAlbumIndex((prevIndex) =>
