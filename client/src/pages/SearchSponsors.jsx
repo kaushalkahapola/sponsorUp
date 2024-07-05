@@ -5,31 +5,54 @@ import Filters from "../components/Filters";
 import SearchBar from "../components/SearchBar";
 import SponsorCard from "../components/SponsorCard"; // Assuming SponsorCard component exists
 import { sponsors } from "../dummy_data/data";
+import { Button } from "../components/Buttons";
 
 const SearchSponsors = () => {
   const [searchText, setSearchText] = useState("");
-  const [filters, SetFilters] = useState([]);
-
-  const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState([]);
   const [filteredSponsors, setFilteredSponsors] = useState([]);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false); // State for sidebar toggle
 
   useEffect(() => {
-    // Dummy initial content with SponsorCard data
+    const fetchSponsors = () => {
+      // Dummy initial content with SponsorCard data
+      let filtered = sponsors;
 
-    setFilteredSponsors(sponsors);
+      // Apply search text filter
+      if (searchText.trim() !== "") {
+        const lowercasedFilter = searchText.toLowerCase();
+        filtered = filtered.filter((sponsor) =>
+          sponsor.name.toLowerCase().includes(lowercasedFilter)
+        );
+      }
+
+      setFilteredSponsors(filtered);
+    };
+
+    fetchSponsors();
+  }, [searchText]);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 768); // Adjust breakpoint as needed
+    };
+
+    checkScreenSize();
+
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
   }, []);
 
-  useEffect(() => {
-    //While typing
-  }, [searchText, filters]);
-
-  async function search(searchText, filters) {
-    //fetch
-    console.log(searchText);
-  }
+  const toggleFilters = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
 
   const searchBtnClicked = async () => {
-    await search(searchText, filters);
+    // Perform search logic here if needed
   };
 
   return (
@@ -49,13 +72,11 @@ const SearchSponsors = () => {
           </div>
         </div>
         <Grid gap="3" mdcols="1fr 2fr" className="md:flex">
-          {/* Left Side Content (Filters) */}
-          <div className="bg-white rounded-md shadow-md pt-3 p-6 md:mt-0 md:ml-8">
-            <div className="md:block">
-              <Filters />
+          {!isSmallScreen && ( // Render Filters in grid for non-small screens
+            <div className="bg-white rounded-md shadow-md pt-3 p-6 md:mt-0 md:ml-8">
+              <Filters onApplyFilters={setFilters} />
             </div>
-          </div>
-          {/* Right Side Content (Sponsor Cards) */}
+          )}
           <div className="md:w-3/4">
             <div className="grid px-5 py-7 gap-6 md:grid-cols-1 xl:grid-cols-2">
               {filteredSponsors.map((sponsor) => (
@@ -65,6 +86,26 @@ const SearchSponsors = () => {
           </div>
         </Grid>
       </Container>
+      {isSmallScreen && ( // Render Filters button for small screens
+        <div className="fixed bottom-5 right-5 z-50">
+          <Button
+            text="Filters"
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow"
+            onClick={toggleFilters}
+          />
+        </div>
+      )}
+      {isSmallScreen && ( // Render off-canvas sidebar for small screens
+        <div className={`off-canvas-sidebar ${isFilterOpen ? "show" : ""}`}>
+            <Filters onApplyFilters={setFilters} />
+        </div>
+      )}
+      {isSmallScreen && ( // Render off-canvas overlay for small screens
+        <div
+          className={`off-canvas-overlay ${isFilterOpen ? "show" : ""}`}
+          onClick={toggleFilters}
+        ></div>
+      )}
     </>
   );
 };

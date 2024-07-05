@@ -3,7 +3,7 @@
 const sponsors = [
   {
     id: 1,
-    name: "Company A",
+    name: "Testing",
     location: "New York",
     status: "Gold Sponsor",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
