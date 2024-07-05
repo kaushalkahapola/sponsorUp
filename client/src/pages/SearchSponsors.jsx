@@ -73,7 +73,7 @@ const SearchSponsors = () => {
       <OrganizersNavbar />
       <Container>
         <Heading size="3xl" className="text-center my-5">
-          Search Sponsors
+          Find Sponsors
         </Heading>
         <div className="flex justify-center mb-8">
           <div className="flex-1 justify-center max-w-screen-md">
