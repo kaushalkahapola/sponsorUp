@@ -186,120 +186,140 @@ const Organizers = [
     name: "Robin Brown",
     email: "robin.brown@mail.com",
     organization: "Wayne Enterprises",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 2,
     name: "Alex Miller",
     email: "alex.miller@demo.com",
     organization: "Gringotts",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 3,
     name: "Taylor Rodriguez",
     email: "taylor.rodriguez@mail.com",
     organization: "Globex Corporation",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 4,
     name: "Alex Doe",
     email: "alex.doe@example.com",
     organization: "Cyberdyne Systems",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 5,
     name: "Taylor Garcia",
     email: "taylor.garcia@mail.com",
     organization: "Globex Corporation",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 6,
     name: "Pat Smith",
     email: "pat.smith@example.com",
     organization: "Wayne Enterprises",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 7,
     name: "Cameron Doe",
     email: "cameron.doe@demo.com",
     organization: "Soylent Corp",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 8,
     name: "Jordan Williams",
     email: "jordan.williams@demo.com",
     organization: "MomCorp",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 9,
     name: "John Garcia",
     email: "john.garcia@demo.com",
     organization: "Umbrella Corporation",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 10,
     name: "Robin Johnson",
     email: "robin.johnson@demo.com",
     organization: "Stark Industries",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 11,
     name: "Taylor Miller",
     email: "taylor.miller@mail.com",
     organization: "Acme Corp",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 12,
     name: "Jordan Johnson",
     email: "jordan.johnson@test.com",
     organization: "Acme Corp",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 13,
     name: "Pat Jones",
     email: "pat.jones@test.com",
     organization: "Globex Corporation",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 14,
     name: "Morgan Miller",
     email: "morgan.miller@mail.com",
     organization: "Gringotts",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 15,
     name: "Robin Miller",
     email: "robin.miller@test.com",
     organization: "Globex Corporation",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 16,
     name: "Robin Rodriguez",
     email: "robin.rodriguez@demo.com",
     organization: "Umbrella Corporation",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 17,
     name: "Chris Davis",
     email: "chris.davis@demo.com",
     organization: "Acme Corp",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 18,
     name: "Morgan Williams",
     email: "morgan.williams@mail.com",
     organization: "Wayne Enterprises",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 19,
     name: "Cameron Garcia",
     email: "cameron.garcia@demo.com",
     organization: "Gringotts",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
   {
     id: 20,
     name: "Chris Garcia",
     email: "chris.garcia@example.com",
     organization: "Soylent Corp",
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
   },
 ];
 
