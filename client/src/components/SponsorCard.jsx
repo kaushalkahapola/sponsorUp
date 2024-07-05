@@ -3,11 +3,14 @@ import { Card, Flex, Box, Avatar, Badge } from "@radix-ui/themes";
 import { Button } from "./Buttons";
 
 const SponsorCard = ({
-  name = "Company Name",
-  location = "Location",
-  status = "status",
-  description = "Description about the company",
-  categories = ["Music", "Education", "IT"],
+  sponsor = {
+    name: "Company Name",
+    location: "Location",
+    status: "status",
+    description: "Description about the company",
+    categories: ["Music", "Education", "IT"],
+    avatar: "",
+  },
 }) => {
   return (
     <div className="font-poppins text-gray">
@@ -17,7 +20,7 @@ const SponsorCard = ({
             <Box>
               <Flex gapX="4">
                 <Avatar
-                  src="/"
+                  src={sponsor.avatar}
                   fallback={"?"}
                   size="6"
                   radius="full"
@@ -30,10 +33,10 @@ const SponsorCard = ({
                     align="start"
                     justify="center"
                   >
-                    <Box className="text-black font-bold">{name}</Box>
-                    <Box>{location}</Box>
+                    <Box className="text-black font-bold">{sponsor.name}</Box>
+                    <Box>{sponsor.location}</Box>
                     <Badge mt="1" color="purple">
-                      {status}
+                      {sponsor.status}
                     </Badge>
                   </Flex>
                 </Box>
@@ -47,7 +50,7 @@ const SponsorCard = ({
                   align="start"
                   justify="center"
                 >
-                  <Box>{description}</Box>
+                  <Box>{sponsor.description}</Box>
                 </Flex>
               </Box>
               <Box className="text-sm">
@@ -55,7 +58,7 @@ const SponsorCard = ({
                   Interested Categories
                 </Box>
                 <Flex gap="2">
-                  {categories.map((category, index) => (
+                  {sponsor.categories.map((category, index) => (
                     <Badge key={index} color="blue">
                       {category}
                     </Badge>
@@ -67,7 +70,7 @@ const SponsorCard = ({
               </Box>
             </Flex>
             <div className="text-sm">
-            <Button text="learn more" />
+              <Button text="learn more" />
             </div>
           </Flex>
         </Card>

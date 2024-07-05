@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Container, Grid, Heading } from "@radix-ui/themes";
 import OrganizersNavbar from "../components/OrganizersNavbar";
-import Filters from "../components/Filters";
+import EventsFilters from "../components/EventsFilters";
 import SearchBar from "../components/SearchBar";
-import SponsorCard from "../components/SponsorCard"; // Assuming SponsorCard component exists
-import { sponsors } from "../dummy_data/data";
+import EventCard from "../components/EventCard";
+import { events } from "../dummy_data/data";
 
-const SearchSponsors = () => {
+const SearchEventsPage = () => {
   const [searchText, setSearchText] = useState("");
-  const [filters, SetFilters] = useState([]);
-
-  const [showFilters, setShowFilters] = useState(false);
-  const [filteredSponsors, setFilteredSponsors] = useState([]);
+  const [filters, setFilters] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
-    // Dummy initial content with SponsorCard data
-
-    setFilteredSponsors(sponsors);
+    // Dummy initial content with EventCard data
+    setFilteredEvents(events);
   }, []);
 
   useEffect(() => {
-    //While typing
-  }, [searchText, filters]);
+    // Handle search and filter changes
+    async function search(searchText, filters) {
+      // Implement the search logic
+      console.log(searchText);
+    }
 
-  async function search(searchText, filters) {
-    //fetch
-    console.log(searchText);
-  }
+    search(searchText, filters);
+  }, [searchText, filters]);
 
   const searchBtnClicked = async () => {
     await search(searchText, filters);
@@ -37,7 +35,7 @@ const SearchSponsors = () => {
       <OrganizersNavbar />
       <Container>
         <Heading size="3xl" className="text-center my-5">
-          Find Sponsors
+          Find Events
         </Heading>
         <div className="flex justify-center mb-8">
           <div className="flex-1 justify-center max-w-screen-md">
@@ -52,14 +50,14 @@ const SearchSponsors = () => {
           {/* Left Side Content (Filters) */}
           <div className="bg-white rounded-md shadow-md pt-3 p-6 md:mt-0 md:ml-8">
             <div className="md:block">
-              <Filters />
+              <EventsFilters />
             </div>
           </div>
-          {/* Right Side Content (Sponsor Cards) */}
+          {/* Right Side Content (Event Cards) */}
           <div className="md:w-3/4">
             <div className="grid px-5 py-7 gap-6 md:grid-cols-1 xl:grid-cols-2">
-              {filteredSponsors.map((sponsor) => (
-                <SponsorCard key={sponsor.id} sponsor={sponsor} />
+              {filteredEvents.map((event, index) => (
+                <EventCard key={index} event={event} />
               ))}
             </div>
           </div>
@@ -69,4 +67,4 @@ const SearchSponsors = () => {
   );
 };
 
-export default SearchSponsors;
+export default SearchEventsPage;
