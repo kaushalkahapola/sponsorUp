@@ -1,3 +1,4 @@
+import { Button } from "./Buttons";
 import React, { useState } from "react";
 
 const categoriesData = [
@@ -15,36 +16,31 @@ const categoriesData = [
       { id: 18, name: "Photography" },
     ],
   },
-  {
-    id: 2,
-    name: "Pricing",
-    items: [
-      { id: 21, name: "Below $100" },
-      { id: 22, name: "Above $100" },
-    ],
-  },
-  {
-    id: 3,
-    name: "Type",
-    items: [
-      { id: 31, name: "Online" },
-      { id: 32, name: "Outdoor" },
-    ],
-  },
-  {
-    id: 4,
-    name: "Language",
-    items: [
-      { id: 41, name: "English" },
-      { id: 42, name: "German" },
-      { id: 43, name: "French" },
-      { id: 44, name: "Spanish" },
-    ],
-  },
 ];
 
-function Filters() {
+const pricingData = [
+  { id: 1, name: "Below $100" },
+  { id: 2, name: "Above $100" },
+];
+
+const typeData = [
+  { id: 1, name: "Online" },
+  { id: 2, name: "Offline-indoor" },
+  { id: 3, name: "Offline-Outdoor" },
+];
+
+const languageData = [
+  { id: 1, name: "English" },
+  { id: 2, name: "Sinhala" },
+  { id: 3, name: "French" },
+  { id: 4, name: "German" },
+];
+
+function Filters({ onApplyFilters }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedPricing, setSelectedPricing] = useState("");
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
 
   const handleCategoryToggle = (itemName) => {
     setSelectedCategories((prevSelected) =>
@@ -54,20 +50,49 @@ function Filters() {
     );
   };
 
+  const handlePricingChange = (e) => {
+    setSelectedPricing(e.target.value);
+  };
+
+  const handleTypeToggle = (itemName) => {
+    setSelectedTypes((prevSelected) =>
+      prevSelected.includes(itemName)
+        ? prevSelected.filter((item) => item !== itemName)
+        : [...prevSelected, itemName]
+    );
+  };
+
+  const handleLanguageToggle = (itemName) => {
+    setSelectedLanguages((prevSelected) =>
+      prevSelected.includes(itemName)
+        ? prevSelected.filter((item) => item !== itemName)
+        : [...prevSelected, itemName]
+    );
+  };
+
   const handleClearAll = () => {
     setSelectedCategories([]);
+    setSelectedPricing("");
+    setSelectedTypes([]);
+    setSelectedLanguages([]);
   };
 
   const handleApplyFilters = () => {
-    console.log("Selected categories:", selectedCategories);
+    onApplyFilters({
+      categories: selectedCategories,
+      pricing: selectedPricing,
+      types: selectedTypes,
+      languages: selectedLanguages,
+    });
   };
 
   return (
     <div className="flex">
       <div className="p-4">
-        <div className="border border-gray-300 rounded p-4 mb-4">
+        <div className="border border-gray-100 rounded p-4 mb-4 min-w-[250px]">
           <h2 className="text-lg font-bold mb-2">Filter</h2>
           <hr className="my-4 border-gray-300" />
+
           {categoriesData.map((category) => (
             <div key={category.id} className="mb-4">
               <div className="flex items-center mb-2">
@@ -98,19 +123,89 @@ function Filters() {
               </div>
             </div>
           ))}
-          <div className="flex justify-start">
-            <button
-              className="btn bg-gray-100 text-purple-500 md:ml-4 px-3 py-1 rounded duration-50 md:static"
+
+          <div className="mb-4">
+            <div className="flex items-center mb-2">
+              <h3 className="text-base font-bold">Pricing</h3>
+            </div>
+            <div>
+              {pricingData.map((item) => (
+                <label key={item.id} className="flex items-center">
+                  <input
+                    type="radio"
+                    name="pricing"
+                    value={item.name}
+                    checked={selectedPricing === item.name}
+                    onChange={handlePricingChange}
+                    className="mr-2"
+                  />
+                  <span>{item.name}</span>
+                </label>
+              ))}
+            </div>
+            <hr className="my-4 border-gray-300" />
+          </div>
+
+          <div className="mb-4">
+            <div className="flex items-center mb-2">
+              <h3 className="text-base font-bold">Type</h3>
+            </div>
+            <div>
+              {typeData.map((item) => (
+                <label key={item.id} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id={item.name}
+                    checked={selectedTypes.includes(item.name)}
+                    onChange={() => handleTypeToggle(item.name)}
+                    className="mr-2"
+                  />
+                  <span>{item.name}</span>
+                </label>
+              ))}
+            </div>
+            <hr className="my-4 border-gray-300" />
+          </div>
+
+          <div className="mb-4">
+            <div className="flex items-center mb-2">
+              <h3 className="text-base font-bold">Language</h3>
+            </div>
+            <div>
+              {languageData.map((item) => (
+                <label key={item.id} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id={item.name}
+                    checked={selectedLanguages.includes(item.name)}
+                    onChange={() => handleLanguageToggle(item.name)}
+                    className="mr-2"
+                  />
+                  <span>{item.name}</span>
+                </label>
+              ))}
+              <button
+                className="text-sm text-purple-500 focus:outline-none"
+                onClick={() =>
+                  console.log("See more clicked for languages")
+                }
+              >
+                Show more
+              </button>
+              <hr className="my-4 border-gray-300" />
+            </div>
+          </div>
+
+          <div className="flex justify-center space-x-4">
+            <Button
+            variant="secondary"
+              text='Clear'
               onClick={handleClearAll}
-            >
-              Clear all
-            </button>
-            <button
-              className="btn bg-purple-500 text-gray-100 md:ml-4 px-3 py-1 rounded duration-50 md:static"
-              onClick={handleApplyFilters}
-            >
-              Apply
-            </button>
+            />
+            <Button
+            text='Apply'
+            onClick={handleApplyFilters}
+            />
           </div>
         </div>
       </div>

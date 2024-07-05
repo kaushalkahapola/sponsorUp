@@ -76,6 +76,9 @@ const events = [
     id: 1,
     title: "Music Concert",
     category: "Music",
+    price: 75, // price in dollars
+    type: "Online",
+    language: "English",
     datetime: "2024-07-15T19:00:00Z",
     description: "A night of live music performances.",
     location: "New York City",
@@ -91,6 +94,9 @@ const events = [
     id: 2,
     title: "Tech Conference",
     category: "Technology",
+    price: 150, // price in dollars
+    type: "Offline-indoor",
+    language: "English",
     datetime: "2024-08-20T09:00:00Z",
     description: "Latest trends in tech and innovation.",
     location: "San Francisco",
@@ -106,6 +112,9 @@ const events = [
     id: 3,
     title: "Art Exhibition",
     category: "Art",
+    price: 50, // price in dollars
+    type: "Offline-Outdoor",
+    language: "French",
     datetime: "2024-09-10T10:00:00Z",
     description: "Showcasing modern art from local artists.",
     location: "London",
@@ -121,6 +130,9 @@ const events = [
     id: 4,
     title: "Business Summit",
     category: "Business",
+    price: 200, // price in dollars
+    type: "Offline-indoor",
+    language: "Arabic",
     datetime: "2024-10-05T08:00:00Z",
     description: "Networking and workshops for business professionals.",
     location: "Dubai",
@@ -136,6 +148,9 @@ const events = [
     id: 5,
     title: "Healthcare Conference",
     category: "Healthcare",
+    price: 100, // price in dollars
+    type: "Offline-indoor",
+    language: "German",
     datetime: "2024-11-15T10:00:00Z",
     description: "Discussing advancements in healthcare and medicine.",
     location: "Berlin",
@@ -151,6 +166,9 @@ const events = [
     id: 6,
     title: "Film Festival",
     category: "Entertainment",
+    price: 80, // price in dollars
+    type: "Offline-indoor",
+    language: "French",
     datetime: "2024-12-01T18:00:00Z",
     description: "Premieres and screenings of the latest films.",
     location: "Paris",
@@ -166,6 +184,9 @@ const events = [
     id: 7,
     title: "Startup Pitch Night",
     category: "Entrepreneurship",
+    price: 50, // price in dollars
+    type: "Offline-indoor",
+    language: "English",
     datetime: "2024-12-15T17:00:00Z",
     description: "Pitch your startup ideas to potential investors.",
     location: "Silicon Valley",
@@ -178,6 +199,7 @@ const events = [
     ],
   },
 ];
+
 
 
 const Organizers = [

@@ -2,13 +2,13 @@ import React from "react";
 import { Button } from "./Buttons";
 import { FiSearch } from "react-icons/fi"; // Importing the search icon
 
-function SearchBar({ searchText, setSearchText, onSearchButtonClick }) {
+function SearchBar({ searchText, setSearchText, onSearchButtonClick, placeholder = 'Search for sponsors' }) {
   return (
     <div className="flex items-center justify-center mt-8">
       <div className="max-w-screen-lg w-full mx-4 flex">
         <input
           type="text"
-          placeholder="Search for sponsors..."
+          placeholder={placeholder}
           className="flex-1 px-4 py-2 border border-primary-700 rounded focus:outline-none focus:border-primary bg-white text-gray-800"
           style={{ marginRight: "8px" }} // Adding a little gap between input and button
           value={searchText}

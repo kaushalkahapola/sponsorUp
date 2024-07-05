@@ -5,7 +5,8 @@ import {
   Flex,
   Grid,
   Heading,
-  Text
+  Text,
+  Switch
   // Textarea,
   // Select,
 } from "@radix-ui/themes";
@@ -616,7 +617,11 @@ const CreateEventPage = () => {
                           </div>
                         )}
                       />
-                      <Button variant="secondary" text="Remove Package" onClick={() => index != 0 && remove(index)}/>
+                      <Button
+                        variant="secondary"
+                        text="Remove Package"
+                        onClick={() => index != 0 && remove(index)}
+                      />
                     </div>
                   ))}
                   <Button
@@ -631,15 +636,20 @@ const CreateEventPage = () => {
                       control={control}
                       render={({ field }) => (
                         <label className="flex items-center">
-                          <input type="checkbox" {...field} className="mr-2" />
+                          <Switch
+                            size='3'
+                            {...field}
+                            defaultChecked={field.value}
+                            className="mr-2"
+                          />
                           Promotion
                         </label>
                       )}
                     />
                   </div>
                 </div>
-                <Flex className='w-full justify-center md:justify-end'>
-                  <Button type="submit" text="Submit" minWidth="15rem"/>
+                <Flex className="w-full justify-center md:justify-end">
+                  <Button type="submit" text="Submit" minWidth="15rem" />
                 </Flex>
               </Flex>
             </Box>
