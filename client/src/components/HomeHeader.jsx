@@ -6,9 +6,9 @@ const HomeHeader = () => {
   const [open, setOpen] = useState(false);
 
   let Links = [
-    { name: "Services", link: "/" },
-    { name: "Pricing", link: "/" },
-    { name: "Help Center", link: "/" },
+    { name: "Events", link: "/events" },
+    { name: "Sponsors", link: "/sponsors" },
+    { name: "Send Proposal", link: "/sendproposal" },
   ];
 
   return (
