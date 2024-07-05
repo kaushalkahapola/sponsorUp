@@ -4,6 +4,7 @@ import OrganizersNavbar from "../components/OrganizersNavbar";
 import Filters from "../components/Filters";
 import SearchBar from "../components/SearchBar";
 import SponsorCard from "../components/SponsorCard"; // Assuming SponsorCard component exists
+import { sponsors } from "../dummy_data/data";
 
 const SearchSponsors = () => {
   const [searchText, setSearchText] = useState("");
@@ -14,45 +15,8 @@ const SearchSponsors = () => {
 
   useEffect(() => {
     // Dummy initial content with SponsorCard data
-    const dummyInitial = [
-      {
-        id: 1,
-        name: "Company A",
-        location: "New York",
-        status: "Gold Sponsor",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        categories: ["Music", "Education", "IT"],
-      },
-      {
-        id: 2,
-        name: "Company B",
-        location: "San Francisco",
-        status: "Silver Sponsor",
-        description:
-          "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        categories: ["Finance", "Healthcare", "Technology"],
-      },
-      {
-        id: 3,
-        name: "Company C",
-        location: "London",
-        status: "Bronze Sponsor",
-        description:
-          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        categories: ["Retail", "Travel", "Fashion"],
-      },
-      {
-        id: 4,
-        name: "Company D",
-        location: "Berlin",
-        status: "Supporting Sponsor",
-        description:
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        categories: ["Sports", "Entertainment", "Media"],
-      },
-    ];
 
-    setFilteredSponsors(dummyInitial);
+    setFilteredSponsors(sponsors);
   }, []);
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import OrganizersNavbar from "../components/OrganizersNavbar";
 import EventsFilters from "../components/EventsFilters";
 import SearchBar from "../components/SearchBar";
 import EventCard from "../components/EventCard";
+import { events } from "../dummy_data/data";
 
 const SearchEventsPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -12,52 +13,7 @@ const SearchEventsPage = () => {
 
   useEffect(() => {
     // Dummy initial content with EventCard data
-    const dummyInitial = [
-      {
-        title: "Music Concert",
-        category: "Music",
-        datetime: "2024-07-15T19:00:00Z",
-        description: "A night of live music performances.",
-        location: "New York City",
-        organizer: "Music Fest Org",
-        coverImage: "https://picsum.photos/400/200?random=1",
-        album: [
-          "https://via.placeholder.com/400x200?text=1",
-          "https://via.placeholder.com/400x200?text=2",
-          "https://via.placeholder.com/400x200?text=3",
-        ],
-      },
-      {
-        title: "Tech Conference",
-        category: "Technology",
-        datetime: "2024-08-20T09:00:00Z",
-        description: "Latest trends in tech and innovation.",
-        location: "San Francisco",
-        organizer: "Tech Innovators",
-        coverImage: "https://picsum.photos/400/200?random=2",
-        album: [
-          "https://via.placeholder.com/400x200?text=1",
-          "https://via.placeholder.com/400x200?text=2",
-          "https://via.placeholder.com/400x200?text=3",
-        ],
-      },
-      {
-        title: "Art Exhibition",
-        category: "Art",
-        datetime: "2024-09-10T10:00:00Z",
-        description: "Showcasing modern art from local artists.",
-        location: "London",
-        organizer: "Art Gallery",
-        coverImage: "https://picsum.photos/400/200?random=3",
-        album: [
-          "https://via.placeholder.com/400x200?text=1",
-          "https://via.placeholder.com/400x200?text=2",
-          "https://via.placeholder.com/400x200?text=3",
-        ],
-      },
-    ];
-
-    setFilteredEvents(dummyInitial);
+    setFilteredEvents(events);
   }, []);
 
   useEffect(() => {
