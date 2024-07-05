@@ -1,5 +1,5 @@
-import { Button } from "./Buttons";
 import React, { useState } from "react";
+import { Button } from "./Buttons"; // Ensure Button component is correctly imported
 
 const categoriesData = [
   {
@@ -87,42 +87,45 @@ function Filters({ onApplyFilters }) {
   };
 
   return (
-    <div className="flex">
-      <div className="p-4">
-        <div className="border border-gray-100 rounded p-4 mb-4 min-w-[250px]">
-          <h2 className="text-lg font-bold mb-2">Filter</h2>
-          <hr className="my-4 border-gray-300" />
+    <div className="p-4">
+      <div className="border border-gray-100 rounded p-4 mb-4 min-w-[250px] text-zinc-500">
+        <h2 className="text-lg font-bold mb-2">Filter</h2>
+        <hr className="my-4 border-gray-300" />
 
-          {categoriesData.map((category) => (
-            <div key={category.id} className="mb-4">
-              <div className="flex items-center mb-2">
-                <h3 className="text-base font-bold">{category.name}</h3>
-              </div>
-              <div>
-                {category.items.map((item) => (
-                  <label key={item.id} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id={item.name}
-                      checked={selectedCategories.includes(item.name)}
-                      onChange={() => handleCategoryToggle(item.name)}
-                      className="mr-2"
-                    />
-                    <span>{item.name}</span>
-                  </label>
-                ))}
-                <button
-                  className="text-sm text-purple-500 focus:outline-none"
-                  onClick={() =>
-                    console.log("See more clicked for", category.name)
-                  }
-                >
-                  Show more
-                </button>
-                <hr className="my-4 border-gray-300" />
-              </div>
+        {/* Render filters content */}
+        {categoriesData.map((category) => (
+          <div key={category.id} className="mb-4">
+            <div className="flex items-center mb-2">
+              <h3 className="text-base font-bold">{category.name}</h3>
             </div>
-          ))}
+            <div>
+              {category.items.map((item) => (
+                <label key={item.id} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id={item.name}
+                    checked={selectedCategories.includes(item.name)}
+                    onChange={() => handleCategoryToggle(item.name)}
+                    className="mr-2"
+                  />
+                  <span>{item.name}</span>
+                </label>
+              ))}
+              <button
+                className="text-sm text-purple-500 focus:outline-none"
+                onClick={() =>
+                  console.log("See more clicked for", category.name)
+                }
+              >
+                Show more
+              </button>
+              <hr className="my-4 border-gray-300" />
+            </div>
+          </div>
+        ))}
+
+
+
 
           <div className="mb-4">
             <div className="flex items-center mb-2">
@@ -196,17 +199,20 @@ function Filters({ onApplyFilters }) {
             </div>
           </div>
 
+
+
+
+
           <div className="flex justify-center space-x-4">
-            <Button
+          <Button
             variant="secondary"
-              text='Clear'
-              onClick={handleClearAll}
-            />
-            <Button
-            text='Apply'
+            text="Clear"
+            onClick={handleClearAll}
+          />
+          <Button
+            text="Apply"
             onClick={handleApplyFilters}
-            />
-          </div>
+          />
         </div>
       </div>
     </div>
