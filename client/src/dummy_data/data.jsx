@@ -179,4 +179,132 @@ const events = [
   },
 ];
 
-export { sponsors, events };
+
+const Organizers = [
+  {
+    id: 1,
+    name: "Robin Brown",
+    email: "robin.brown@mail.com",
+    organization: "Wayne Enterprises",
+  },
+  {
+    id: 2,
+    name: "Alex Miller",
+    email: "alex.miller@demo.com",
+    organization: "Gringotts",
+  },
+  {
+    id: 3,
+    name: "Taylor Rodriguez",
+    email: "taylor.rodriguez@mail.com",
+    organization: "Globex Corporation",
+  },
+  {
+    id: 4,
+    name: "Alex Doe",
+    email: "alex.doe@example.com",
+    organization: "Cyberdyne Systems",
+  },
+  {
+    id: 5,
+    name: "Taylor Garcia",
+    email: "taylor.garcia@mail.com",
+    organization: "Globex Corporation",
+  },
+  {
+    id: 6,
+    name: "Pat Smith",
+    email: "pat.smith@example.com",
+    organization: "Wayne Enterprises",
+  },
+  {
+    id: 7,
+    name: "Cameron Doe",
+    email: "cameron.doe@demo.com",
+    organization: "Soylent Corp",
+  },
+  {
+    id: 8,
+    name: "Jordan Williams",
+    email: "jordan.williams@demo.com",
+    organization: "MomCorp",
+  },
+  {
+    id: 9,
+    name: "John Garcia",
+    email: "john.garcia@demo.com",
+    organization: "Umbrella Corporation",
+  },
+  {
+    id: 10,
+    name: "Robin Johnson",
+    email: "robin.johnson@demo.com",
+    organization: "Stark Industries",
+  },
+  {
+    id: 11,
+    name: "Taylor Miller",
+    email: "taylor.miller@mail.com",
+    organization: "Acme Corp",
+  },
+  {
+    id: 12,
+    name: "Jordan Johnson",
+    email: "jordan.johnson@test.com",
+    organization: "Acme Corp",
+  },
+  {
+    id: 13,
+    name: "Pat Jones",
+    email: "pat.jones@test.com",
+    organization: "Globex Corporation",
+  },
+  {
+    id: 14,
+    name: "Morgan Miller",
+    email: "morgan.miller@mail.com",
+    organization: "Gringotts",
+  },
+  {
+    id: 15,
+    name: "Robin Miller",
+    email: "robin.miller@test.com",
+    organization: "Globex Corporation",
+  },
+  {
+    id: 16,
+    name: "Robin Rodriguez",
+    email: "robin.rodriguez@demo.com",
+    organization: "Umbrella Corporation",
+  },
+  {
+    id: 17,
+    name: "Chris Davis",
+    email: "chris.davis@demo.com",
+    organization: "Acme Corp",
+  },
+  {
+    id: 18,
+    name: "Morgan Williams",
+    email: "morgan.williams@mail.com",
+    organization: "Wayne Enterprises",
+  },
+  {
+    id: 19,
+    name: "Cameron Garcia",
+    email: "cameron.garcia@demo.com",
+    organization: "Gringotts",
+  },
+  {
+    id: 20,
+    name: "Chris Garcia",
+    email: "chris.garcia@example.com",
+    organization: "Soylent Corp",
+  },
+];
+
+export default Organizers;
+
+
+
+export { Organizers, sponsors, events };
