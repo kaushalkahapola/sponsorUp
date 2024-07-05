@@ -50,7 +50,7 @@ const SignUp = () => {
                     {...field}
                     className={`w-full px-3 py-2 border ${
                       errors.email ? "border-red-500" : "border-gray-300"
-                    } rounded bg-gray-100 text-black`}
+                    } rounded bg-gray-50 text-black`}
                     type="email"
                     id="email"
                     value={field.value || ''}
@@ -77,7 +77,7 @@ const SignUp = () => {
                       {...field}
                       className={`w-full px-3 py-2 border ${
                         errors.password ? "border-red-500" : "border-gray-300"
-                      } rounded bg-gray-100 text-black`}
+                      } rounded bg-gray-50 text-black`}
                       type={showPassword ? "text" : "password"}
                       id="password"
                       value={field.value || ''}
@@ -111,7 +111,7 @@ const SignUp = () => {
                       {...field}
                       className={`w-full px-3 py-2 border ${
                         errors.confirmPassword ? "border-red-500" : "border-gray-300"
-                      } rounded bg-gray-100 text-black`}
+                      } rounded bg-gray-50 text-black`}
                       type={showPassword ? "text" : "password"}
                       id="confirmPassword"
                       value={field.value || ''}

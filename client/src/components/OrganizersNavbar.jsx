@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button } from "./Buttons";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   Avatar,
   Box,
   Container,
   DropdownMenu,
   Flex,
-  Link,
   Text,
 } from "@radix-ui/themes";
-import { Button } from "./Buttons";
-import { useNavigate } from "react-router-dom";
 
 const OrganizersNavbar = () => {
-  const navigate = useNavigate();
+  const location = useLocation();
+  const [open, setOpen] = useState(false);
 
   const links = [
     {
@@ -21,66 +21,110 @@ const OrganizersNavbar = () => {
     },
     {
       label: "My Events",
-      path: "/",
+      path: "/events",
     },
   ];
-
-  const onClick = () => {
-    navigate("/events/new");
-  };
 
   return (
     <nav className="fixed-navbar border-b mb-6 px-5 font-poppins bg-white">
       <Container>
         <Flex align="center" py="3" justify="between">
-          <Flex gap='6' align="center">
-            <Link href="/" className="text-gray-400 font-bold text-2xl">Sponsor<span className="text-primary">Up</span> </Link>
-            <ul className="flex space-x-6 text-sm">
+          <Flex gap="6" align="center">
+            <Link to="/" className="text-gray-400 font-bold text-2xl">
+              Sponsor<span className="text-primary">Up</span>{" "}
+            </Link>
+            {/* Links */}
+            <ul className="hidden lg:flex space-x-6 text-sm">
               {links.map((link, index) => (
                 <li key={index}>
-                  <Link href={link.path} className="text-zinc-500">
+                  <Link to={link.path} className="text-zinc-500">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </Flex>
-          <Flex>
-            <Box>
-              <Flex gap="3" align="center">
-                {/* we have to check the path and if the path is not /events/new then only we have to show this button */}
-                {location.pathname !== "/events/new" && <div className="text-sm"><Button text="+ Create Event" onClick={onClick} /></div>}
-                <DropdownMenu.Root>
-                  <DropdownMenu.Trigger>
-                    <Avatar
-                      src="/"
-                      fallback={"?"}
-                      size="2"
-                      radius="full"
-                      className="cursor-pointer"
-                    />
-                  </DropdownMenu.Trigger>
-                  <DropdownMenu.Content>
-                    <DropdownMenu.Label>
-                      <Text size="2" className="font-poppins">example@gmail.com</Text>
-                    </DropdownMenu.Label>
-                    <DropdownMenu.Item>
-                      <Text>SignOut</Text>
-                    </DropdownMenu.Item>
-                  </DropdownMenu.Content>
-                </DropdownMenu.Root>
-                <Flex
-                direction='column' justify='center' align='start'>
-                <Text
+          {/* Hamburger Menu Icon */}
+          <Box className="md:hidden">
+          <button onClick={() => setOpen(!open)}>
+            <Avatar
+              src="/"
+              fallback={"?"}
+              size="2"
+              radius="full"
+              className="cursor-pointer"
+            />
+          </button>
+          </Box>
+          {/* Profile and Menu */}
+          <Flex gap="3" align="center" className="hidden md:inline-flex">
+            {/* Create Event Button */}
+            {location.pathname !== "/events/new" && (
+              <div className="hidden md:block text-sm">
+                <Link to="/events/new">
+                  <Button text="+ Create Event" />
+                </Link>
+              </div>
+            )}
+            {/* Avatar and Dropdown Menu */}
+            <DropdownMenu.Root >
+              <DropdownMenu.Trigger>
+                <Avatar
+                  src="/"
+                  fallback={"?"}
                   size="2"
-                  weight="medium"
-                >{`John Smith`}</Text>
-                <Text size='1' weight='light'>test Orginaztion</Text>
-                </Flex>
-              </Flex>
-            </Box>
+                  radius="full"
+                  className="cursor-pointer"
+                />
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content align="end">
+                <DropdownMenu.Item onSelect={() => {}}>
+                  <Text>example@gmail.com</Text>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item onSelect={() => {}}>
+                  <Text>Sign Out</Text>
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+            {/* User Info */}
+            <Flex
+              direction="column"
+              justify="center"
+              align="start"
+              className="hidden md:inline-flex"
+            >
+              <Text size="2" weight="medium">
+                John Smith
+              </Text>
+              <Text size="1" weight="light">
+                Test Organization
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
+        {/* Mobile Menu */}
+        <div
+          className={`${
+            open ? "block" : "hidden"
+          } md:hidden absolute bg-white top-16 left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in`}
+        >
+          {links.map((link, index) => (
+            <Link key={index} to={link.path}>
+              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-semibold text-gray-800 hover:text-blue-400 duration-500">
+                {link.label}
+              </span>
+            </Link>
+          ))}
+          <div className="flex items-center justify-end my-4 mx-8 space-x-2">
+          {location.pathname !== "/events/new" && (
+            <Link to="/events/new">
+              <Button variant="secondary" text="Create event" className="btn bg-gray-50 text-purple-500 md:ml-4 px-3 py-1 rounded duration-50 md:static"/>
+            </Link>)}
+            <Link to="/signout">
+              <Button text="Sign out" className="btn bg-purple-500 text-white-100 md:ml-4 px-3 py-1 rounded duration-50 md:static"/>
+            </Link>
+          </div>
+        </div>
       </Container>
     </nav>
   );

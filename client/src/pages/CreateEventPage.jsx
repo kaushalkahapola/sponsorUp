@@ -5,8 +5,7 @@ import {
   Flex,
   Grid,
   Heading,
-  Text,
-  Button,
+  Text
   // Textarea,
   // Select,
 } from "@radix-ui/themes";
@@ -17,6 +16,8 @@ import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { eventSchema } from "../schemas/validationSchema";
 import ImageUpload from "../components/ImageUpload";
+import { Button } from "../components/Buttons";
+
 const CreateEventPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -615,19 +616,15 @@ const CreateEventPage = () => {
                           </div>
                         )}
                       />
-                      <Button type="button" onClick={() => remove(index)}>
-                        Remove Package
-                      </Button>
+                      <Button variant="secondary" text="Remove Package" onClick={() => index != 0 && remove(index)}/>
                     </div>
                   ))}
                   <Button
-                    type="button"
+                    text="Add Another Package"
                     onClick={() =>
                       append({ name: "", amount: "", description: "" })
                     }
-                  >
-                    Add Another Package
-                  </Button>
+                  />
                   <div className="mt-4">
                     <Controller
                       name="promotionTick"
@@ -641,7 +638,9 @@ const CreateEventPage = () => {
                     />
                   </div>
                 </div>
-                <Button type="submit">Submit</Button>
+                <Flex className='w-full justify-center md:justify-end'>
+                  <Button type="submit" text="Submit" minWidth="15rem"/>
+                </Flex>
               </Flex>
             </Box>
           </Grid>

@@ -17,7 +17,6 @@
 
 .sticky-sidebar {
   position: sticky;
-
   top: 6rem; /* Adjust this value based on the height of your navbar and desired gap */
   align-self: flex-start; /* Ensures the sticky sidebar stays aligned at the start */
 }

@@ -21,6 +21,7 @@ const Button = ({
   minWidth,
   minHeight,
   icon,
+  type = "button",
 }) => {
   const [clicked, setClicked] = useState(false);
 
@@ -36,7 +37,7 @@ const Button = ({
     "font-normal py-2 px-4 rounded transition duration-150 ease-in-out transform shadow-md flex items-center justify-center";
   const primaryClasses = "text-white bg-primary hover:bg-primary-700";
   const secondaryClasses =
-    "text-black bg-gray-100 hover:bg-primary hover:text-white";
+    "text-primary bg-gray-50 hover:bg-violet-500 hover:text-white";
 
   const variantClasses =
     variant === "primary" ? primaryClasses : secondaryClasses;
@@ -53,6 +54,7 @@ const Button = ({
       onClick={handleClick}
       id={id}
       style={style}
+      type={type}
     >
       {icon && <span className="mr-2">{icon}</span>}
       {text}
