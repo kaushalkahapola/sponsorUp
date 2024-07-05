@@ -59,14 +59,7 @@ const SearchSponsors = () => {
           <div className="md:w-3/4">
             <div className="grid px-5 py-7 gap-6 md:grid-cols-1 xl:grid-cols-2">
               {filteredSponsors.map((sponsor) => (
-                <SponsorCard
-                  key={sponsor.id}
-                  name={sponsor.name}
-                  location={sponsor.location}
-                  status={sponsor.status}
-                  description={sponsor.description}
-                  categories={sponsor.categories}
-                />
+                <SponsorCard key={sponsor.id} sponsor={sponsor} />
               ))}
             </div>
           </div>

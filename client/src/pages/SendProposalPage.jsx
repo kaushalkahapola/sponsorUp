@@ -6,6 +6,7 @@ import EventCard from "../components/EventCard";
 import AlbumCarousel from "../components/AlbumCarousel";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Button as CustomButton } from "../components/Buttons";
+import { events } from "../dummy_data/data";
 
 const SendProposalPage = () => {
   const [event, setEvent] = useState({});
@@ -26,20 +27,7 @@ const SendProposalPage = () => {
   useEffect(() => {
     // Simulating fetching event data
     const fetchEvent = async () => {
-      const fetchedEvent = {
-        id: "ajksdhbabnoa",
-        title: "Spandana",
-        category: "Music",
-        location: "Sample Venue",
-        datetime: "2022-12-31T23:59:59.999Z",
-        organizer: "Sample Organizer",
-        coverImage: "https://picsum.photos/400/200",
-        album: [
-          "https://picsum.photos/400",
-          "https://picsum.photos/300",
-          "https://picsum.photos/500",
-        ],
-      };
+      const fetchedEvent = events[0];
       setProposalData({ ...proposalData, eventId: fetchedEvent.id });
       setEvent(fetchedEvent);
     };
