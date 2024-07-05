@@ -13,7 +13,7 @@ import "./App.css";
 import SendProposalPage from "./pages/SendProposalPage";
 import EventCard from "./components/EventCard";
 import SearchSponsors from "./pages/SearchSponsors";
-import Test from "./pages/Test";
+// import Test from "./pages/Test";
 import SearchEventsPage from "./pages/SearchEventsPage";
 
 function App() {
@@ -53,7 +53,7 @@ function App() {
           <Route path="/events/new" element={<CreateEventPage />} />
           <Route path="/sendproposal" element={<SendProposalPage />} />
           <Route path="/sponsors" element={<SearchSponsors />} />
-          <Route path="/test" element={<Test />} />
+          {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/events" element={<SearchEventsPage />} />
         </Routes>
       </Router>
