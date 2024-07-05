@@ -64,16 +64,12 @@ const HomeHeader = () => {
         </div>
 
         {/* Buttons for normal navbar */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center space-x-3">
           <Link to="/signin">
-            <button className="btn bg-gray-50 text-purple-500 md:ml-4 px-3 py-1 rounded duration-50 md:static">
-              Log in
-            </button>
+            <Button text='Log in' variant="secondary" className="btn bg-gray-50 text-purple-500 md:ml-4 px-3 py-1 rounded duration-50 md:static"/>
           </Link>
           <Link to="/signup">
-            <button className="btn bg-purple-500 text-white-100 md:ml-4 px-3 py-1 rounded duration-50 md:static">
-              Sign up
-            </button>
+            <Button text="Sign Up" className="btn bg-purple-500 text-white-100 md:ml-4 px-3 py-1 rounded duration-50 md:static"/>
           </Link>
         </div>
 
