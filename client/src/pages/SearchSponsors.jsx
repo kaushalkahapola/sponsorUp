@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Grid, Heading } from "@radix-ui/themes";
 import OrganizersNavbar from "../components/OrganizersNavbar";
 import Filters from "../components/Filters";
-import SponsorSearchBar from "../components/SponsorSearchBar";
+import SearchBar from "../components/SearchBar";
 import SponsorCard from "../components/SponsorCard"; // Assuming SponsorCard component exists
 
 const SearchSponsors = () => {
@@ -77,7 +77,7 @@ const SearchSponsors = () => {
         </Heading>
         <div className="flex justify-center mb-8">
           <div className="flex-1 justify-center max-w-screen-md">
-            <SponsorSearchBar
+            <SearchBar
               searchText={searchText}
               setSearchText={setSearchText}
               onSearchButtonClick={searchBtnClicked}

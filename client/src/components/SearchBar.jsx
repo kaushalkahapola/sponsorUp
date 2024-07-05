@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "./Buttons";
 import { FiSearch } from "react-icons/fi"; // Importing the search icon
 
-function SponsorSearchBar({ searchText, setSearchText, onSearchButtonClick }) {
+function SearchBar({ searchText, setSearchText, onSearchButtonClick }) {
   return (
     <div className="flex items-center justify-center mt-8">
       <div className="max-w-screen-lg w-full mx-4 flex">
@@ -26,4 +26,4 @@ function SponsorSearchBar({ searchText, setSearchText, onSearchButtonClick }) {
   );
 }
 
-export default SponsorSearchBar;
+export default SearchBar;
