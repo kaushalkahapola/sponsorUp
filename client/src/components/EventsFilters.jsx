@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./Buttons";
 
 function EventsFilters() {
   return (
@@ -81,13 +82,9 @@ function EventsFilters() {
       </div>
 
       {/* Buttons */}
-      <div className="flex space-x-2">
-        <button className="bg-gray-300 text-black py-2 px-4 rounded-md hover:bg-gray-400 transition duration-300">
-          Clear All
-        </button>
-        <button className="bg-primary-500 text-white py-2 px-4 rounded-md hover:bg-primary-700 transition duration-300">
-          Apply
-        </button>
+      <div className="flex space-x-4">
+        <Button id={"clear-filter"} variant={"secondary"} text={"Clear"} />
+        <Button id={"apply-filter"} text={"Apply"} />
       </div>
     </div>
   );
