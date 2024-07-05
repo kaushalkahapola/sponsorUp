@@ -48,7 +48,8 @@ const OrganizersNavbar = () => {
           <Flex>
             <Box>
               <Flex gap="3" align="center">
-                <div className="text-sm"><Button text="+ Create Event" onClick={onClick} /></div>
+                {/* we have to check the path and if the path is not /events/new then only we have to show this button */}
+                {location.pathname !== "/events/new" && <div className="text-sm"><Button text="+ Create Event" onClick={onClick} /></div>}
                 <DropdownMenu.Root>
                   <DropdownMenu.Trigger>
                     <Avatar
