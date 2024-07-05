@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import roleImage from './assets/OBQ/OBCYR.png'; // Import your image
-import { CheckCircledIcon, RadiobuttonIcon } from '@radix-ui/react-icons'; // Import Radix UI icons
+import roleImage from '../assets/OBCYR.png'; 
+import { CheckCircledIcon, RadiobuttonIcon } from '@radix-ui/react-icons'; 
 
 function Obq() {
-  const totalQuestions = 4; // Updated total number of questions
+  const totalQuestions = 4; // Total number of questions
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedRole, setSelectedRole] = useState('');
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedPlaces, setSelectedPlaces] = useState({});
   const [specificCategories, setSpecificCategories] = useState([]);
 
-  // Example data of interests and places
+  // Data of interests and places
   const interests = ['Music', 'Drama', 'DJ', 'Movie', 'Automobile', 'Electronic', 'Clean Up'];
   const placesByInterest = {
     Music: ['Venue A', 'Venue B', 'Venue C', 'Venue D', 'Venue E'],
@@ -77,7 +77,7 @@ function Obq() {
       <div className="flex-grow flex items-center justify-center">
         <div className="container mx-auto bg-white overflow-hidden">
           <div className={`flex ${currentQuestion === 1 ? '-translate-x-full' : currentQuestion === 2 ? '-translate-x-[200%]' : currentQuestion === 3 ? '-translate-x-[300%]' : 'translate-x-0'} transition-transform duration-500 ease-in-out`}>
-            {/* Slide 1 */}
+            {/* Choose Your Role */}
             <div className="w-full flex-shrink-0 flex items-center">
               <div className="w-1/2 flex flex-col justify-center items-center p-6">
                 <h1 className="text-2xl font-bold mb-6 text-center">Choose Your Role to Get Started</h1>
@@ -100,7 +100,7 @@ function Obq() {
                 <img src={roleImage} alt="Role" className="w-full h-screen object-cover object-center" />
               </div>
             </div>
-            {/* Slide 2 */}
+            {/* What You Are Interested In */}
             <div className="w-full flex-shrink-0 flex items-center">
               <div className="w-1/2 flex flex-col justify-center items-start p-6">
                 <h1 className="text-2xl font-bold mb-4">Tell us</h1>
@@ -135,7 +135,7 @@ function Obq() {
                 </div>
               </div>
             </div>
-            {/* Slide 3 */}
+            {/* Preferred Location */}
             <div className="w-full flex-shrink-0 flex items-center">
               <div className="w-1/2 flex flex-col justify-center items-start p-6">
                 <h1 className="text-2xl font-bold mb-4">Tell us</h1>
@@ -183,7 +183,7 @@ function Obq() {
                 ))}
               </div>
             </div>
-            {/* Slide 4 */}
+            {/* Specific Categories */}
             <div className="w-full flex-shrink-0 flex items-center">
               <div className="w-1/2 flex flex-col justify-center items-start p-6">
                 <h1 className="text-2xl font-bold mb-4">Tell us</h1>
