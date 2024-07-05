@@ -16,7 +16,7 @@ import { useDropzone } from "react-dropzone";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { eventSchema } from "../schemas/validationSchema";
-
+import ImageUpload from "../components/ImageUpload";
 const CreateEventPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -50,13 +50,12 @@ const CreateEventPage = () => {
     const elementRect = ref.current.getBoundingClientRect().top;
     const elementPosition = elementRect - bodyRect;
     const offsetPosition = elementPosition - offset;
-  
+
     window.scrollTo({
       top: offsetPosition,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
-  
 
   useEffect(() => {
     const options = {
@@ -108,9 +107,9 @@ const CreateEventPage = () => {
   const { getRootProps, getInputProps, open } = useDropzone({
     onDrop,
     accept: {
-      'image/png': ['.png'],
-      'image/jpeg': ['.jpeg'],
-      'image/webp': ['.webp']
+      "image/png": [".png"],
+      "image/jpeg": [".jpeg"],
+      "image/webp": [".webp"],
     },
     multiple: false,
     noClick: true,
@@ -125,33 +124,52 @@ const CreateEventPage = () => {
   return (
     <div className="font-poppins">
       <OrganizersNavbar />
-      <Container className="my-8" mx='5'>
+      <Container className="my-8" mx="5">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid columns={{ initial: "1", sm: "4" }}>
-            <Box className="space-y-3 sticky-sidebar hidden md:block" gridColumn={{ md: "span 1" }}>
+            <Box
+              className="space-y-3 sticky-sidebar hidden md:block"
+              gridColumn={{ md: "span 1" }}
+            >
               <Heading>Create Event</Heading>
               <Flex direction="column" gapY="4">
                 <Text
                   onClick={() => scrollToSection(coverRef)}
-                  className={`cursor-pointer ${activeSection === "cover" ? "text-primary-500" : "text-inherit"}`}
+                  className={`cursor-pointer ${
+                    activeSection === "cover"
+                      ? "text-primary-500"
+                      : "text-inherit"
+                  }`}
                 >
                   Upload Cover
                 </Text>
                 <Text
                   onClick={() => scrollToSection(generalRef)}
-                  className={`cursor-pointer ${activeSection === "general" ? "text-primary-500" : "text-inherit"}`}
+                  className={`cursor-pointer ${
+                    activeSection === "general"
+                      ? "text-primary-500"
+                      : "text-inherit"
+                  }`}
                 >
                   General Information
                 </Text>
                 <Text
                   onClick={() => scrollToSection(locationRef)}
-                  className={`cursor-pointer ${activeSection === "location" ? "text-primary-500" : "text-inherit"}`}
+                  className={`cursor-pointer ${
+                    activeSection === "location"
+                      ? "text-primary-500"
+                      : "text-inherit"
+                  }`}
                 >
                   Location And Time
                 </Text>
                 <Text
                   onClick={() => scrollToSection(packagesRef)}
-                  className={`cursor-pointer ${activeSection === "packages" ? "text-primary-500" : "text-inherit"}`}
+                  className={`cursor-pointer ${
+                    activeSection === "packages"
+                      ? "text-primary-500"
+                      : "text-inherit"
+                  }`}
                 >
                   Packages
                 </Text>
@@ -161,38 +179,52 @@ const CreateEventPage = () => {
               <Flex className="space-y-3" direction="column" gapY="9">
                 <div ref={coverRef} id="cover" className="space-y-10">
                   <Heading>Upload Cover</Heading>
-                  <Text size='2' className="text-gray-300">Upload the event cover to capture your audience's attention</Text>
+                  <Text size="2" className="text-gray-300">
+                    Upload the event cover to capture your audience's attention
+                  </Text>
                   {uploadedFile ? (
-                    <div style={{ width: "70%", height: "400px", position: "relative" }}>
+                    <div
+                      style={{
+                        width: "70%",
+                        height: "400px",
+                        position: "relative",
+                      }}
+                    >
                       <img
                         src={URL.createObjectURL(uploadedFile)}
                         alt="Uploaded File"
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
                       />
                       <div style={{ position: "absolute", top: 0, right: 0 }}>
                         <Button onClick={handleRemoveFile}>Remove</Button>
                       </div>
                     </div>
                   ) : (
-                    <Flex align='center' justify='center'>
-                    <div
-                      {...getRootProps({
-                        className: "dropzone bg-gray-50",
-                        style: {
-                          width: "600px",
-                          height: "400px",
-                          border: "2px dashed #ccc",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          cursor: "pointer",
-                        },
-                      })}
-                      onClick={open}
-                    >
-                      <input {...getInputProps()} />
-                      <Text>Drag 'n' drop an image here, or click to select a file</Text>
-                    </div>
+                    <Flex align="center" justify="center">
+                      <div
+                        {...getRootProps({
+                          className: "dropzone bg-gray-50",
+                          style: {
+                            width: "600px",
+                            height: "400px",
+                            border: "2px dashed #ccc",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                          },
+                        })}
+                        onClick={open}
+                      >
+                        <input {...getInputProps()} />
+                        <Text align="center" className="max-w-[70%]">
+                          Drag 'n' drop an image here, or click to select a file
+                        </Text>
+                      </div>
                     </Flex>
                   )}
                   {errors.coverPhoto && (
@@ -201,21 +233,26 @@ const CreateEventPage = () => {
                     </p>
                   )}
                 </div>
-                <div ref={generalRef} id="general"className="space-y-3">
+                <div ref={generalRef} id="general" className="space-y-3">
                   <Heading>General Information</Heading>
-                  <Text size='2' className="text-gray-300">Fill out the general information for the event here.</Text>
+                  <Text size="2" className="text-gray-300">
+                    Fill out the general information for the event here.
+                  </Text>
                   <Controller
                     name="name"
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="name">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="name"
+                        >
                           Event Name
                         </label>
                         <input
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.name ? "border-red-500" : "border-gray-300"
+                            errors.name ? "border-red-500" : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           type="text"
                           id="name"
@@ -234,13 +271,18 @@ const CreateEventPage = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="description">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="description"
+                        >
                           Event Description
                         </label>
                         <textarea
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.description ? "border-red-500" : "border-gray-300"
+                            errors.description
+                              ? "border-red-500"
+                              : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           id="description"
                           rows="4"
@@ -259,18 +301,25 @@ const CreateEventPage = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="category">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="category"
+                        >
                           Category
                         </label>
                         <select
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.category ? "border-red-500" : "border-gray-300"
+                            errors.category
+                              ? "border-red-500"
+                              : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           id="category"
                           required
                         >
-                          <option value="" disabled>Select Category</option>
+                          <option value="" disabled>
+                            Select Category
+                          </option>
                           <option value="category1">Category 1</option>
                           <option value="category2">Category 2</option>
                           {/* Add more categories as needed */}
@@ -283,22 +332,32 @@ const CreateEventPage = () => {
                       </div>
                     )}
                   />
+                  <div className="pt-5">
+                    <ImageUpload />
+                  </div>
                 </div>
-                <div ref={locationRef} id="location"className="space-y-3">
+                <div ref={locationRef} id="location" className="space-y-3">
                   <Heading>Location and Time</Heading>
-                  <Text size='2' className="text-gray-300">Provide the location and time details of the event.</Text>
+                  <Text size="2" className="text-gray-300">
+                    Provide the location and time details of the event.
+                  </Text>
                   <Controller
                     name="address"
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="address">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="address"
+                        >
                           Address
                         </label>
                         <input
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.address ? "border-red-500" : "border-gray-300"
+                            errors.address
+                              ? "border-red-500"
+                              : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           type="text"
                           id="address"
@@ -317,13 +376,16 @@ const CreateEventPage = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="city">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="city"
+                        >
                           City
                         </label>
                         <input
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.city ? "border-red-500" : "border-gray-300"
+                            errors.city ? "border-red-500" : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           type="text"
                           id="city"
@@ -342,13 +404,16 @@ const CreateEventPage = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="state">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="state"
+                        >
                           State/Province
                         </label>
                         <input
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.state ? "border-red-500" : "border-gray-300"
+                            errors.state ? "border-red-500" : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           type="text"
                           id="state"
@@ -367,13 +432,18 @@ const CreateEventPage = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="country">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="country"
+                        >
                           Country/Region
                         </label>
                         <input
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.country ? "border-red-500" : "border-gray-300"
+                            errors.country
+                              ? "border-red-500"
+                              : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           type="text"
                           id="country"
@@ -388,42 +458,22 @@ const CreateEventPage = () => {
                     )}
                   />
                   <Controller
-                    name="timeZone"
-                    control={control}
-                    render={({ field }) => (
-                      <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="timeZone">
-                          Time Zone
-                        </label>
-                        <input
-                          {...field}
-                          className={`w-full px-3 py-2 border ${
-                            errors.timeZone ? "border-red-500" : "border-gray-300"
-                          } rounded bg-gray-50 text-black`}
-                          type="text"
-                          id="timeZone"
-                          required
-                        />
-                        {errors.timeZone && (
-                          <p className="text-red-500 text-sm mt-1">
-                            {errors.timeZone.message}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  />
-                  <Controller
                     name="eventDate"
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="eventDate">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="eventDate"
+                        >
                           Event Date
                         </label>
                         <input
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.eventDate ? "border-red-500" : "border-gray-300"
+                            errors.eventDate
+                              ? "border-red-500"
+                              : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           type="date"
                           id="eventDate"
@@ -442,13 +492,18 @@ const CreateEventPage = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="mb-4">
-                        <label className="block text-gray-500 mb-2" htmlFor="startTime">
+                        <label
+                          className="block text-gray-500 mb-2"
+                          htmlFor="startTime"
+                        >
                           Start Time
                         </label>
                         <input
                           {...field}
                           className={`w-full px-3 py-2 border ${
-                            errors.startTime ? "border-red-500" : "border-gray-300"
+                            errors.startTime
+                              ? "border-red-500"
+                              : "border-gray-100"
                           } rounded bg-gray-50 text-black`}
                           type="time"
                           id="startTime"
@@ -465,7 +520,9 @@ const CreateEventPage = () => {
                 </div>
                 <div ref={packagesRef} id="packages" className="space-y-3">
                   <Heading>Packages</Heading>
-                  <Text size='2' className="text-gray-300">Add details of the sponsorship packages available.</Text>
+                  <Text size="2" className="text-gray-300">
+                    Add details of the sponsorship packages available.
+                  </Text>
                   {fields.map((item, index) => (
                     <div key={item.id} className="mb-4">
                       <Controller
@@ -473,13 +530,18 @@ const CreateEventPage = () => {
                         control={control}
                         render={({ field }) => (
                           <div className="mb-2">
-                            <label className="block text-gray-500 mb-2" htmlFor={`packages.${index}.name`}>
+                            <label
+                              className="block text-gray-500 mb-2"
+                              htmlFor={`packages.${index}.name`}
+                            >
                               Package Name
                             </label>
                             <input
                               {...field}
                               className={`w-full px-3 py-2 border ${
-                                errors.packages?.[index]?.name ? "border-red-500" : "border-gray-300"
+                                errors.packages?.[index]?.name
+                                  ? "border-red-500"
+                                  : "border-gray-100"
                               } rounded bg-gray-50 text-black`}
                               type="text"
                               id={`packages.${index}.name`}
@@ -498,13 +560,18 @@ const CreateEventPage = () => {
                         control={control}
                         render={({ field }) => (
                           <div className="mb-2">
-                            <label className="block text-gray-500 mb-2" htmlFor={`packages.${index}.amount`}>
+                            <label
+                              className="block text-gray-500 mb-2"
+                              htmlFor={`packages.${index}.amount`}
+                            >
                               Package Amount
                             </label>
                             <input
                               {...field}
                               className={`w-full px-3 py-2 border ${
-                                errors.packages?.[index]?.amount ? "border-red-500" : "border-gray-300"
+                                errors.packages?.[index]?.amount
+                                  ? "border-red-500"
+                                  : "border-gray-100"
                               } rounded bg-gray-50 text-black`}
                               type="number"
                               id={`packages.${index}.amount`}
@@ -523,13 +590,18 @@ const CreateEventPage = () => {
                         control={control}
                         render={({ field }) => (
                           <div className="mb-2">
-                            <label className="block text-gray-500 mb-2" htmlFor={`packages.${index}.description`}>
+                            <label
+                              className="block text-gray-500 mb-2"
+                              htmlFor={`packages.${index}.description`}
+                            >
                               Package Description
                             </label>
                             <textarea
                               {...field}
                               className={`w-full px-3 py-2 border ${
-                                errors.packages?.[index]?.description ? "border-red-500" : "border-gray-300"
+                                errors.packages?.[index]?.description
+                                  ? "border-red-500"
+                                  : "border-gray-100"
                               } rounded bg-gray-50 text-black`}
                               id={`packages.${index}.description`}
                               rows="3"
@@ -550,7 +622,9 @@ const CreateEventPage = () => {
                   ))}
                   <Button
                     type="button"
-                    onClick={() => append({ name: "", amount: "", description: "" })}
+                    onClick={() =>
+                      append({ name: "", amount: "", description: "" })
+                    }
                   >
                     Add Another Package
                   </Button>

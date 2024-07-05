@@ -1,23 +1,28 @@
 /* styles.css */
 .fixed-navbar {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-  
-  .fixed-sidebar {
-    position: sticky;
-    top: 100px; /* Adjust this value based on the height of your navbar */
-    left: 0;
-    width: 200px; /* Adjust based on your sidebar width */
-    height: calc(100vh - 60px); /* Adjust based on the height of your navbar */
-    overflow-y: auto;
-  }
-  
-  .sticky-sidebar {
-    position: sticky;
-  
-    top: 6rem; /* Adjust this value based on the height of your navbar and desired gap */
-    align-self: flex-start; /* Ensures the sticky sidebar stays aligned at the start */
-  }
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.fixed-sidebar {
+  position: sticky;
+  top: 100px; /* Adjust this value based on the height of your navbar */
+  left: 0;
+  width: 200px; /* Adjust based on your sidebar width */
+  height: calc(100vh - 60px); /* Adjust based on the height of your navbar */
+  overflow-y: auto;
+}
+
+.sticky-sidebar {
+  position: sticky;
+
+  top: 6rem; /* Adjust this value based on the height of your navbar and desired gap */
+  align-self: flex-start; /* Ensures the sticky sidebar stays aligned at the start */
+}
+
+
+input{
+  color-scheme: light;
+}

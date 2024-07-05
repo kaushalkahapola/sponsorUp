@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-select": "^5.8.0",
+    "react-timezone-select": "^3.2.5"
+  }
+}
