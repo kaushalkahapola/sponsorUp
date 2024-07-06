@@ -32,7 +32,7 @@ function App() {
   }, []);
 
   return (
-    <Theme accentColor="purple" grayColor="gray">
+    <Theme accentColor="violet" grayColor="gray">
       <Router>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
@@ -57,6 +57,7 @@ function App() {
           <Route path="/events" element={<SearchEventsPage />} />
         </Routes>
       </Router>
+      {/* <ThemePanel /> */}
     </Theme>
   );
 }
