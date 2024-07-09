@@ -15,44 +15,52 @@ const LandingPage = () => {
       <main className="pt-20">
         {/* TB Image Section */}
         <section
-          className="relative bg-cover bg-center h-screen"
+          className="relative bg-cover bg-center md:h-screen "
           style={{ backgroundImage: `url(${TBImage})` }}
         >
-          <div className="absolute inset-0 bg-black opacity-50"></div>
-          <div className="relative z-10 flex items-center justify-center h-full">
-            <div className="absolute transform -translate-y-1/2 left-20 md:left-40 top-1/2">
-              <h1 className="text-5xl font-bold text-white leading-normal">
-                Elevate Your Events with
-                <br />
-                Seamless Sponsorship
-                <br />
-                Connections
-              </h1>
-              <p className="mt-4 text-lg text-white">
-                Connecting you with the right sponsors to grow your brand.
-              </p>
-              <form className="mt-6 flex">
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                    <EnvelopeClosedIcon className="w-5 h-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="pl-12 pr-40 py-4 w-full max-w-full rounded-full border text-gray-800 border-gray-200 bg-white"
-                  />
-                  <button className="absolute right-1 top-1 bottom-1 bg-purple-500 text-gray-100 px-5 py-1.5 rounded-full m-1">
-                    Get Started
-                  </button>
+          <div className="absolute inset-0 md:mt-20"></div>
+          <div className="container mx-auto h-full flex items-center">
+            <div className="md:grid md:grid-cols-2 gap-40 items-center">
+              {/* Text Content */}
+              <div className="order-2 md:order-1 px-7 ">
+                <div className="md:ml-20  ">
+                  <h1 className="text-5xl font-bold text-white leading-normal">
+                    Elevate Your Events with
+                    <br />
+                    Seamless Sponsorship
+                    <br />
+                    Connections
+                  </h1>
+                  <p className="mt-4 text-lg text-white">
+                    Connecting you with the right sponsors to grow your brand.
+                  </p>
+                  <form className="mt-6 flex">
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                        <EnvelopeClosedIcon className="w-5 h-5 text-gray-400" />
+                      </div>
+                      <input
+                        type="email"
+                        placeholder="Enter your email"
+                        className="pl-12 pr-40 py-4 w-full max-w-full rounded-full border text-gray-800 border-gray-200 bg-white"
+                      />
+                      <button className="absolute right-1 top-1 bottom-1 bg-purple-500 text-gray-100 px-5 py-1.5 rounded-full m-1">
+                        Get Started
+                      </button>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              </div>
+              {/* Image */}
+              <div className="order-1 md:order-2 py-20">
+                <img
+                  src={BAHImage}
+                  alt="Overlay Image"
+                  className="md:-mr-35 mx-auto md:ml-auto max-w-full"
+                />
+              </div>
             </div>
           </div>
-          <img
-            src={BAHImage}
-            alt="Overlay Image"
-            className="absolute top-1/2 right-20 transform -translate-y-1/2 mr-20"
-          />
         </section>
 
         {/* Manage Payments */}
@@ -105,7 +113,7 @@ const LandingPage = () => {
                   className="mx-auto md:mr-12 md:ml-0 mb-8 md:mb-0 max-w-full"
                 />
               </div>
-              <div className="order-2 md:order-1 left-50 text-center md:text-left">
+              <div className="order-2 md:order-1 text-center md:text-left">
                 <p className="md:ml-14 text-gray-600 mb-4">
                   YOU CAN <br /> <br />
                   <span className="font-bold text-purple-700 text-6xl">
@@ -133,9 +141,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <div className="py-20"></div>
-
-        {/*Payments Section */}
+        {/* Payments Section */}
         <section
           className="relative bg-cover bg-center py-20 md:order-2 mx-auto md:ml-20 md:mr-20 rounded-xl overflow-hidden"
           style={{
@@ -164,7 +170,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        {/* Footer*/}
+        {/* Footer */}
         <Footer />
       </main>
     </div>
