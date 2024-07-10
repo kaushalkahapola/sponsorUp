@@ -4,9 +4,10 @@ import OrganizersNavbar from "../components/OrganizersNavbar";
 import RichTextEditor from "../components/TextEditor";
 import EventCard from "../components/EventCard";
 import AlbumCarousel from "../components/AlbumCarousel";
-import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Button as CustomButton } from "../components/Buttons";
 import { events } from "../dummy_data/data";
+
+const maxPackages = 3;
 
 const SendProposalPage = () => {
   const [event, setEvent] = useState({});
@@ -14,21 +15,18 @@ const SendProposalPage = () => {
 
   const [proposalData, setProposalData] = useState({
     eventId: "",
-    sponsorshipPackages: [
-      { benefits: "", price: "" },
-      { benefits: "", price: "" },
-      { benefits: "", price: "" },
-    ],
+    sponsorshipPackages: [{ benefits: "", price: "" }],
     description: "",
   });
-
-  const [currentPackage, setCurrentPackage] = useState(0);
 
   useEffect(() => {
     // Simulating fetching event data
     const fetchEvent = async () => {
       const fetchedEvent = events[0];
-      setProposalData({ ...proposalData, eventId: fetchedEvent.id });
+      setProposalData((prevData) => ({
+        ...prevData,
+        eventId: fetchedEvent.id,
+      }));
       setEvent(fetchedEvent);
     };
 
@@ -36,7 +34,7 @@ const SendProposalPage = () => {
   }, []);
 
   useEffect(() => {
-    setProposalData({ ...proposalData, description: editorHtml });
+    setProposalData((prevData) => ({ ...prevData, description: editorHtml }));
   }, [editorHtml]);
 
   const handlePackageChange = (index, name, value) => {
@@ -47,191 +45,162 @@ const SendProposalPage = () => {
     });
   };
 
+  const addPackage = () => {
+    setProposalData((prevData) => {
+      if (prevData.sponsorshipPackages.length < maxPackages) {
+        return {
+          ...prevData,
+          sponsorshipPackages: [
+            ...prevData.sponsorshipPackages,
+            { benefits: "", price: "" },
+          ],
+        };
+      }
+      return prevData;
+    });
+  };
+
+  const removePackage = (index) => {
+    setProposalData((prevData) => {
+      const updatedPackages = prevData.sponsorshipPackages.filter(
+        (_, i) => i !== index
+      );
+      return { ...prevData, sponsorshipPackages: updatedPackages };
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(proposalData);
-  };
-
-  const nextPackage = () => {
-    setCurrentPackage((prevIndex) =>
-      prevIndex === proposalData.sponsorshipPackages.length - 1
-        ? 0
-        : prevIndex + 1
+    const validPackages = proposalData.sponsorshipPackages.filter(
+      (pkg) => pkg.benefits && pkg.price
     );
-  };
-
-  const prevPackage = () => {
-    setCurrentPackage((prevIndex) =>
-      prevIndex === 0
-        ? proposalData.sponsorshipPackages.length - 1
-        : prevIndex - 1
-    );
+    const validProposalData = {
+      ...proposalData,
+      sponsorshipPackages: validPackages,
+    };
+    console.log(validProposalData);
   };
 
   return (
     <>
       <OrganizersNavbar />
       <Container>
-        <Grid gap="8" className="lg:flex">
-          {/* Left Side Content (Album Sidebar) */}
-          <div className="bg-white rounded-md shadow-md p-6 md:mt-0 md:ml-8 max-w-full lg:max-w-[420px] flex flex-col items-center">
-            <Heading className="text-3xl md:text-4xl font-bold text-center my-8">
-              Send Proposal
-            </Heading>
-            <div>
-              <div className="mb-8">
-                <EventCard event={event} />
-              </div>
-              <AlbumCarousel album={event?.album} />
-            </div>
-          </div>
-          {/* Right Side Content */}
-          <div className="bg-white rounded-md shadow-md p-2 md:p-6 mb-8 flex-grow max-w-full lg:max-w-[calc(100% - 420px)]">
-            <PackageCarousel
-              proposalData={proposalData}
-              currentPackage={currentPackage}
-              handlePackageChange={handlePackageChange}
-              nextPackage={nextPackage}
-              prevPackage={prevPackage}
-            />
-            {/* Description Section */}
-            <div className="mt-8">
-              <Heading className="text-2xl font-bold mb-4 text-center md:text-center">
-                Description
-              </Heading>
-              <div className="bg-gray-100 rounded-md">
-                <RichTextEditor
-                  editorHtml={editorHtml}
-                  setEditorHtml={setEditorHtml}
-                />
+        <div className="flex flex-col items-center">
+          <Heading className="text-3xl md:text-4xl font-bold text-center my-8">
+            Send Proposal
+          </Heading>
+          <Grid gap="8" className="lg:flex w-full">
+            {/* Left Side Content (Album Sidebar) */}
+            <div className="bg-white rounded-md shadow-md p-6 md:mt-0 lg:ml-8 max-w-full lg:max-w-[420px] flex flex-col items-center">
+              <div>
+                <div className="mb-8">
+                  <EventCard event={event} />
+                </div>
+                <AlbumCarousel album={event?.album} />
               </div>
             </div>
-            {/* Submit Button */}
-            <div className="my-8 flex justify-center md:justify-start">
-              <CustomButton text="Submit Proposal" onClick={handleSubmit} />
+            {/* Right Side Content */}
+            <div className="bg-white rounded-md shadow-md p-0 md:p-6 mb-8 flex-grow max-w-full lg:max-w-[calc(100% - 420px)]">
+              <PackageList
+                proposalData={proposalData}
+                handlePackageChange={handlePackageChange}
+                addPackage={addPackage}
+                removePackage={removePackage}
+              />
+              {/* Description Section */}
+              <div className="mt-8">
+                <Heading className="text-2xl font-bold mb-4 text-center">
+                  Description
+                </Heading>
+                <div className="p-1 rounded-md">
+                  <RichTextEditor
+                    editorHtml={editorHtml}
+                    setEditorHtml={setEditorHtml}
+                  />
+                </div>
+              </div>
+              {/* Submit Button */}
+              <div className="my-8 flex justify-center">
+                <CustomButton text="Submit Proposal" onClick={handleSubmit} />
+              </div>
             </div>
-          </div>
-        </Grid>
+          </Grid>
+        </div>
       </Container>
     </>
   );
 };
 
-const PackageCarousel = ({
+const PackageList = ({
   proposalData,
-  currentPackage,
   handlePackageChange,
-  nextPackage,
-  prevPackage,
+  addPackage,
+  removePackage,
 }) => {
-  const [visible, setVisible] = useState(true);
-  const timeout = 500;
-
-  useEffect(() => {
-    setVisible(false);
-    setTimeout(() => {
-      setVisible(true);
-    }, timeout);
-  }, [currentPackage]);
-
   return (
     <div className="mt-8">
-      <Heading className="text-2xl font-bold my-4 text-center md:text-center">
+      <Heading className="text-2xl font-bold my-4 text-center">
         Packages
       </Heading>
-      <div className="flex justify-between items-center my-4">
-        {/* Previous Package Button */}
-        <Button
-          className={`px-4 py-2 bg-transparent text-black rounded hover:bg-primary hover:text-white focus:outline-none ${
-            currentPackage === 0 ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          onClick={prevPackage}
-          disabled={currentPackage === 0}
-        >
-          <MdNavigateBefore />
-        </Button>
-        {/* Package Carousel */}
-        <div className="relative flex-grow overflow-hidden rounded-lg shadow-md max-w-[680px]">
-          <div
-            className={`transition-opacity duration-${
-              timeout / 2
-            } ease-in-out ${visible ? "opacity-100" : "opacity-0"}`}
-          >
-            {proposalData.sponsorshipPackages.map((pkg, index) => (
-              <div
-                key={index}
-                className={`w-full flex-shrink-0 flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm ${
-                  index === currentPackage ? "" : "hidden"
-                }`}
-              >
-                <Heading className="text-lg font-bold mb-2 bg-secondary p-2 px-4 rounded shadow">
-                  Package - {index + 1}
-                </Heading>
-                <div className="flex flex-col gap-4 w-full items-center">
-                  {/* Benefits */}
-                  <div className="flex flex-col items-center w-full mt-5">
-                    <Heading className="text-lg font-bold mb-1 text-center">
-                      Benefits
-                    </Heading>
-                    <textarea
-                      className="w-full h-52 px-3 py-2 border border-gray-300 rounded bg-white text-black resize-vertical text-center"
-                      name="benefits"
-                      value={pkg.benefits}
-                      placeholder={`Why choose package ${index + 1}...?`}
-                      onChange={(e) =>
-                        handlePackageChange(index, "benefits", e.target.value)
-                      }
-                    />
-                  </div>
-                  {/* Price */}
-                  <div className="flex flex-col items-center w-full">
-                    <Heading className="text-lg font-bold mb-1 text-center">
-                      Price
-                    </Heading>
-                    <input
-                      className="w-full max-w-[320px] px-3 py-2 border border-gray-300 rounded bg-white text-black text-center"
-                      name="price"
-                      value={pkg.price}
-                      placeholder="Price in LKR..."
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        const floatRegex = /^[+-]?([0-9]*[.])?[0-9]*$/;
-                        if (floatRegex.test(value) || value === "") {
-                          handlePackageChange(index, "price", value);
-                        }
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        {/* Next Package Button */}
-        <Button
-          className={`px-4 py-2 bg-transparent text-black rounded hover:bg-primary hover:text-white focus:outline-none ${
-            currentPackage === proposalData.sponsorshipPackages.length - 1
-              ? "opacity-50 cursor-not-allowed"
-              : ""
-          }`}
-          onClick={nextPackage}
-          disabled={
-            currentPackage === proposalData.sponsorshipPackages.length - 1
-          }
-        >
-          <MdNavigateNext />
-        </Button>
-      </div>
-      {/* Dots */}
-      <div className="flex justify-center mt-5">
-        {proposalData.sponsorshipPackages.map((_, index) => (
+      <div className="flex flex-col items-center my-4 space-y-4">
+        {proposalData.sponsorshipPackages.map((pkg, index) => (
           <div
             key={index}
-            className={`w-1.5 h-1.5 mx-1 rounded-full ${
-              index === currentPackage ? "bg-primary" : "bg-gray-100"
-            }`}
-          />
+            className="w-full p-4 bg-white rounded-lg shadow-sm border border-gray-300"
+          >
+            <div className="flex justify-between items-center">
+              <Heading className="text-lg font-bold mb-2 bg-secondary p-2 px-4 rounded shadow">
+                Package - {index + 1}
+              </Heading>
+              {proposalData.sponsorshipPackages.length > 1 && (
+                <CustomButton
+                  variant="danger"
+                  onClick={() => removePackage(index)}
+                  text="Remove"
+                />
+              )}
+            </div>
+            <div className="flex flex-col gap-4 w-full items-center">
+              {/* Benefits */}
+              <div className="flex flex-col items-center w-full mt-5">
+                <Heading className="text-lg font-bold mb-1 text-center">
+                  Benefits
+                </Heading>
+                <textarea
+                  className="w-full h-52 px-3 py-2 border border-gray-300 rounded bg-white text-black resize-vertical text-center"
+                  name="benefits"
+                  value={pkg.benefits}
+                  placeholder={`Why choose package ${index + 1}...?`}
+                  onChange={(e) =>
+                    handlePackageChange(index, "benefits", e.target.value)
+                  }
+                />
+              </div>
+              {/* Price */}
+              <div className="flex flex-col items-center w-full">
+                <Heading className="text-lg font-bold mb-1 text-center">
+                  Price
+                </Heading>
+                <input
+                  className="w-full max-w-[220px] px-3 py-2 border border-gray-300 rounded bg-white text-black text-center"
+                  name="price"
+                  value={pkg.price}
+                  placeholder="Price in LKR..."
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    const floatRegex = /^[+-]?([0-9]*[.])?[0-9]*$/;
+                    if (floatRegex.test(value) || value === "") {
+                      handlePackageChange(index, "price", value);
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         ))}
+        {proposalData.sponsorshipPackages.length < maxPackages && (
+          <CustomButton text="Add Package" onClick={addPackage} />
+        )}
       </div>
     </div>
   );

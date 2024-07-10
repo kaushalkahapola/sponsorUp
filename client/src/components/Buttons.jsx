@@ -38,9 +38,24 @@ const Button = ({
   const primaryClasses = "text-white bg-primary hover:bg-primary-700";
   const secondaryClasses =
     "text-primary bg-gray-50 hover:bg-violet-500 hover:text-white";
+  const dangerClasses = "text-white bg-red-600 hover:bg-red-900";
 
-  const variantClasses =
-    variant === "primary" ? primaryClasses : secondaryClasses;
+  let variantClasses;
+
+  switch (variant) {
+    case "primary":
+      variantClasses = primaryClasses;
+      break;
+    case "secondary":
+      variantClasses = secondaryClasses;
+      break;
+    case "danger":
+      variantClasses = dangerClasses;
+      break;
+    default:
+      variantClasses = primaryClasses; // or some default classes if needed
+      break;
+  }
   const clickEffectClasses = clicked ? "scale-100" : "hover:scale-105";
 
   const style = {

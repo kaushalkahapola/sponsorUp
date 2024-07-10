@@ -142,9 +142,9 @@ const EventCard = ({
 
   return (
     <div className="font-poppins text-gray">
-      <Box maxWidth="700px">
+      <Box>
         <Card className="p-4">
-          <Flex direction="column" align="start" justify="center" gap="5">
+          <Flex direction={"column"} gap="5">
             <Box
               style={coverImageContainerStyle}
               onMouseEnter={handleMouseEnter}
