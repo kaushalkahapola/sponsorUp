@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import OrganizerSideBar from "../components/OrganizerSideBar";
 import OrganizersNavbar from "../components/OrganizersNavbar";
-import { Container, Grid, Heading } from "@radix-ui/themes";
+import { Container, Grid } from "@radix-ui/themes";
 import EventCard from "../components/EventCard";
-import { useState, useEffect } from "react";
 import { events } from "../dummy_data/data";
 import SearchBar from "../components/SearchBar";
 
@@ -38,7 +37,11 @@ const MyEvents = () => {
       <OrganizersNavbar />
       <Container>
         <div className="flex">
-          <OrganizerSideBar selectedMenu="My Events" />
+          <OrganizerSideBar
+            selectedMenu="My Events"
+            initialIsOpen={false} // Adjust as needed
+            onMenuClick={(menuName) => console.log(`Menu clicked: ${menuName}`)} // Example callback
+          />
           <div className="w-full mx-5">
             <SearchBar
               placeholder="Search for events"

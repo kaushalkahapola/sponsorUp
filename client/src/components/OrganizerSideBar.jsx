@@ -9,11 +9,13 @@ import { Link } from "react-router-dom";
  * @param {Object} props - The component props.
  * @param {string} [props.selectedMenu="Dashboard"] - The initially selected menu item [Dashboard, Calendar, My Events, Proposals].
  * @param {boolean} [props.initialIsOpen=false] - The initial state of the sidebar (open/closed).
+ * @param {Function} [props.onMenuClick] - Callback function when a menu item is clicked.
  * @returns {JSX.Element} The rendered sidebar component.
  */
 const OrganizerSideBar = ({
   selectedMenu = "Dashboard",
   initialIsOpen = false,
+  onMenuClick,
 }) => {
   const [selected, setSelected] = useState(selectedMenu);
   const [isOpen, setIsOpen] = useState(initialIsOpen);
@@ -49,8 +51,21 @@ const OrganizerSideBar = ({
 
   return (
     <>
-      {/* Menu icon for small screens */}
-      <div className="md:hidden flex justify-between items-center p-4 bg-neutral-50 shadow border-b border-white z-50">
+      {/* Floating button for small screens */}
+      <div className="md:hidden fixed top-16 left-8 z-50">
+        <button
+          onClick={toggleSidebar}
+          className="p-2 bg-white rounded-md shadow-md"
+        >
+          {isOpen ? (
+            <Cross2Icon className="w-5 h-5 text-primary" />
+          ) : (
+            <HamburgerMenuIcon className="w-5 h-5 text-primary" />
+          )}
+        </button>
+      </div>
+      {/* Menu icon for larger screens */}
+      <div className="hidden md:flex justify-between items-center p-4 bg-neutral-50 shadow border-b border-white z-50">
         <button onClick={toggleSidebar} className="text-xl">
           {isOpen ? (
             <Cross2Icon className="w-6 h-6 text-gray-700" />
@@ -84,6 +99,7 @@ const OrganizerSideBar = ({
               onClick={() => {
                 setSelected(item.name);
                 setIsOpen(false);
+                if (onMenuClick) onMenuClick(item.name); // Invoke callback if provided
               }}
               className={`self-stretch px-4 py-2 rounded-lg flex items-center gap-2 mb-2 ${
                 selected === item.name
