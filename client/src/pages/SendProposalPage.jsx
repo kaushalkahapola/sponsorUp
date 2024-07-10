@@ -71,13 +71,10 @@ const SendProposalPage = () => {
   return (
     <>
       <OrganizersNavbar />
-      <Container className="">
-        <Grid gap="8" mdcols="1fr 2fr" className="md:flex">
+      <Container>
+        <Grid gap="8" className="lg:flex">
           {/* Left Side Content (Album Sidebar) */}
-          <div
-            className="bg-white rounded-md shadow-md p-6 md:mt-0 md:ml-8"
-            style={{ maxWidth: "420px" }}
-          >
+          <div className="bg-white rounded-md shadow-md p-6 md:mt-0 md:ml-8 max-w-full lg:max-w-[420px] flex flex-col items-center">
             <Heading className="text-3xl md:text-4xl font-bold text-center my-8">
               Send Proposal
             </Heading>
@@ -89,31 +86,29 @@ const SendProposalPage = () => {
             </div>
           </div>
           {/* Right Side Content */}
-          <div className="" style={{ maxHeight: "calc(100vh - 160px)" }}>
-            <div className="bg-white rounded-md shadow-md p-6 mb-8">
-              <PackageCarousel
-                proposalData={proposalData}
-                currentPackage={currentPackage}
-                handlePackageChange={handlePackageChange}
-                nextPackage={nextPackage}
-                prevPackage={prevPackage}
-              />
-              {/* Description Section */}
-              <div className="mt-8">
-                <Heading className="text-2xl font-bold mb-4">
-                  Description
-                </Heading>
-                <div className="bg-gray-100 rounded-md p-4">
-                  <RichTextEditor
-                    editorHtml={editorHtml}
-                    setEditorHtml={setEditorHtml}
-                  />
-                </div>
+          <div className="bg-white rounded-md shadow-md p-2 md:p-6 mb-8 flex-grow max-w-full lg:max-w-[calc(100% - 420px)]">
+            <PackageCarousel
+              proposalData={proposalData}
+              currentPackage={currentPackage}
+              handlePackageChange={handlePackageChange}
+              nextPackage={nextPackage}
+              prevPackage={prevPackage}
+            />
+            {/* Description Section */}
+            <div className="mt-8">
+              <Heading className="text-2xl font-bold mb-4 text-center md:text-center">
+                Description
+              </Heading>
+              <div className="bg-gray-100 rounded-md">
+                <RichTextEditor
+                  editorHtml={editorHtml}
+                  setEditorHtml={setEditorHtml}
+                />
               </div>
-              {/* Submit Button */}
-              <div className="my-8 flex justify-center">
-                <CustomButton text="Submit Proposal" onClick={handleSubmit} />
-              </div>
+            </div>
+            {/* Submit Button */}
+            <div className="my-8 flex justify-center md:justify-start">
+              <CustomButton text="Submit Proposal" onClick={handleSubmit} />
             </div>
           </div>
         </Grid>
@@ -131,22 +126,23 @@ const PackageCarousel = ({
 }) => {
   const [visible, setVisible] = useState(true);
   const timeout = 500;
+
   useEffect(() => {
-    //when changed setvisible for a certain time false and back to visible
     setVisible(false);
     setTimeout(() => {
       setVisible(true);
     }, timeout);
   }, [currentPackage]);
+
   return (
     <div className="mt-8">
-      <Heading className="text-2xl font-bold my-4 text-center">
+      <Heading className="text-2xl font-bold my-4 text-center md:text-center">
         Packages
       </Heading>
       <div className="flex justify-between items-center my-4">
         {/* Previous Package Button */}
         <Button
-          className={`px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 focus:outline-none ${
+          className={`px-4 py-2 bg-transparent text-black rounded hover:bg-primary hover:text-white focus:outline-none ${
             currentPackage === 0 ? "opacity-50 cursor-not-allowed" : ""
           }`}
           onClick={prevPackage}
@@ -155,7 +151,7 @@ const PackageCarousel = ({
           <MdNavigateBefore />
         </Button>
         {/* Package Carousel */}
-        <div className="relative flex-grow overflow-hidden rounded-lg shadow-md max-w-[480px]">
+        <div className="relative flex-grow overflow-hidden rounded-lg shadow-md max-w-[680px]">
           <div
             className={`transition-opacity duration-${
               timeout / 2
@@ -171,27 +167,29 @@ const PackageCarousel = ({
                 <Heading className="text-lg font-bold mb-2 bg-secondary p-2 px-4 rounded shadow">
                   Package - {index + 1}
                 </Heading>
-                <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-4 w-full items-center">
                   {/* Benefits */}
-                  <div className="flex flex-col">
-                    <Heading className="text-lg font-bold mb-1">
+                  <div className="flex flex-col items-center w-full mt-5">
+                    <Heading className="text-lg font-bold mb-1 text-center">
                       Benefits
                     </Heading>
                     <textarea
-                      className="w-full h-52 px-3 py-2 border border-gray-300 rounded bg-white text-black resize-vertical"
+                      className="w-full h-52 px-3 py-2 border border-gray-300 rounded bg-white text-black resize-vertical text-center"
                       name="benefits"
                       value={pkg.benefits}
-                      placeholder={`Why choose this package ${index + 1}...?`}
+                      placeholder={`Why choose package ${index + 1}...?`}
                       onChange={(e) =>
                         handlePackageChange(index, "benefits", e.target.value)
                       }
                     />
                   </div>
-                  {/* price */}
-                  <div className="flex flex-col">
-                    <Heading className="text-lg font-bold mb-1">Price</Heading>
+                  {/* Price */}
+                  <div className="flex flex-col items-center w-full">
+                    <Heading className="text-lg font-bold mb-1 text-center">
+                      Price
+                    </Heading>
                     <input
-                      className="w-full px-3 py-2 border border-gray-300 rounded bg-white text-black"
+                      className="w-full max-w-[320px] px-3 py-2 border border-gray-300 rounded bg-white text-black text-center"
                       name="price"
                       value={pkg.price}
                       placeholder="Price in LKR..."
@@ -211,7 +209,7 @@ const PackageCarousel = ({
         </div>
         {/* Next Package Button */}
         <Button
-          className={`px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 focus:outline-none ${
+          className={`px-4 py-2 bg-transparent text-black rounded hover:bg-primary hover:text-white focus:outline-none ${
             currentPackage === proposalData.sponsorshipPackages.length - 1
               ? "opacity-50 cursor-not-allowed"
               : ""

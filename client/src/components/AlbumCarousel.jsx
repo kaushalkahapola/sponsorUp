@@ -59,7 +59,7 @@ const AlbumCarousel = ({ album, autoChangeInterval = 5000 }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <div className="p-4 relative">
-        <div className="text-lg font-bold mb-4">Album</div>
+        <div className="text-lg text-center font-bold mb-4">Album</div>
         <div className="relative overflow-hidden rounded-lg shadow-sm">
           <div
             className="flex transition-transform duration-500"
@@ -77,7 +77,7 @@ const AlbumCarousel = ({ album, autoChangeInterval = 5000 }) => {
           </div>
           <div className="absolute inset-y-0 left-0 flex items-center">
             <button
-              className="px-3 py-1 bg-gray-800 text-white rounded-l hover:bg-gray-700 focus:outline-none"
+              className="px-3 py-1 bg-transparent text-black text-white rounded hover:bg-primary hover:text-white focus:outline-none"
               onClick={prevImage}
             >
               <MdNavigateBefore />
@@ -85,7 +85,7 @@ const AlbumCarousel = ({ album, autoChangeInterval = 5000 }) => {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center">
             <button
-              className="px-3 py-1 bg-gray-800 text-white rounded-r hover:bg-gray-700 focus:outline-none"
+              className="px-3 py-1 bg-transparent text-black text-white rounded hover:bg-primary hover:text-white focus:outline-none"
               onClick={nextImage}
             >
               <MdNavigateNext />
