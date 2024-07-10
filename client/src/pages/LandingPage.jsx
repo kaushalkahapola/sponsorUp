@@ -11,17 +11,27 @@ import Footer from "../components/Footer";
 const LandingPage = () => {
   return (
     <div className="font-poppins">
+    <div className="font-poppins">
       <HomeHeader />
+      <main>
       <main>
         {/* TB Image Section */}
         <section
+          className="relative bg-cover bg-center h-full py-28"
           className="relative bg-cover bg-center h-full pb-28 pt-32"
           style={{ backgroundImage: `url(${TBImage})` }}
         >
+          <div className="absolute inset-0  md:mt-20"></div>
+          <div className="container mx-auto h-full flex items-center justify-center px-5 md:px-10 lg:px-15">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:space-x-5 items-center space-y-10">
           <div className="absolute inset-0"></div>
           <div className="container mx-auto h-full flex items-center justify-center px-5 md:px-10 lg:px-15">
             <div className="grid grid-cols-1 md:grid-cols-2 md:space-x-5 items-center space-y-10">
               {/* Text Content */}
+              <div className="order-2 md:order-1 md:px-0 text-center md:text-left">
+                <div className="">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-normal">
+                    Elevate Your Events <br className="hidden lg:block" /><span className="font-medium">with</span><br className="hidden lg:block"/>
               <div className="order-2 md:order-1 md:px-0 text-center md:text-left">
                 <div className="">
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-normal">
@@ -34,12 +44,15 @@ const LandingPage = () => {
                   </p>
                   <form className="mt-6 flex justify-center md:justify-start">
                     <div className="relative w-full md:w-auto">
+                  <form className="mt-6 flex justify-center md:justify-start">
+                    <div className="relative w-full md:w-auto">
                       <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
                         <EnvelopeClosedIcon className="w-5 h-5 text-gray-400" />
                       </div>
                       <input
                         type="email"
                         placeholder="Enter your email"
+                        className="pl-12 pr-40 py-4 w-full rounded-full border text-gray-800 border-gray-200 bg-white"
                         className="pl-12 pr-40 py-4 w-full rounded-full border text-gray-800 border-gray-200 bg-white"
                       />
                       <button className="absolute right-1 top-1 bottom-1 bg-purple-500 text-gray-100 px-5 py-1.5 rounded-full m-1">
@@ -51,9 +64,11 @@ const LandingPage = () => {
               </div>
               {/* Image */}
               <div className="order-2 flex items-center justify-center">
+              <div className="order-2 flex items-center justify-center">
                 <img
                   src={BAHImage}
                   alt="Overlay Image"
+                  className="mx-auto max-w-96 md:max-w-full"
                   className="mx-auto max-w-80 md:max-w-full"
                 />
               </div>
@@ -63,6 +78,8 @@ const LandingPage = () => {
 
         {/* Manage Payments */}
         <section className="relative bg-white py-10 md:py-20">
+          <div className="container mx-auto px-5">
+        <section className="relative bg-white py-10 md:py-20">
           <div className="container mx-auto px-5 lg:px-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="order-2 md:order-1">
@@ -70,8 +87,13 @@ const LandingPage = () => {
                   src={MPImage}
                   alt="MP Image"
                   className="mx-auto max-w-full"
+                  className="mx-auto max-w-full"
                 />
               </div>
+              <div className="order-1 md:order-2 text-center md:text-left justify-center space-y-1 md:space-y-3 lg:space-y-8">
+                <p className="text-gray-600">
+                  YOU CAN </p>
+                  <div className="font-semibold text-purple-700 text-3xl md:text-4xl lg:text-5xl">
               <div className="order-1 md:order-2 text-center md:text-left justify-center space-y-1 md:space-y-3 lg:space-y-8">
                 <p className="text-gray-600">
                   YOU CAN </p>
@@ -79,7 +101,12 @@ const LandingPage = () => {
                     Monitor
                   <span className="font-semibold text-black text-3xl md:text-4xl lg:text-5xl">
                     {' '}Payments
+                  <span className="font-semibold text-black text-3xl md:text-4xl lg:text-5xl">
+                    {' '}Payments
                   </span>
+                  </div>
+                  <p>
+                  View real-time updates on successful payments, refunds,
                   </div>
                   <p>
                   View real-time updates on successful payments, refunds,
@@ -88,6 +115,7 @@ const LandingPage = () => {
                 </p>
                 <a
                   href="#"
+                  className="text-purple-700 inline-flex items-center"
                   className="text-purple-700 inline-flex items-center"
                 >
                   Learn more <ArrowRightIcon className="w-5 h-5 ml-1" />
@@ -102,8 +130,10 @@ const LandingPage = () => {
           <div className="container mx-auto px-5 lg:px-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="order-2 md:order-2">
+              <div className="order-2 md:order-2">
                 <img
                   src={MCImage}
+                  alt="MC Image"
                   alt="MC Image"
                   className="mx-auto md:mr-12 md:ml-0 mb-8 md:mb-0 max-w-full"
                 />
@@ -115,7 +145,17 @@ const LandingPage = () => {
                     Monitor
                   <span className="font-semibold text-black text-3xl md:text-4xl lg:text-5xl">
                     {' '}Customers
+              <div className="order-1 md:order-1 text-center md:text-left justify-center space-y-1 md:space-y-3 lg:space-y-8">
+                <p className="text-gray-600">
+                  YOU CAN </p>
+                  <div className="font-semibold text-purple-700 text-3xl md:text-4xl lg:text-5xl">
+                    Monitor
+                  <span className="font-semibold text-black text-3xl md:text-4xl lg:text-5xl">
+                    {' '}Customers
                   </span>
+                  </div>
+                  <p>
+                  View real-time updates on successful payments, refunds, and other transaction-related activities
                   </div>
                   <p>
                   View real-time updates on successful payments, refunds, and other transaction-related activities
@@ -123,7 +163,9 @@ const LandingPage = () => {
                 <a
                   href="#"
                   className="text-purple-700 inline-flex items-center"
+                  className="text-purple-700 inline-flex items-center"
                 >
+                  Learn more <ArrowRightIcon className="w-5 h-5" />
                   Learn more <ArrowRightIcon className="w-5 h-5" />
                 </a>
               </div>
@@ -143,6 +185,7 @@ const LandingPage = () => {
             marginRight: "1.25rem",
           }}
         >
+          <div className="absolute inset-0 bg-violet-200 opacity-50"></div>
           <div className="absolute inset-0 bg-violet-200 opacity-50"></div>
           <div className="relative z-10 text-white flex flex-col justify-center items-center h-full">
             <div className="mx-auto text-center px-15">
