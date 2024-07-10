@@ -64,16 +64,6 @@ const OrganizerSideBar = ({
           )}
         </button>
       </div>
-      {/* Menu icon for larger screens */}
-      <div className="hidden md:flex justify-between items-center p-4 bg-neutral-50 shadow border-b border-white z-50">
-        <button onClick={toggleSidebar} className="text-xl">
-          {isOpen ? (
-            <Cross2Icon className="w-6 h-6 text-gray-700" />
-          ) : (
-            <HamburgerMenuIcon className="w-6 h-6 text-gray-700" />
-          )}
-        </button>
-      </div>
       {/* Overlay for small screens */}
       <div
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
