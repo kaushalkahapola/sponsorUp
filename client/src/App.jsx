@@ -16,6 +16,7 @@ import SearchSponsors from "./pages/SearchSponsors";
 // import Test from "./pages/Test";
 import SearchEventsPage from "./pages/SearchEventsPage";
 import Test from "./pages/Test";
+import MyEvents from "./pages/MyEvents";
 
 function App() {
   // just a simple useEffect to check if the user is signed in or not
@@ -57,6 +58,7 @@ function App() {
           {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/events" element={<SearchEventsPage />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/account/myevents" element={<MyEvents />} />
         </Routes>
       </Router>
       {/* <ThemePanel /> */}

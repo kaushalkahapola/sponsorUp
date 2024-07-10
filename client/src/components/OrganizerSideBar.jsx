@@ -75,7 +75,7 @@ const OrganizerSideBar = ({
         }`}
       >
         {/* Sidebar content */}
-        <div className="px-4 pt-5 pb-10 flex flex-col justify-start items-center">
+        <div className="px-4 pt-8 pb-10 flex flex-col justify-start items-center">
           {/* Menu items */}
           {menuItems.map((item) => (
             <Link
@@ -87,7 +87,7 @@ const OrganizerSideBar = ({
               }}
               className={`self-stretch px-4 py-2 rounded-lg flex items-center gap-2 mb-2 ${
                 selected === item.name
-                  ? "bg-violet-600 text-white font-bold"
+                  ? "bg-primary text-white font-bold"
                   : "bg-transparent text-gray-600"
               }`}
             >
