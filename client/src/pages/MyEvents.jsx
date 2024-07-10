@@ -42,7 +42,7 @@ const MyEvents = () => {
             initialIsOpen={false} // Adjust as needed
             onMenuClick={(menuName) => console.log(`Menu clicked: ${menuName}`)} // Example callback
           />
-          <div className="w-full mx-5">
+          <div className="w-full">
             <SearchBar
               placeholder="Search for events"
               searchText={searchText}
