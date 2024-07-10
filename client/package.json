@@ -26,6 +26,7 @@
     "react-images-uploading": "^3.1.7",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.24.1",
+    "react-select": "^5.8.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

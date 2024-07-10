@@ -6,10 +6,13 @@ import EventCard from "../components/EventCard";
 import AlbumCarousel from "../components/AlbumCarousel";
 import { Button as CustomButton } from "../components/Buttons";
 import { events } from "../dummy_data/data";
+import Select from "react-select";
 
 const maxPackages = 3;
 
 const SendProposalPage = () => {
+  const [eventsList, setEventsList] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [event, setEvent] = useState({});
   const [editorHtml, setEditorHtml] = useState("");
 
@@ -21,17 +24,29 @@ const SendProposalPage = () => {
 
   useEffect(() => {
     // Simulating fetching event data
+    setEventsList(events); // Assuming events is an array of events from dummy data
+    if (events.length > 0) {
+      setSelectedEvent(events[0]); // Select the first event by default
+    }
+  }, []);
+
+  useEffect(() => {
+    // Fetch event data based on selectedEvent
     const fetchEvent = async () => {
-      const fetchedEvent = events[0];
-      setProposalData((prevData) => ({
-        ...prevData,
-        eventId: fetchedEvent.id,
-      }));
-      setEvent(fetchedEvent);
+      const fetchedEvent = events.find(
+        (event) => event.id === selectedEvent?.id
+      );
+      if (fetchedEvent) {
+        setProposalData((prevData) => ({
+          ...prevData,
+          eventId: fetchedEvent.id,
+        }));
+        setEvent(fetchedEvent);
+      }
     };
 
     fetchEvent();
-  }, []);
+  }, [selectedEvent]);
 
   useEffect(() => {
     setProposalData((prevData) => ({ ...prevData, description: editorHtml }));
@@ -81,23 +96,41 @@ const SendProposalPage = () => {
     console.log(validProposalData);
   };
 
+  const handleEventChange = (selectedOption) => {
+    setSelectedEvent(selectedOption);
+  };
+
   return (
     <>
       <OrganizersNavbar />
       <Container>
         <div className="flex flex-col items-center">
-          <Heading className="text-3xl md:text-4xl font-bold text-center my-8">
+          <Heading className="text-3xl lg:text-4xl font-bold text-center my-8">
             Send Proposal
           </Heading>
           <Grid gap="8" className="lg:flex w-full">
             {/* Left Side Content (Album Sidebar) */}
             <div className="bg-white rounded-md shadow-md p-6 md:mt-0 lg:ml-8 max-w-full lg:max-w-[420px] flex flex-col items-center">
-              <div>
-                <div className="mb-8">
-                  <EventCard event={event} />
-                </div>
-                <AlbumCarousel album={event?.album} />
+              <div className="mb-4 w-full">
+                <Heading className="text-md lg:text-lg text-center mb-3">
+                  Event
+                </Heading>
+                <Select
+                  id="eventSelect"
+                  options={eventsList}
+                  value={selectedEvent}
+                  onChange={handleEventChange}
+                  getOptionLabel={(option) =>
+                    `${option.title} - ${option.location}`
+                  }
+                  getOptionValue={(option) => option.id}
+                  placeholder="Search or select an event..."
+                />
               </div>
+              <div className="mb-8 w-full">
+                <EventCard event={event} />
+              </div>
+              <AlbumCarousel album={event?.album} />
             </div>
             {/* Right Side Content */}
             <div className="bg-white rounded-md shadow-md p-0 md:p-6 mb-8 flex-grow max-w-full lg:max-w-[calc(100% - 420px)]">
@@ -112,7 +145,7 @@ const SendProposalPage = () => {
                 <Heading className="text-2xl font-bold mb-4 text-center">
                   Description
                 </Heading>
-                <div className="p-1 rounded-md">
+                <div className="p-1 rounded shadow-lg">
                   <RichTextEditor
                     editorHtml={editorHtml}
                     setEditorHtml={setEditorHtml}
@@ -138,7 +171,7 @@ const PackageList = ({
   removePackage,
 }) => {
   return (
-    <div className="mt-8">
+    <div className="mt-8 px-1">
       <Heading className="text-2xl font-bold my-4 text-center">
         Packages
       </Heading>
