@@ -33,7 +33,7 @@ const OrganizersNavbar = () => {
     },
     {
       label: "My Events",
-      path: "/events",
+      path: "/account/myevents",
     },
   ];
 
@@ -81,23 +81,27 @@ const OrganizersNavbar = () => {
             {/* Avatar and Dropdown Menu */}
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
-              <button >
-                <Avatar
-                  src={organizer?.photoURL || "/"}
-                  fallback={organizer?.name?.charAt(0) || "?"}
-                  size="2"
-                  radius="full"
-                  className="cursor-pointer"
-                />
-              </button>
+                <button>
+                  <Avatar
+                    src={organizer?.photoURL || "/"}
+                    fallback={organizer?.name?.charAt(0) || "?"}
+                    size="2"
+                    radius="full"
+                    className="cursor-pointer"
+                  />
+                </button>
               </DropdownMenu.Trigger>
               <DropdownMenu.Content variant="soft">
-                <DropdownMenu.Label >
-                  <Text size='5'>{organizer?.email || "example@gmail.com"}</Text>
+                <DropdownMenu.Label>
+                  <Text size="5">
+                    {organizer?.email || "example@gmail.com"}
+                  </Text>
                 </DropdownMenu.Label>
                 <DropdownMenu.Separator />
                 <DropdownMenu.Item color="">
-                  <Link to='/signout'><Button text="Sign Out" /></Link>
+                  <Link to="/signout">
+                    <Button text="Sign Out" />
+                  </Link>
                 </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
