@@ -19,6 +19,7 @@ import Test from "./pages/Test";
 import MyEvents from "./pages/MyEvents";
 import SponsorDetailsPage from "./pages/SponsorDetailsPage";
 import Obq from "./pages/Obq";
+import Proposals from "./pages/Proposals";
 
 function App() {
   // just a simple useEffect to check if the user is signed in or not
@@ -61,6 +62,7 @@ function App() {
           <Route path="/events" element={<SearchEventsPage />} />
           <Route path="/test" element={<Test />} />
           <Route path="/account/myevents" element={<MyEvents />} />
+          <Route path="/account/proposals" element={<Proposals />} />
           <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
           <Route path="/obq" element={<Obq />} />
         </Routes>

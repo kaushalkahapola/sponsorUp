@@ -24,10 +24,10 @@ const OrganizerSideBar = ({
   });
 
   const menuItems = [
-    { name: "Dashboard", link: "./" },
-    { name: "Calendar", link: "./" },
-    { name: "My Events", link: "./" },
-    { name: "Proposals", link: "./" },
+    { name: "Dashboard", link: "/account/proposals" },
+    { name: "Calendar", link: "/account/proposals" },
+    { name: "My Events", link: "/account/myevents" },
+    { name: "Proposals", link: "/account/proposals" },
   ];
 
   useEffect(() => {

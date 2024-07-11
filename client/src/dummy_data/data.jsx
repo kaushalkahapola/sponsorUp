@@ -200,153 +200,229 @@ const events = [
   },
 ];
 
-
-
 const Organizers = [
   {
     id: 1,
     name: "Robin Brown",
     email: "robin.brown@mail.com",
     organization: "Wayne Enterprises",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 2,
     name: "Alex Miller",
     email: "alex.miller@demo.com",
     organization: "Gringotts",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 3,
     name: "Taylor Rodriguez",
     email: "taylor.rodriguez@mail.com",
     organization: "Globex Corporation",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 4,
     name: "Alex Doe",
     email: "alex.doe@example.com",
     organization: "Cyberdyne Systems",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 5,
     name: "Taylor Garcia",
     email: "taylor.garcia@mail.com",
     organization: "Globex Corporation",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 6,
     name: "Pat Smith",
     email: "pat.smith@example.com",
     organization: "Wayne Enterprises",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 7,
     name: "Cameron Doe",
     email: "cameron.doe@demo.com",
     organization: "Soylent Corp",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 8,
     name: "Jordan Williams",
     email: "jordan.williams@demo.com",
     organization: "MomCorp",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 9,
     name: "John Garcia",
     email: "john.garcia@demo.com",
     organization: "Umbrella Corporation",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 10,
     name: "Robin Johnson",
     email: "robin.johnson@demo.com",
     organization: "Stark Industries",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 11,
     name: "Taylor Miller",
     email: "taylor.miller@mail.com",
     organization: "Acme Corp",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 12,
     name: "Jordan Johnson",
     email: "jordan.johnson@test.com",
     organization: "Acme Corp",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 13,
     name: "Pat Jones",
     email: "pat.jones@test.com",
     organization: "Globex Corporation",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 14,
     name: "Morgan Miller",
     email: "morgan.miller@mail.com",
     organization: "Gringotts",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 15,
     name: "Robin Miller",
     email: "robin.miller@test.com",
     organization: "Globex Corporation",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 16,
     name: "Robin Rodriguez",
     email: "robin.rodriguez@demo.com",
     organization: "Umbrella Corporation",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 17,
     name: "Chris Davis",
     email: "chris.davis@demo.com",
     organization: "Acme Corp",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 18,
     name: "Morgan Williams",
     email: "morgan.williams@mail.com",
     organization: "Wayne Enterprises",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 19,
     name: "Cameron Garcia",
     email: "cameron.garcia@demo.com",
     organization: "Gringotts",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
   {
     id: 20,
     name: "Chris Garcia",
     email: "chris.garcia@example.com",
     organization: "Soylent Corp",
-    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male"
+    photoURL: "https://xsgames.co/randomusers/avatar.php?g=male",
   },
 ];
 
-export default Organizers;
+const proposals = [
+  {
+    id: 1,
+    eventId: 1,
+    sponsorId: 1,
+    description: "<p><strong>helloo</strong></p>",
+    sponsorshipPackages: [
+      { benefits: "asa", price: "300" },
+      { benefits: "2000", price: "200" },
+      { benefits: "113", price: "113" },
+    ],
+    status: "Pending",
+  },
+  {
+    id: 2,
+    eventId: 2,
+    sponsorId: 2,
+    description: "<p>Sample description for Tech Conference.</p>",
+    sponsorshipPackages: [
+      { benefits: "Early bird access", price: "500" },
+      { benefits: "VIP seating", price: "1000" },
+      { benefits: "Networking opportunities", price: "700" },
+    ],
+    status: "Approved",
+  },
+  {
+    id: 3,
+    eventId: 3,
+    sponsorId: 3,
+    description: "<p>Art Exhibition showcasing local talent.</p>",
+    sponsorshipPackages: [
+      { benefits: "Logo on promotional materials", price: "400" },
+      { benefits: "Artists meet and greet", price: "600" },
+    ],
+    status: "Rejected",
+  },
+  {
+    id: 4,
+    eventId: 4,
+    sponsorId: 4,
+    description: "<p>Networking and keynote speeches.</p>",
+    sponsorshipPackages: [
+      { benefits: "Panel discussion sponsorship", price: "800" },
+      { benefits: "Exclusive CEO dinner", price: "1200" },
+    ],
+    status: "Pending",
+  },
+  {
+    id: 5,
+    eventId: 5,
+    sponsorId: 5,
+    description: "<p>Healthcare innovations and workshops.</p>",
+    sponsorshipPackages: [
+      { benefits: "Conference booth", price: "1000" },
+      { benefits: "Access to attendee list", price: "600" },
+    ],
+    status: "Approved",
+  },
+  {
+    id: 6,
+    eventId: 6,
+    sponsorId: 6,
+    description: "<p>Screenings and filmmaker panels.</p>",
+    sponsorshipPackages: [
+      { benefits: "Film premiere sponsorship", price: "1500" },
+      { benefits: "Red carpet event", price: "2000" },
+    ],
+    status: "Pending",
+  },
+  {
+    id: 7,
+    eventId: 7,
+    sponsorId: 7,
+    description: "<p>Entrepreneurs pitching their startups.</p>",
+    sponsorshipPackages: [
+      { benefits: "Pitch competition judge", price: "500" },
+      { benefits: "Startup showcase booth", price: "300" },
+    ],
+    status: "Approved",
+  },
+];
 
-
-
-export { Organizers, sponsors, events };
+export { Organizers, sponsors, events, proposals };
