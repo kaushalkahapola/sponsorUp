@@ -63,7 +63,7 @@ function App() {
           <Route path="/events" element={<SearchEventsPage />} />
           {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/account/myevents" element={<MyEvents />} />
-          <Route path="/organizer/dashboard" element={<OrganizerDashboard />} />
+          <Route path="/account/dashboard" element={<OrganizerDashboard />} />
           <Route path="/account/proposals" element={<Proposals />} />
           <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
           <Route path="/obq" element={<Obq />} />
