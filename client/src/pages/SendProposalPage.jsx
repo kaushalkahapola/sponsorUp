@@ -133,7 +133,7 @@ const SendProposalPage = () => {
               <AlbumCarousel album={event?.album} />
             </div>
             {/* Right Side Content */}
-            <div className="bg-white rounded-md shadow-md p-0 md:p-6 mb-8 flex-grow max-w-full lg:max-w-[calc(100% - 420px)]">
+            <div className="bg-white rounded-md shadow-md p-4 md:p-6 mb-8 flex-grow max-w-full lg:max-w-[calc(100% - 420px)]">
               <PackageList
                 proposalData={proposalData}
                 handlePackageChange={handlePackageChange}
