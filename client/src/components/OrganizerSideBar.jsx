@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
+import { proposals } from "../dummy_data/data";
 
 /**
  * Sidebar component for the organizer view.
@@ -33,13 +34,14 @@ const OrganizerSideBar = ({
   useEffect(() => {
     // Simulate fetching notification counts
     const fetchNotificationCounts = () => {
-      // Replace with actual API call or logic to fetch counts
-      setTimeout(() => {
-        setNotificationCounts((prevCounts) => ({
-          ...prevCounts,
-          Proposals: Math.floor(Math.random() * 20), // Random count for testing
-        }));
-      }, 500); // Simulating delay for fetching data
+      // Fetch notification counts for Proposals
+      const proposalNotifications = proposals.filter(
+        (proposal) => proposal.status === "Pending"
+      );
+      setNotificationCounts((prevCounts) => ({
+        ...prevCounts,
+        Proposals: proposalNotifications.length,
+      }));
     };
 
     fetchNotificationCounts(); // Initial fetch
