@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./Buttons";
 import { Link, useLocation } from "react-router-dom";
+import { auth } from "../firebase/firebase";
+
 import {
   Avatar,
   Box,
   Container,
   DropdownMenu,
+  AlertDialog,
   Flex,
   Text,
 } from "@radix-ui/themes";
 import { Organizers } from "../dummy_data/data"; // Adjust the path as needed
+import SignOutFn from "../firebase/SignOut";
 
 const OrganizersNavbar = () => {
   const location = useLocation();
@@ -79,6 +83,33 @@ const OrganizersNavbar = () => {
               </div>
             )}
             {/* Avatar and Dropdown Menu */}
+            <AlertDialog.Root>
+                    <AlertDialog.Trigger>
+                      <div className="hidden md:block text-sm">
+                      <Button text="Sign Out" variant="secondary" />
+                      </div>
+                    </AlertDialog.Trigger>
+                    <AlertDialog.Content maxWidth="450px">
+                      <AlertDialog.Title>Sign out</AlertDialog.Title>
+                      <AlertDialog.Description size="2">
+                        Are you sure you want to sign out?
+                      </AlertDialog.Description>
+
+                      <Flex gap="3" mt="4" justify="end">
+                        <AlertDialog.Cancel>
+                          <Button text="cancel" variant="secondary" />
+                        </AlertDialog.Cancel>
+                        <AlertDialog.Action>
+                          <Button
+                            id="signout-btn"
+                            text="Sign out"
+                            minWidth="200px"
+                            onClick={() => SignOutFn(auth)}
+                          />
+                        </AlertDialog.Action>
+                      </Flex>
+                    </AlertDialog.Content>
+                  </AlertDialog.Root>
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
                 <button>
@@ -93,16 +124,10 @@ const OrganizersNavbar = () => {
               </DropdownMenu.Trigger>
               <DropdownMenu.Content variant="soft">
                 <DropdownMenu.Label>
-                  <Text size="5">
+                  <Text size="2">
                     {organizer?.email || "example@gmail.com"}
                   </Text>
                 </DropdownMenu.Label>
-                <DropdownMenu.Separator />
-                <DropdownMenu.Item color="">
-                  <Link to="/signout">
-                    <Button text="Sign Out" />
-                  </Link>
-                </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
             {/* User Info */}
@@ -146,12 +171,31 @@ const OrganizersNavbar = () => {
                 />
               </Link>
             )}
-            <Link to="/signout">
-              <Button
-                text="Sign out"
-                className="btn bg-purple-500 text-white-100 md:ml-4 px-3 py-1 rounded duration-50 md:static"
-              />
-            </Link>
+            <AlertDialog.Root>
+                    <AlertDialog.Trigger>
+                      <Button text="Sign Out" />
+                    </AlertDialog.Trigger>
+                    <AlertDialog.Content maxWidth="450px">
+                      <AlertDialog.Title>Sign out</AlertDialog.Title>
+                      <AlertDialog.Description size="2">
+                        Are you sure you want to sign out?
+                      </AlertDialog.Description>
+
+                      <Flex gap="3" mt="4" justify="end">
+                        <AlertDialog.Cancel>
+                          <Button text="cancel" variant="secondary" />
+                        </AlertDialog.Cancel>
+                        <AlertDialog.Action>
+                          <Button
+                            id="signout-btn"
+                            text="Sign out"
+                            minWidth="200px"
+                            onClick={() => SignOutFn(auth)}
+                          />
+                        </AlertDialog.Action>
+                      </Flex>
+                    </AlertDialog.Content>
+                  </AlertDialog.Root>
           </div>
         </div>
       </Container>
