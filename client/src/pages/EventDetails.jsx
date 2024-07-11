@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { HeartFilledIcon, ChatBubbleIcon } from '@radix-ui/react-icons';
 import { MdLocationOn } from "react-icons/md";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import HomeHeader from './assets/components/HomeHeader';
-import Footer from './assets/components/Footer';
-import EDB from './assets/ED/EDB.png';
-import EventCard from './assets/components/EventCard';
-import SponsorCard from './assets/components/SponsorCard';
-import AlbumCarousel from './assets/components/AlbumCarousel';
+import HomeHeader from '../components/HomeHeader';
+import Footer from '../components/Footer';
+import EDB from '../assets/EDB.png';
+import EventCard from '../components/EventCard';
+import SponsorCard from '../components/SponsorCard';
+import AlbumCarousel from '../components/AlbumCarousel';
 
 const EventDetails = () => {
   const [liked, setLiked] = useState(false);
@@ -142,7 +142,6 @@ const EventDetails = () => {
             <EventCard />
           </div>
         </div>
-
 
         <Footer />
       </main>
