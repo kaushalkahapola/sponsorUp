@@ -24,7 +24,7 @@ const OrganizerSideBar = ({
   });
 
   const menuItems = [
-    { name: "Dashboard", link: "./" },
+    { name: "Dashboard", link: "/organizer/dashboard" },
     { name: "Calendar", link: "./" },
     { name: "My Events", link: "./" },
     { name: "Proposals", link: "./" },
