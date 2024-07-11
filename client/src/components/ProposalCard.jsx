@@ -59,7 +59,7 @@ const ProposalCard = ({ proposalId }) => {
           >
             <Box className="font-bold text-lg">{event.title}</Box>
             <Box className="text-md">{sponsor.name}</Box>
-            <Box className="text-sm">{"getFirstLine(event.description)"}</Box>
+            <Box className="text-sm">{getFirstLine(event.description)}</Box>
             <Box className="text-sm">{proposal.status}</Box>
             <Link to={`/account/proposals/${proposal.id}`}>
               <Button text="Learn more" />
