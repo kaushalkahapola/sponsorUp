@@ -15,9 +15,10 @@ import EventCard from "./components/EventCard";
 import SearchSponsors from "./pages/SearchSponsors";
 // import Test from "./pages/Test";
 import SearchEventsPage from "./pages/SearchEventsPage";
-import Test from "./pages/Test";
+// import Test from "./pages/Test";
 import MyEvents from "./pages/MyEvents";
 import SponsorDetailsPage from "./pages/SponsorDetailsPage";
+import OrganizerDashboard from "./pages/OrganizerDashboard";
 import Obq from "./pages/Obq";
 import Proposals from "./pages/Proposals";
 
@@ -60,8 +61,9 @@ function App() {
           <Route path="/sponsors" element={<SearchSponsors />} />
           {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/events" element={<SearchEventsPage />} />
-          <Route path="/test" element={<Test />} />
+          {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/account/myevents" element={<MyEvents />} />
+          <Route path="/organizer/dashboard" element={<OrganizerDashboard />} />
           <Route path="/account/proposals" element={<Proposals />} />
           <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
           <Route path="/obq" element={<Obq />} />

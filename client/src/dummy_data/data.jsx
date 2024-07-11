@@ -89,6 +89,7 @@ const events = [
       "https://picsum.photos/400/200?random=3",
       "https://picsum.photos/400/200?random=4",
     ],
+    views: 1000,
   },
   {
     id: 2,
@@ -107,6 +108,7 @@ const events = [
       "https://picsum.photos/400/200?random=7",
       "https://picsum.photos/400/200?random=8",
     ],
+    views: 1000,
   },
   {
     id: 3,
@@ -125,6 +127,7 @@ const events = [
       "https://picsum.photos/400/200?random=11",
       "https://picsum.photos/400/200?random=12",
     ],
+    views: 1000,
   },
   {
     id: 4,
@@ -143,6 +146,7 @@ const events = [
       "https://picsum.photos/400/200?random=15",
       "https://picsum.photos/400/200?random=16",
     ],
+    views: 1000,
   },
   {
     id: 5,
