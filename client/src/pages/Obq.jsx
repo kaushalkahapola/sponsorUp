@@ -27,12 +27,12 @@ function Obq() {
 
   const roles = ["Event Organizer", "Sponsor"];
   const [roleIndex, setRoleIndex] = useState("");
-  const [role, setRole] = useState("");
+  const [userType, setUserType] = useState("");
 
   const handleFinish = async () => {
     try {
       // Check if role and interests are defined
-      if (!role || !Array.isArray(interests) || interests.length === 0) {
+      if (!userType || !Array.isArray(interests) || interests.length === 0) {
         throw new Error("Role and interests must be provided");
       }
 
@@ -43,7 +43,7 @@ function Obq() {
       await setDoc(
         userRef,
         {
-          role: role,
+          userType: userType,
           interests: interests,
         },
         { merge: true }
@@ -94,7 +94,7 @@ function Obq() {
 
   useEffect(() => {
     if (roleIndex) {
-      setRole(roles[roleIndex]);
+      setUserType(roles[roleIndex]);
     }
   }, [roleIndex]);
 
