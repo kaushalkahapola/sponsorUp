@@ -38,7 +38,7 @@ const OrganizerDashboard = () => {
             initialIsOpen={false} // Adjust as needed
             onMenuClick={(menuName) => console.log(`Menu clicked: ${menuName}`)} // Example callback
           />
-          <div className="w-full px-10 pt-10 space-y-10">
+          <div className="w-full px-10 py-10 space-y-10">
             <div className="space-y-5">
               <Text className="text-gray-200">
                 account / <span className="text-gray-900">Dashboard</span>
@@ -50,11 +50,11 @@ const OrganizerDashboard = () => {
               <Table.Root variant="surface">
                 <Table.Header>
                   <Table.Row>
-                    <Table.ColumnHeaderCell>Event</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Events</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="hidden md:table-cell">
                       Date of the event
                     </Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>views</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="hidden md:table-cell">views</Table.ColumnHeaderCell>
                   </Table.Row>
                 </Table.Header>
 
@@ -71,7 +71,7 @@ const OrganizerDashboard = () => {
                     return (
                       <Table.Row key={index}>
                         <Table.RowHeaderCell>{event.title}</Table.RowHeaderCell>
-                        <Table.Cell className="flex justify-start space-x-3">
+                        <Table.Cell className="hidden md:table-cell">
                           <div>
                             {eventDate.toLocaleDateString("en-US", options)}
                           </div>
@@ -82,7 +82,7 @@ const OrganizerDashboard = () => {
                           </div>
                         </Table.Cell>{" "}
                         {/* Display days left */}
-                        <Table.Cell>{event.views}</Table.Cell>
+                        <Table.Cell className="hidden md:table-cell"s>{event.views}</Table.Cell>
                       </Table.Row>
                     );
                   })}

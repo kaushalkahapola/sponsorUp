@@ -75,7 +75,7 @@ const OrganizerSideBar = ({
       />
       {/* Sidebar container */}
       <div
-        className={`fixed left-0 top-0 w-56 h-screen bg-neutral-50 shadow border-r border-white z-50 transition-transform duration-300 transform ${
+        className={`fixed left-0 top-0 w-56 min-h-[100vh] bg-neutral-50 shadow border-r border-white z-50 transition-transform duration-300 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:relative md:translate-x-0 ${
           isOpen ? "pt-16 md:pt-0" : "" // Add top padding only when sidebar is open on smaller screens

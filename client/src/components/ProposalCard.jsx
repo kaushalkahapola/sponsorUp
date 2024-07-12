@@ -67,18 +67,16 @@ const ProposalCard = ({ proposalId }) => {
       <Box>
         <Card className="p-4">
           <Flex
-            direction={{ initial: "column", md: "row" }}
             gap={{ initial: "3", md: "5" }}
             justify="between"
-            align="center"
-            className="items-center"
+            className="items-start flex-col md:flex-row"
           >
             <div className="flex-1">
               <Box className="font-bold text-lg">{event.title}</Box>
               <Box className="text-md">{sponsor.name}</Box>
               <Box className="text-sm">{getFirstLine(event.description)}</Box>
             </div>
-            <div className="flex-shrink-0 flex flex-col items-center md:items-end">
+            <div className="flex-shrink-0 flex flex-col items-start md:items-end md:space-y-2">
               <Text
                 size="sm"
                 weight="medium"
