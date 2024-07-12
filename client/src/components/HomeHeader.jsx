@@ -13,7 +13,7 @@ const HomeHeader = () => {
   ];
 
   return (
-    <div className="w-full fixed-navbar border-b px-5 font-poppins bg-white">
+    <div className="w-full fixed-navbar border-b border-b-gray-100 px-5 font-poppins bg-white">
       <Container>
       <div className="md:flex items-center justify-between bg-white py-3">
         {/* Logo and burger menu for small screens */}

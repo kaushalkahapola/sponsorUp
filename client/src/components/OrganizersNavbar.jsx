@@ -43,7 +43,7 @@ const OrganizersNavbar = () => {
   ];
 
   return (
-    <nav className="fixed-navbar border-b mb-6 px-5 font-poppins bg-white">
+    <nav className="fixed-navbar border-b border-b-gray-100 mb-6 px-5 font-poppins bg-white">
       <Container>
         <Flex align="center" py="3" justify="between">
           <Flex gap="6" align="center">
