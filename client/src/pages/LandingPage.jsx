@@ -98,7 +98,7 @@ const LandingPage = () => {
                     className="mx-auto md:mr-12 md:ml-0 mb-8 md:mb-0 max-w-full"
                   />
                 </div>
-                <div className="order-1 md:order-2 text-center md:text-left justify-center space-y-1 md:space-y-3 lg:space-y-8">
+                <div className="order-1 md:order-2 text-center md:text-left justify-center space-y-5 lg:space-y-8">
                   {/* <p className="text-gray-600">YOU CAN </p> */}
                   <div className="font-semibold text-violet-700 text-3xl md:text-4xl lg:text-5xl">
                     Why Choose
@@ -107,12 +107,12 @@ const LandingPage = () => {
                       SponsorUp?
                     </span>
                   </div>
-                  <ul className="space-y-3">
+                  <ul className="space-y-5 flex flex-col">
                     <li className="flex items-start">
                       <div className="inline">
                         <CheckboxIcon color="green" />
                       </div>
-                      <p className="inline ml-2">
+                      <p className="inline ml-2 text-start">
                         <span className="font-semibold">
                           Effortless Connections:
                         </span>{" "}
@@ -124,7 +124,7 @@ const LandingPage = () => {
                       <div className="inline">
                         <CheckboxIcon color="green" />
                       </div>
-                      <p className="inline ml-2">
+                      <p className="inline ml-2 text-start">
                         <span className="font-semibold">
                           Comprehensive Support:
                         </span>{" "}
@@ -136,7 +136,7 @@ const LandingPage = () => {
                       <div className="inline">
                         <CheckboxIcon color="green" />
                       </div>
-                      <p className="inline ml-2">
+                      <p className="inline ml-2 text-start">
                         <span className="font-semibold">Tailored Matches:</span>{" "}
                         Our platform uses advanced algorithms to match
                         organizers with the most suitable sponsors.
@@ -168,7 +168,7 @@ const LandingPage = () => {
                     className="mx-auto max-w-full"
                   />
                 </div>
-                <div className="order-1 md:order-1 text-center md:text-left justify-center space-y-1 md:space-y-3 lg:space-y-8">
+                <div className="order-1 md:order-1 text-center md:text-left justify-center space-y-5 lg:space-y-8">
                   {/* <p className="text-gray-600">YOU CAN </p> */}
                   <div className="font-semibold text-violet-700 text-3xl md:text-4xl lg:text-5xl">
                     How It
@@ -177,17 +177,17 @@ const LandingPage = () => {
                       Works
                     </span>
                   </div>
-                  <ul className="space-y-3">
+                  <ul className="space-y-5">
                     <li className="flex items-start">
                       <div className="inline"></div>
-                      <p className="inline ml-2">
+                      <p className="inline  text-start">
                         <span className="font-semibold">Step 1: Sign Up:</span>{" "}
                         Create an account as an event organizer or sponsor.
                       </p>
                     </li>
                     <li className="flex items-start">
                       <div className="inline"></div>
-                      <p className="inline ml-2">
+                      <p className="inline  text-start">
                         <span className="font-semibold">
                           {" "}
                           Step 2: Create/Explore Events:
@@ -198,7 +198,7 @@ const LandingPage = () => {
                     </li>
                     <li className="flex items-start">
                       <div className="inline"></div>
-                      <p className="inline ml-2">
+                      <p className="inline  text-start">
                         <span className="font-semibold">
                           Step 3: Connect & Collaborate:{" "}
                         </span>

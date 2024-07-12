@@ -6,6 +6,10 @@ import GoogleSignIn from "../firebase/GoogleSignIn";
 import { useForm, Controller } from "react-hook-form";
 import { signInSchema } from "../schemas/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import hello from "../assets/hello.svg";
+import { Link } from "react-router-dom";
+import { Text } from "@radix-ui/themes";
+
 const SignIn = () => {
   const {
     handleSubmit,
@@ -33,6 +37,17 @@ const SignIn = () => {
 
   return (
     <div className="flex h-screen">
+      <header>
+        <div className="container mx-auto p-4 absolute top-0 left-0">
+          <div className="font-bold text-2xl cursor-default flex items-center gap-1">
+            <Link to="/">
+              <Text>
+                Sponsor<span className="text-primary-500">Up</span>
+              </Text>
+            </Link>
+          </div>
+        </div>
+      </header>
       <div className="w-full md:w-3/4 lg:w-2/3 bg-white p-8 flex items-center justify-center">
         <div className="w-full max-w-lg">
           <h2 className="text-3xl font-semibold mb-8 text-center">Sign In</h2>
@@ -140,10 +155,17 @@ const SignIn = () => {
               icon={<FaFacebook className="text-blue-500 mr-2" />}
             />
           </div>
+          {/* redirect to sign uo page if user do not have a account */}
+          <p className="text-center mt-4">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-primary-500 hover:underline">
+              Sign Up
+            </Link>
+          </p>
         </div>
       </div>
       <div className="hidden md:flex md:w-1/4 lg:w-1/3 bg-primary-500 items-center justify-center">
-        {/* Right side content (if any) */}
+        <img src={hello} alt="welcome" />
       </div>
     </div>
   );
