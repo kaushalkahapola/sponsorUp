@@ -9,7 +9,6 @@ const ProposalCard = ({ proposalId }) => {
   const [event, setEvent] = useState({});
   const [sponsor, setSponsor] = useState({});
   const [proposal, setProposal] = useState({});
-  const [userType, setUserType] = useState("");
 
   useEffect(() => {
     // Fetch proposal data
@@ -17,7 +16,6 @@ const ProposalCard = ({ proposalId }) => {
       const proposal = proposals.find((proposal) => proposal.id === id);
       setProposal(proposal);
     };
-    setUserType(getUserType());
     fetchProposal(proposalId);
   }, [proposalId]);
 
@@ -52,9 +50,6 @@ const ProposalCard = ({ proposalId }) => {
   };
 
   const getStatusColor = (status) => {
-    if (userType === "sponsor") {
-      return "gray";
-    }
     switch (status) {
       case "Pending":
         return "orange"; // Adjust color for pending status
@@ -85,7 +80,9 @@ const ProposalCard = ({ proposalId }) => {
               <Text
                 size="sm"
                 weight="medium"
-                style={{ color: getStatusColor(proposal.status) }}
+                style={{
+                  color: getStatusColor(proposal.status),
+                }}
                 className="mb-2 md:mb-0"
               >
                 {proposal.status}

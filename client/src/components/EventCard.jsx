@@ -31,11 +31,6 @@ const EventCard = ({
     location: "Sample Location",
     organizer: "Sample Organizer",
     coverImage: "https://picsum.photos/400/200",
-    album: [
-      "https://via.placeholder.com/400x200",
-      "https://via.placeholder.com/400x200",
-      "https://via.placeholder.com/400x200",
-    ],
   },
 }) => {
   const {
@@ -47,7 +42,6 @@ const EventCard = ({
     location,
     organizer,
     coverImage,
-    album,
   } = event;
 
   // Function to format date and time
