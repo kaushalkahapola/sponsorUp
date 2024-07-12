@@ -52,9 +52,6 @@ const ProposalCard = ({ proposalId }) => {
   };
 
   const getStatusColor = (status) => {
-    if (userType === "sponsor") {
-      return "gray";
-    }
     switch (status) {
       case "Pending":
         return "orange"; // Adjust color for pending status
@@ -85,7 +82,12 @@ const ProposalCard = ({ proposalId }) => {
               <Text
                 size="sm"
                 weight="medium"
-                style={{ color: getStatusColor(proposal.status) }}
+                style={{
+                  color:
+                    userType == "sponsor"
+                      ? "gray"
+                      : getStatusColor(proposal.status),
+                }}
                 className="mb-2 md:mb-0"
               >
                 {proposal.status}
