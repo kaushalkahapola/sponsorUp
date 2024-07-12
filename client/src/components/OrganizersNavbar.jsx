@@ -15,7 +15,6 @@ import {
 import SignOutFn from "../firebase/SignOut";
 import { useNavigate } from "react-router-dom";
 
-
 const OrganizersNavbar = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
@@ -29,10 +28,9 @@ const OrganizersNavbar = () => {
       setUser(user);
       const userType = await getUserType(user.uid);
       setUserType(userType);
-      console.log(userType)
-      console.log(user.uid)
+      console.log(userType);
+      console.log(user.uid);
     });
-    
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
@@ -50,7 +48,7 @@ const OrganizersNavbar = () => {
     {
       label: "Search Events",
       path: "/events",
-    }
+    },
   ];
 
   return (
@@ -122,25 +120,17 @@ const OrganizersNavbar = () => {
                 </Flex>
               </AlertDialog.Content>
             </AlertDialog.Root>
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger>
-                <button>
-                  <Avatar
-                    src={user?.photoURL || "/"}
-                    fallback={user?.displayName?.charAt(0) || "?"}
-                    size="2"
-                    radius="full"
-                    className="cursor-pointer"
-                  />
-                </button>
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Content variant="soft">
-                <DropdownMenu.Label>
-                  <Text size="2">{user?.email || "example@gmail.com"}</Text>
-                  <Text size = '2'>{userType}</Text>
-                </DropdownMenu.Label>
-              </DropdownMenu.Content>
-            </DropdownMenu.Root>
+            <Link to={"/account/settings"}>
+              <button>
+                <Avatar
+                  src={user?.photoURL || "/"}
+                  fallback={user?.displayName?.charAt(0) || "?"}
+                  size="2"
+                  radius="full"
+                  className="cursor-pointer"
+                />
+              </button>
+            </Link>
             {/* User Info */}
             {user && (
               <Flex
