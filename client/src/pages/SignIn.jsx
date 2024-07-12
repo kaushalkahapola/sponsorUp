@@ -135,6 +135,7 @@ const SignIn = () => {
                 id="signin-btn"
                 text="Sign In"
                 minWidth="200px"
+                type="submit"
                 onClick={handleSubmit}
               />
             </div>

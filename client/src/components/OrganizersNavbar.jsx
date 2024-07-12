@@ -150,7 +150,7 @@ const OrganizersNavbar = () => {
                 className="hidden md:inline-flex"
               >
                 <Text size="2" weight="medium">
-                  {user.displayName || "John Smith"}
+                  {user.displayName || "Hello User"}
                 </Text>
                 <Text size="1" weight="light">
                   {user.email || "example@gmail.com"}
