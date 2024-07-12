@@ -15,7 +15,7 @@ import MyEvents from "./pages/MyEvents";
 import OrganizerDashboard from "./pages/OrganizerDashboard";
 import Proposals from "./pages/Proposals";
 import SponsorDetailsPage from "./pages/SponsorDetailsPage";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./privateRoute";
 
 function App() {
   useEffect(() => {
