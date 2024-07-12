@@ -25,7 +25,7 @@ function Obq() {
   const totalQuestions = 2; // Total number of questions
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
-  const roles = ["Event Organizer", "Sponsor"];
+  const roles = ["Organizer", "Sponsor"];
   const [roleIndex, setRoleIndex] = useState("");
   const [userType, setUserType] = useState("");
 
@@ -43,7 +43,7 @@ function Obq() {
       await setDoc(
         userRef,
         {
-          userType: userType,
+          userType: userType.toLowerCase(),
           interests: interests,
         },
         { merge: true }
