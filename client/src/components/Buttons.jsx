@@ -22,23 +22,31 @@ const Button = ({
   minHeight,
   icon,
   type = "button",
+  disabled = false,
 }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = (e) => {
-    onClick(e);
-    setClicked(true);
-    setTimeout(() => {
-      setClicked(false);
-    }, 100); // Adjust the duration as needed
+    if (!disabled) {
+      onClick(e);
+      setClicked(true);
+      setTimeout(() => {
+        setClicked(false);
+      }, 100); // Adjust the duration as needed
+    }
   };
 
   const baseClasses =
     "font-normal py-2 px-4 rounded transition duration-150 ease-in-out transform shadow-md flex items-center justify-center";
-  const primaryClasses = "text-white bg-primary hover:bg-primary-700";
-  const secondaryClasses =
-    "text-primary bg-gray-50 hover:bg-violet-500 hover:text-white";
-  const dangerClasses = "text-white bg-red-600 hover:bg-red-900";
+  const primaryClasses = disabled
+    ? "text-gray-500 bg-gray-200"
+    : "text-white bg-primary hover:bg-primary-700";
+  const secondaryClasses = disabled
+    ? "text-primary bg-gray-200"
+    : "text-primary bg-gray-50 hover:bg-violet-500 hover:text-white";
+  const dangerClasses = disabled
+    ? "text-white bg-red-300"
+    : "text-white bg-red-600 hover:bg-red-900";
 
   let variantClasses;
 
@@ -56,7 +64,9 @@ const Button = ({
       variantClasses = primaryClasses; // or some default classes if needed
       break;
   }
-  const clickEffectClasses = clicked ? "scale-100" : "hover:scale-105";
+
+  const clickEffectClasses =
+    clicked && !disabled ? "scale-100" : disabled ? "" : "hover:scale-105";
 
   const style = {
     minWidth: minWidth || undefined,
@@ -70,6 +80,7 @@ const Button = ({
       id={id}
       style={style}
       type={type}
+      disabled={disabled}
     >
       {icon && <span className="mr-2">{icon}</span>}
       {text}
@@ -88,6 +99,7 @@ const Button = ({
  * @param {Function} props.setSelected - A function to update the selected buttons.
  * @param {string} props.minWidth - The minimum width of the buttons (optional).
  * @param {string} props.minHeight - The minimum height of the buttons (optional).
+ * @param {boolean} props.swap - If true, swaps the selected button when maximum is reached (default: false).
  * @returns {JSX.Element} The rendered ButtonsGroup component.
  */
 const ButtonsGroup = ({
@@ -97,6 +109,7 @@ const ButtonsGroup = ({
   setSelected = () => {},
   minWidth,
   minHeight,
+  swap = false,
 }) => {
   const handleClick = (index) => {
     if (selected.includes(index)) {
@@ -104,6 +117,8 @@ const ButtonsGroup = ({
     } else {
       if (selected.length < selectable_number) {
         setSelected([...selected, index]);
+      } else if (swap) {
+        setSelected([...selected.slice(1), index]);
       }
     }
   };
@@ -119,13 +134,15 @@ const ButtonsGroup = ({
   const style = {
     minWidth: minWidth || undefined,
     minHeight: minHeight || undefined,
+    whiteSpace: "nowrap", // Ensure text stays on one line
   };
 
   return (
-    <div className="flex flex-row space-x-4">
+    <div className="flex flex-wrap gap-x-4 gap-y-4">
       {texts.map((text, index) => {
         const isSelected = selected.includes(index);
-        const isHoverable = selected.length < selectable_number || isSelected;
+        const isHoverable =
+          selected.length < selectable_number || swap || isSelected;
 
         return (
           <button

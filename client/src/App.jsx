@@ -18,6 +18,9 @@ import Obq from "./pages/Obq";
 import OrganizerDashboard from "./pages/OrganizerDashboard";
 import Proposals from "./pages/Proposals";
 import SponsorDetailsPage from "./pages/SponsorDetailsPage";
+import Test from "./pages/Test";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // just a simple useEffect to check if the user is signed in or not
@@ -47,7 +50,7 @@ function App() {
           <Route path="/sponsors" element={<SearchSponsors />} />
           {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/events" element={<SearchEventsPage />} />
-          {/* <Route path="/test" element={<Test />} /> */}
+          <Route path="/test" element={<Test />} />
           <Route path="/account/myevents" element={<MyEvents />} />
           <Route path="/account/dashboard" element={<OrganizerDashboard />} />
           <Route path="/account/proposals" element={<Proposals />} />
@@ -56,6 +59,7 @@ function App() {
         </Routes>
       </Router>
       {/* <ThemePanel /> */}
+      <ToastContainer />
     </Theme>
   );
 }

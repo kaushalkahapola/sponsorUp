@@ -28,6 +28,7 @@
     "react-router-dom": "^6.24.1",
     "react-select": "^5.8.0",
     "react-star-ratings": "^2.3.0",
+    "react-toastify": "^10.0.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
