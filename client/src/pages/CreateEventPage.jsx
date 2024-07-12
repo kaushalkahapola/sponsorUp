@@ -20,11 +20,14 @@ import ImageUpload from "../components/ImageUpload";
 import { Button } from "../components/Buttons";
 import { createEventFn } from "../firebase/createEvent";
 import { categories } from "../dummy_data/data";
+import { useNavigate } from "react-router-dom";
 
 const CreateEventPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [albumPhotos, setAlbumPhotos] = useState([]);
+
+  const navigate = useNavigate();
 
   const {
     control,
@@ -130,6 +133,7 @@ const CreateEventPage = () => {
       albumPhotos, // Include the album photos
     };
     await createEventFn(eventData);
+    navigate('/account/myevents')
   };
 
   return (

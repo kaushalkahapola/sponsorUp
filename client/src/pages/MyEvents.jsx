@@ -3,18 +3,19 @@ import OrganizerSideBar from "../components/OrganizerSideBar";
 import OrganizersNavbar from "../components/OrganizersNavbar";
 import { Container, Grid } from "@radix-ui/themes";
 import EventCard from "../components/EventCard";
-import { events } from "../dummy_data/data";
 import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
 import { Button } from "../components/Buttons";
+import getEvents from "../firebase/getEvents"; // Ensure this function is available
 
 const MyEvents = () => {
   const [searchText, setSearchText] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState(events);
+  const [eventsList, setEventsList] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
     const filterEvents = () => {
-      let filtered = events;
+      let filtered = eventsList;
 
       // Apply search text filter
       if (searchText.trim() !== "") {
@@ -28,7 +29,21 @@ const MyEvents = () => {
     };
 
     filterEvents();
-  }, [searchText]);
+  }, [searchText, eventsList]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const events = await getEvents();
+        setEventsList(events);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+        // Handle error fetching events
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const searchBtnClicked = async () => {
     // Perform search logic here if needed
@@ -52,19 +67,23 @@ const MyEvents = () => {
               onSearchButtonClick={searchBtnClicked}
             />
             <div className="pl-5">
-            <Link to="/events/new">
+              <Link to="/events/new">
                 <Button
                   variant="secondary"
                   text="Create event"
                 />
               </Link>
-              </div>
+            </div>
             <Grid gap="3" className="flex-row">
               <div className="">
                 <div className="grid px-5 py-7 gap-6 md:grid-cols-1 lg:grid-cols-2">
-                  {filteredEvents.map((event, index) => (
-                    <EventCard key={index} event={event} />
-                  ))}
+                  {filteredEvents.length > 0 ? (
+                    filteredEvents.map((event, index) => (
+                      <EventCard key={index} event={event} />
+                    ))
+                  ) : (
+                    <p>No events found.</p>
+                  )}
                 </div>
               </div>
             </Grid>

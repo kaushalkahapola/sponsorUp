@@ -1,9 +1,13 @@
 import {db, storage} from './firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore'; // Import addDoc
+import { useNavigate } from 'react-router-dom';
 
 // Function to create a new event
 export const createEventFn = async (data) => {
+
+    const navigate = useNavigate();
+
     try {
         const imageRef = ref(storage, `events/${data.name}.jpg`); // Create a reference to the image file in Firebase Storage
         await uploadBytes(imageRef, data.coverPhoto);
@@ -35,7 +39,11 @@ export const createEventFn = async (data) => {
             album: albumPhotoUrls, // Store the image URLs in Firestore
             coverImage: coverPhotoUrl, // Store the image URL in Firestore
         });
+
+
         console.log("Document successfully written!");
+
+        navigate('/account/myevents')
     } catch (e) {
         console.error("Error adding document: ", e);
     }
