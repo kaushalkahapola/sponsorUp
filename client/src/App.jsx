@@ -21,7 +21,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Obq from "./pages/Obq";
 import EventDetails from "./pages/EventDetails";
 
-
 function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -57,7 +56,7 @@ function App() {
             }
           />
           <Route
-            path="/sendproposal"
+            path="sponsors/:sponsorId/sendproposal"
             element={
               <PrivateRoute
                 element={SendProposalPage}
@@ -102,8 +101,8 @@ function App() {
             }
           />
           <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
-          <Route path='/eventdetail' element={<EventDetails/>} />
-          <Route path='/sponsordetails/:id' element={<SponsorDetailsPage/>} />
+          <Route path="/eventdetail" element={<EventDetails />} />
+          <Route path="/sponsordetails/:id" element={<SponsorDetailsPage />} />
         </Routes>
       </Router>
       <ToastContainer />
