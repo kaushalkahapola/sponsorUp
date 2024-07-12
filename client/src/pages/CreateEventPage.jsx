@@ -19,6 +19,7 @@ import { eventSchema } from "../schemas/validationSchema";
 import ImageUpload from "../components/ImageUpload";
 import { Button } from "../components/Buttons";
 import { createEventFn } from "../firebase/createEvent";
+import { categories } from "../dummy_data/data";
 
 const CreateEventPage = () => {
   const [activeSection, setActiveSection] = useState(null);
@@ -210,7 +211,7 @@ const CreateEventPage = () => {
                         }}
                       />
                       <div style={{ position: "absolute", top: 0, right: 0 }}>
-                        <Button onClick={handleRemoveFile}>Remove</Button>
+                        <Button onClick={handleRemoveFile} text="remove" variant="secondary" />
                       </div>
                     </div>
                   ) : (
@@ -330,8 +331,11 @@ const CreateEventPage = () => {
                           <option value="" disabled>
                             Select Category
                           </option>
-                          <option value="category1">Category 1</option>
-                          <option value="category2">Category 2</option>
+                          {categories.map((category) => (
+                            <option key={category} value={category}>
+                              {category}
+                            </option>
+                          ))}
                           {/* Add more categories as needed */}
                         </select>
                         {errors.category && (
@@ -353,7 +357,7 @@ const CreateEventPage = () => {
                   <Text size="2" className="text-gray-300">
                     Provide the location and time details of the event.
                   </Text>
-                  <Controller
+                  {/* <Controller
                     name="address"
                     control={control}
                     render={({ field }) => (
@@ -382,7 +386,7 @@ const CreateEventPage = () => {
                         )}
                       </div>
                     )}
-                  />
+                  /> */}
                   <Controller
                     name="city"
                     control={control}
@@ -411,7 +415,7 @@ const CreateEventPage = () => {
                       </div>
                     )}
                   />
-                  <Controller
+                  {/* <Controller
                     name="state"
                     control={control}
                     render={({ field }) => (
@@ -438,8 +442,8 @@ const CreateEventPage = () => {
                         )}
                       </div>
                     )}
-                  />
-                  <Controller
+                  /> */}
+                  {/* <Controller
                     name="country"
                     control={control}
                     render={({ field }) => (
@@ -468,7 +472,7 @@ const CreateEventPage = () => {
                         )}
                       </div>
                     )}
-                  />
+                  /> */}
                   <Controller
                     name="eventDate"
                     control={control}
@@ -530,7 +534,7 @@ const CreateEventPage = () => {
                     )}
                   />
                 </div>
-                <div ref={packagesRef} id="packages" className="space-y-3">
+                {/* <div ref={packagesRef} id="packages" className="space-y-3">
                   <Heading>Packages</Heading>
                   <Text size="2" className="text-gray-300">
                     Add details of the sponsorship packages available.
@@ -657,7 +661,7 @@ const CreateEventPage = () => {
                       )}
                     />
                   </div>
-                </div>
+                </div> */}
                 <Flex className="w-full justify-center md:justify-end">
                   <Button type="submit" text="Submit" minWidth="15rem" />
                 </Flex>

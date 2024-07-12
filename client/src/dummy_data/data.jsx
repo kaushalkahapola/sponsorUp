@@ -429,4 +429,16 @@ const proposals = [
   },
 ];
 
-export { Organizers, sponsors, events, proposals };
+
+const categories = [
+  "Music",
+  "Technology",
+  "Art",
+  "Business",
+  "Healthcare",
+  "Entertainment",
+  "Entrepreneurship",
+  "Education"
+]
+
+export { Organizers, sponsors, events, proposals, categories };

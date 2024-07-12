@@ -56,13 +56,13 @@ export const eventSchema = object({
   description: string().min(1,"Description is required"),
   category: string().min(1,"Category is required"),
   // Add other fields here as needed
-  address: string().min(1,"Address is required"),
+  // address: string().min(1,"Address is required"),
   city: string().min(1,"City is required"),
-  state: string().min(1,"State/Province is required"),
-  country: string().min(1,"Country/Region is required"),
+  // state: string().min(1,"State/Province is required"),
+  // country: string().min(1,"Country/Region is required"),
   // timeZone: string().min(1,"Time Zone is required"),
   eventDate: string().min(1,"Event Date is required"),
   startTime: string().min(1,"Start Time is required"),
-  packages: z.array(packageSchema).min(1,"At least one package is required"),
-  promotionTick: z.boolean(),
+  // packages: z.array(packageSchema).min(1,"At least one package is required"),
+  // promotionTick: z.boolean(),
 });
