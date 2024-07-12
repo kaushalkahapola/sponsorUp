@@ -4,7 +4,6 @@ import OrganizersNavbar from "../components/OrganizersNavbar";
 import Filters from "../components/Filters";
 import SearchBar from "../components/SearchBar";
 import EventCard from "../components/EventCard";
-import { events } from "../dummy_data/data";
 import { Button } from "../components/Buttons";
 import getEvents from "../firebase/getEvents";
 
@@ -16,10 +15,10 @@ const SearchEventsPage = () => {
     types: [],
     languages: [],
   });
-  const [eventsList, setEventsList] = useState([]); // State to store events fetched from Firebase
+  const [eventsList, setEventsList] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false); // State for sidebar toggle
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const applyFilters = (newFilters) => {
     setFilters(newFilters);
@@ -28,6 +27,7 @@ const SearchEventsPage = () => {
   useEffect(() => {
     const filterEvents = () => {
       let filtered = eventsList;
+
       // Apply category filter
       if (filters.categories.length > 0) {
         filtered = filtered.filter((event) =>
@@ -61,8 +61,9 @@ const SearchEventsPage = () => {
       // Apply search text filter
       if (searchText.trim() !== "") {
         const lowercasedFilter = searchText.toLowerCase();
-        filtered = filtered.filter((event) =>
-          event.title.toLowerCase().includes(lowercasedFilter)
+        filtered = filtered.filter(
+          (event) =>
+            event.title && event.title.toLowerCase().includes(lowercasedFilter)
         );
       }
 
@@ -70,23 +71,24 @@ const SearchEventsPage = () => {
     };
 
     filterEvents();
-  }, [searchText, filters]);
+  }, [searchText, filters, eventsList]);
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const events = await getEvents();
-      setEventsList(events);
-      console.log(events);
+      try {
+        const events = await getEvents();
+        setEventsList(events);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+        // Handle error fetching events
+      }
     };
 
-    fetchEvents();
-  }, []);
-
-  useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth < 768); // Adjust breakpoint as needed
     };
 
+    fetchEvents();
     checkScreenSize();
 
     window.addEventListener("resize", checkScreenSize);
@@ -118,22 +120,25 @@ const SearchEventsPage = () => {
           </div>
         </div>
         <Grid gap="3" mdcols="1fr 2fr" className="md:flex">
-          {!isSmallScreen && ( // Render Filters in grid for non-small screens
+          {!isSmallScreen && (
             <div className="bg-white rounded-md shadow-md pt-3 p-6 md:mt-0 md:ml-8">
               <Filters onApplyFilters={applyFilters} />
             </div>
           )}
           <div className="md:w-3/4">
             <div className="grid px-5 py-7 gap-6 md:grid-cols-1 xl:grid-cols-2">
-              {filteredEvents.length > 0 &&
+              {filteredEvents.length > 0 ? (
                 filteredEvents.map((event, index) => (
                   <EventCard key={index} event={event} />
-                ))}
+                ))
+              ) : (
+                <p>No events found.</p>
+              )}
             </div>
           </div>
         </Grid>
       </Container>
-      {isSmallScreen && ( // Render Filters button for small screens
+      {isSmallScreen && (
         <div className="fixed bottom-5 right-5 z-50">
           <Button
             text="Filters"
@@ -142,12 +147,12 @@ const SearchEventsPage = () => {
           />
         </div>
       )}
-      {isSmallScreen && ( // Render off-canvas sidebar for small screens
+      {isSmallScreen && (
         <div className={`off-canvas-sidebar ${isFilterOpen ? "show" : ""}`}>
           <Filters onApplyFilters={applyFilters} />
         </div>
       )}
-      {isSmallScreen && ( // Render off-canvas overlay for small screens
+      {isSmallScreen && (
         <div
           className={`off-canvas-overlay ${isFilterOpen ? "show" : ""}`}
           onClick={() => setIsFilterOpen(false)}

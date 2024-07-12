@@ -11,11 +11,11 @@ const getEvents = async () => {
       events.push({ id: doc.id, ...doc.data() });
     });
 
-    console.log(events);
+    console.log("Fetched events:", events);
     return events;
   } catch (error) {
     console.error("Error fetching events: ", error.message);
-    return null;
+    return []; // Return an empty array or handle null case as needed
   }
 };
 
