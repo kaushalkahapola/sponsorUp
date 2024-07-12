@@ -12,7 +12,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <h1 className="font-medium text-xl pb-4 pt-5 md:pt-0">Categories</h1>
-                    <nav className="flex flex-col gap-2">
+                    <nav className="flex flex-col gap-2 text-xs">
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">All</a>
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">Music</a>
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">Sport</a>
@@ -23,7 +23,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <h1 className="font-medium text-xl pb-4 pt-5 md:pt-0">Resources</h1>
-                    <nav className="flex flex-col gap-2">
+                    <nav className="flex flex-col gap-2 text-xs">
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">User guides</a>
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">Help Center</a>
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">Partners</a>
@@ -32,7 +32,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <h1 className="font-medium text-xl pb-4 pt-5 md:pt-0">Company</h1>
-                    <nav className="flex flex-col gap-2">
+                    <nav className="flex flex-col gap-2 text-xs">
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">About</a>
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">Join us</a>
                         <a className="hover:text-primary-700 transition-all cursor-pointer" href="/">Social media</a>
@@ -40,7 +40,7 @@ const Footer = () => {
                 </div>
             </div>
             <div>
-                <p className="text-center py-4">
+                <p className="text-center py-4 text-sm">
                     © Developed by
                     <span className="font-semibold text-primary-800"> DevTitans </span>
                     All rights reserved

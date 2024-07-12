@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom"; 
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
 import { Button } from "../components/Buttons";
@@ -8,14 +9,24 @@ import signUpFn from "../firebase/SignUp";
 import { signUpSchema } from "../schemas/validationSchema";
 
 const SignUp = () => {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const emailFromQuery = query.get("email") || "";
 
   const {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: zodResolver(signUpSchema),
   });
+
+  useEffect(() => {
+    if (emailFromQuery) {
+      setValue("email", emailFromQuery);
+    }
+  }, [emailFromQuery, setValue]);
 
   const onSubmit = async (formData) => {
     try {
@@ -25,7 +36,7 @@ const SignUp = () => {
     }
   };
 
-  //add to Input components
+  // Password visibility toggle
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -37,11 +48,11 @@ const SignUp = () => {
         <div className="w-full max-w-lg">
           <h2 className="text-3xl font-semibold mb-8 text-center">Sign Up</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="email">
-              Email
-            </label>
-            <Controller
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2" htmlFor="email">
+                Email
+              </label>
+              <Controller
                 name="email"
                 control={control}
                 rules={{ required: "Email is required" }}
@@ -62,13 +73,13 @@ const SignUp = () => {
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
               )}
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="password">
-              Password
-            </label>
-            <div className="relative">
-              <Controller
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2" htmlFor="password">
+                Password
+              </label>
+              <div className="relative">
+                <Controller
                   name="password"
                   control={control}
                   rules={{ required: "Password is required" }}
@@ -81,29 +92,29 @@ const SignUp = () => {
                       type={showPassword ? "text" : "password"}
                       id="password"
                       value={field.value || ''}
-                    onChange={field.onChange}
+                      onChange={field.onChange}
                       required
                     />
                   )}
                 />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-600"
-                onClick={togglePasswordVisibility}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
-            </div>
-            {errors.password && (
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-600"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+              {errors.password && (
                 <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
               )}
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="password">
-              Confirm Password
-            </label>
-            <div className="relative">
-            <Controller
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2" htmlFor="confirmPassword">
+                Confirm Password
+              </label>
+              <div className="relative">
+                <Controller
                   name="confirmPassword"
                   control={control}
                   render={({ field }) => (
@@ -115,32 +126,33 @@ const SignUp = () => {
                       type={showPassword ? "text" : "password"}
                       id="confirmPassword"
                       value={field.value || ''}
-                    onChange={field.onChange}
-                    required
+                      onChange={field.onChange}
+                      required
                     />
                   )}
                 />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-600"
-                onClick={togglePasswordVisibility}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
-            </div>
-            {errors.confirmPassword && (
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-600"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+              {errors.confirmPassword && (
                 <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
               )}
-          </div>
+            </div>
           <div className="flex justify-center mt-8 mb-4">
             <Button
               id="signup-btn"
               text="Sign Up"
               minWidth="200px"
+              type='submit'
               onClick={handleSubmit}
             />
-          </div>
-        </form>
+            </div>
+          </form>
           <p className="text-center text-gray-600 mb-4">or sign up with</p>
           <div className="flex justify-center space-x-4">
             <Button

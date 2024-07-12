@@ -68,7 +68,7 @@ const HomeHeader = () => {
         {/* Buttons for normal navbar */}
         <div className="hidden md:flex items-center space-x-3 text-sm">
           <Link to="/signin">
-            <Button text='Log in' variant="secondary" className="btn bg-gray-50 text-purple-500 md:ml-4 px-3 py-1 rounded duration-50 md:static"/>
+            <Button text='Sign in' variant="secondary" className="btn bg-gray-50 text-purple-500 md:ml-4 px-3 py-1 rounded duration-50 md:static"/>
           </Link>
           <Link to="/signup">
             <Button text="Sign Up" className="btn bg-purple-500 text-white-100 md:ml-4 px-3 py-1 rounded duration-50 md:static"/>
@@ -90,7 +90,7 @@ const HomeHeader = () => {
           ))}
           <div className="flex items-center justify-end my-4 mx-8 space-x-2 text-sm">
             <Link to="/signin" >
-              <Button text="Log in" variant="secondary"/>
+              <Button text="Sign in" variant="secondary"/>
             </Link>
             <Link to="/signup" >
               <Button text="Sign up"/>
