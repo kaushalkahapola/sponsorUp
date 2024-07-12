@@ -7,10 +7,14 @@ import { useForm, Controller } from "react-hook-form";
 import { signInSchema } from "../schemas/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import hello from "../assets/hello.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Text } from "@radix-ui/themes";
 
 const SignIn = () => {
+
+
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     control,
@@ -21,7 +25,7 @@ const SignIn = () => {
 
   const onSubmit = async (formData) => {
     try {
-      await signInFn(formData.email, formData.password);
+      await signInFn(formData.email, formData.password, navigate);
     } catch (error) {
       console.error("Error signing in:", error);
     }

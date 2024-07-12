@@ -3,7 +3,7 @@ import { auth, db } from './firebase';
 import { doc, setDoc } from "firebase/firestore";
 import { signUpSchema } from '../schemas/validationSchema';
 
-const signUpFn = async (email, password, confirmPassword) => {
+const signUpFn = async (email, password, confirmPassword, navigate) => {
   try {
 
     const validation = signUpSchema.safeParse({ email, password, confirmPassword });
@@ -22,6 +22,7 @@ const signUpFn = async (email, password, confirmPassword) => {
     await setDoc(doc(db, "users", user.uid ), data); 
 
     console.log('User signed up successfully:', user);
+    navigate('/account/dashboard');
     return user;
   } catch (error) {
     console.error('Error signing up:', error.message);

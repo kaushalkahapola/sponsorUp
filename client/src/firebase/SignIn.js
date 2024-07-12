@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase';
 import { signInSchema } from '../schemas/validationSchema';
 
-const signInFn = async (email, password) => {
+const signInFn = async (email, password, navigate) => {
   try {
 
     const validation = signInSchema.safeParse({ email, password });
@@ -14,6 +14,7 @@ const signInFn = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, validation.data.email, validation.data.password);
     const user = userCredential.user;
     console.log('User signed in successfully:', user);
+    navigate('/account/dashboard');
     return user;
   } catch (error) {
     console.error('Error signing in:', error.message);
