@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from "./Buttons";
 import { Link, useLocation } from "react-router-dom";
 import { auth } from "../firebase/firebase";
-
 import {
   Avatar,
   Box,
@@ -12,22 +11,24 @@ import {
   Flex,
   Text,
 } from "@radix-ui/themes";
-import { Organizers } from "../dummy_data/data"; // Adjust the path as needed
 import SignOutFn from "../firebase/SignOut";
+import { useNavigate } from "react-router-dom";
+
 
 const OrganizersNavbar = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const [organizer, setOrganizer] = useState(null);
+  const [user, setUser] = useState(null);
 
-  // Function to get a random organizer
-  const getRandomOrganizer = () => {
-    const randomIndex = Math.floor(Math.random() * Organizers.length);
-    return Organizers[randomIndex];
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setOrganizer(getRandomOrganizer());
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
 
   const links = [
@@ -47,7 +48,7 @@ const OrganizersNavbar = () => {
         <Flex align="center" py="3" justify="between">
           <Flex gap="6" align="center">
             <Link to="/" className="text-gray-400 font-bold text-2xl">
-              Sponsor<span className="text-primary">Up</span>{" "}
+              Sponsor<span className="text-primary">Up</span>
             </Link>
             {/* Links */}
             <ul className="hidden lg:flex space-x-6 text-sm">
@@ -64,8 +65,8 @@ const OrganizersNavbar = () => {
           <Box className="md:hidden">
             <button onClick={() => setOpen(!open)}>
               <Avatar
-                src={organizer?.photoURL || "/"}
-                fallback={organizer?.name?.charAt(0) || "?"}
+                src={user?.photoURL || "/"}
+                fallback={user?.displayName?.charAt(0) || "?"}
                 size="2"
                 radius="full"
                 className="cursor-pointer"
@@ -84,38 +85,38 @@ const OrganizersNavbar = () => {
             )}
             {/* Avatar and Dropdown Menu */}
             <AlertDialog.Root>
-                    <AlertDialog.Trigger>
-                      <div className="hidden md:block text-sm">
-                      <Button text="Sign Out" variant="secondary" />
-                      </div>
-                    </AlertDialog.Trigger>
-                    <AlertDialog.Content maxWidth="450px">
-                      <AlertDialog.Title>Sign out</AlertDialog.Title>
-                      <AlertDialog.Description size="2">
-                        Are you sure you want to sign out?
-                      </AlertDialog.Description>
+              <AlertDialog.Trigger>
+                <div className="hidden md:block text-sm">
+                  <Button text="Sign Out" variant="secondary" />
+                </div>
+              </AlertDialog.Trigger>
+              <AlertDialog.Content maxWidth="450px">
+                <AlertDialog.Title>Sign out</AlertDialog.Title>
+                <AlertDialog.Description size="2">
+                  Are you sure you want to sign out?
+                </AlertDialog.Description>
 
-                      <Flex gap="3" mt="4" justify="end">
-                        <AlertDialog.Cancel>
-                          <Button text="cancel" variant="secondary" />
-                        </AlertDialog.Cancel>
-                        <AlertDialog.Action>
-                          <Button
-                            id="signout-btn"
-                            text="Sign out"
-                            minWidth="200px"
-                            onClick={() => SignOutFn(auth)}
-                          />
-                        </AlertDialog.Action>
-                      </Flex>
-                    </AlertDialog.Content>
-                  </AlertDialog.Root>
+                <Flex gap="3" mt="4" justify="end">
+                  <AlertDialog.Cancel>
+                    <Button text="cancel" variant="secondary" />
+                  </AlertDialog.Cancel>
+                  <AlertDialog.Action>
+                    <Button
+                      id="signout-btn"
+                      text="Sign out"
+                      minWidth="200px"
+                      onClick={() => SignOutFn(auth, navigate)}
+                    />
+                  </AlertDialog.Action>
+                </Flex>
+              </AlertDialog.Content>
+            </AlertDialog.Root>
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
                 <button>
                   <Avatar
-                    src={organizer?.photoURL || "/"}
-                    fallback={organizer?.name?.charAt(0) || "?"}
+                    src={user?.photoURL || "/"}
+                    fallback={user?.displayName?.charAt(0) || "?"}
                     size="2"
                     radius="full"
                     className="cursor-pointer"
@@ -124,14 +125,12 @@ const OrganizersNavbar = () => {
               </DropdownMenu.Trigger>
               <DropdownMenu.Content variant="soft">
                 <DropdownMenu.Label>
-                  <Text size="2">
-                    {organizer?.email || "example@gmail.com"}
-                  </Text>
+                  <Text size="2">{user?.email || "example@gmail.com"}</Text>
                 </DropdownMenu.Label>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
             {/* User Info */}
-            {organizer && (
+            {user && (
               <Flex
                 direction="column"
                 justify="center"
@@ -139,10 +138,10 @@ const OrganizersNavbar = () => {
                 className="hidden md:inline-flex"
               >
                 <Text size="2" weight="medium">
-                  {organizer.name || "John Smith"}
+                  {user.displayName || "John Smith"}
                 </Text>
                 <Text size="1" weight="light">
-                  {organizer.organization || "Test Organization"}
+                  {user.email || "example@gmail.com"}
                 </Text>
               </Flex>
             )}
@@ -172,30 +171,30 @@ const OrganizersNavbar = () => {
               </Link>
             )}
             <AlertDialog.Root>
-                    <AlertDialog.Trigger>
-                      <Button text="Sign Out" />
-                    </AlertDialog.Trigger>
-                    <AlertDialog.Content maxWidth="450px">
-                      <AlertDialog.Title>Sign out</AlertDialog.Title>
-                      <AlertDialog.Description size="2">
-                        Are you sure you want to sign out?
-                      </AlertDialog.Description>
+              <AlertDialog.Trigger>
+                <Button text="Sign Out" />
+              </AlertDialog.Trigger>
+              <AlertDialog.Content maxWidth="450px">
+                <AlertDialog.Title>Sign out</AlertDialog.Title>
+                <AlertDialog.Description size="2">
+                  Are you sure you want to sign out?
+                </AlertDialog.Description>
 
-                      <Flex gap="3" mt="4" justify="end">
-                        <AlertDialog.Cancel>
-                          <Button text="cancel" variant="secondary" />
-                        </AlertDialog.Cancel>
-                        <AlertDialog.Action>
-                          <Button
-                            id="signout-btn"
-                            text="Sign out"
-                            minWidth="200px"
-                            onClick={() => SignOutFn(auth)}
-                          />
-                        </AlertDialog.Action>
-                      </Flex>
-                    </AlertDialog.Content>
-                  </AlertDialog.Root>
+                <Flex gap="3" mt="4" justify="end">
+                  <AlertDialog.Cancel>
+                    <Button text="cancel" variant="secondary" />
+                  </AlertDialog.Cancel>
+                  <AlertDialog.Action>
+                    <Button
+                      id="signout-btn"
+                      text="Sign out"
+                      minWidth="200px"
+                      onClick={() => SignOutFn(auth, navigate)}
+                    />
+                  </AlertDialog.Action>
+                </Flex>
+              </AlertDialog.Content>
+            </AlertDialog.Root>
           </div>
         </div>
       </Container>
