@@ -26,10 +26,10 @@ export const createEventFn = async (data) => {
             title: data.name,
             description: data.description,
             category: data.category,
-            address: data.address,
+            // address: data.address,
             location: data.city,
-            state: data.state,
-            country: data.country,
+            // state: data.state,
+            // country: data.country,
             eventDate: data.eventDate,
             startTime: data.startTime,
             album: albumPhotoUrls, // Store the image URLs in Firestore

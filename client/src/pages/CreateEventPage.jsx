@@ -211,7 +211,7 @@ const CreateEventPage = () => {
                         }}
                       />
                       <div style={{ position: "absolute", top: 0, right: 0 }}>
-                        <Button onClick={handleRemoveFile}>Remove</Button>
+                        <Button onClick={handleRemoveFile} text="remove" variant="secondary" />
                       </div>
                     </div>
                   ) : (
