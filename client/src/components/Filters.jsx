@@ -12,7 +12,7 @@ const categoriesData = [
       { id: 14, name: "Music" },
       { id: 15, name: "Sport" },
       { id: 16, name: "Exhibition" },
-      { id: 17, name: "Business" },
+      { id: 17, name: "Technology" },
       { id: 18, name: "Photography" },
     ],
   },
@@ -124,95 +124,79 @@ function Filters({ onApplyFilters }) {
           </div>
         ))}
 
+        <div className="mb-4">
+          <div className="flex items-center mb-2">
+            <h3 className="text-base font-bold">Pricing</h3>
+          </div>
+          <div>
+            {pricingData.map((item) => (
+              <label key={item.id} className="flex items-center">
+                <input
+                  type="radio"
+                  name="pricing"
+                  value={item.name}
+                  checked={selectedPricing === item.name}
+                  onChange={handlePricingChange}
+                  className="mr-2"
+                />
+                <span>{item.name}</span>
+              </label>
+            ))}
+          </div>
+          <hr className="my-4 border-gray-300" />
+        </div>
 
+        <div className="mb-4">
+          <div className="flex items-center mb-2">
+            <h3 className="text-base font-bold">Type</h3>
+          </div>
+          <div>
+            {typeData.map((item) => (
+              <label key={item.id} className="flex items-center">
+                <input
+                  type="checkbox"
+                  id={item.name}
+                  checked={selectedTypes.includes(item.name)}
+                  onChange={() => handleTypeToggle(item.name)}
+                  className="mr-2"
+                />
+                <span>{item.name}</span>
+              </label>
+            ))}
+          </div>
+          <hr className="my-4 border-gray-300" />
+        </div>
 
-
-          <div className="mb-4">
-            <div className="flex items-center mb-2">
-              <h3 className="text-base font-bold">Pricing</h3>
-            </div>
-            <div>
-              {pricingData.map((item) => (
-                <label key={item.id} className="flex items-center">
-                  <input
-                    type="radio"
-                    name="pricing"
-                    value={item.name}
-                    checked={selectedPricing === item.name}
-                    onChange={handlePricingChange}
-                    className="mr-2"
-                  />
-                  <span>{item.name}</span>
-                </label>
-              ))}
-            </div>
+        <div className="mb-4">
+          <div className="flex items-center mb-2">
+            <h3 className="text-base font-bold">Language</h3>
+          </div>
+          <div>
+            {languageData.map((item) => (
+              <label key={item.id} className="flex items-center">
+                <input
+                  type="checkbox"
+                  id={item.name}
+                  checked={selectedLanguages.includes(item.name)}
+                  onChange={() => handleLanguageToggle(item.name)}
+                  className="mr-2"
+                />
+                <span>{item.name}</span>
+              </label>
+            ))}
+            <button
+              className="text-sm text-purple-500 focus:outline-none"
+              onClick={() => console.log("See more clicked for languages")}
+            >
+              Show more
+            </button>
             <hr className="my-4 border-gray-300" />
           </div>
+        </div>
 
-          <div className="mb-4">
-            <div className="flex items-center mb-2">
-              <h3 className="text-base font-bold">Type</h3>
-            </div>
-            <div>
-              {typeData.map((item) => (
-                <label key={item.id} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id={item.name}
-                    checked={selectedTypes.includes(item.name)}
-                    onChange={() => handleTypeToggle(item.name)}
-                    className="mr-2"
-                  />
-                  <span>{item.name}</span>
-                </label>
-              ))}
-            </div>
-            <hr className="my-4 border-gray-300" />
-          </div>
-
-          <div className="mb-4">
-            <div className="flex items-center mb-2">
-              <h3 className="text-base font-bold">Language</h3>
-            </div>
-            <div>
-              {languageData.map((item) => (
-                <label key={item.id} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id={item.name}
-                    checked={selectedLanguages.includes(item.name)}
-                    onChange={() => handleLanguageToggle(item.name)}
-                    className="mr-2"
-                  />
-                  <span>{item.name}</span>
-                </label>
-              ))}
-              <button
-                className="text-sm text-purple-500 focus:outline-none"
-                onClick={() =>
-                  console.log("See more clicked for languages")
-                }
-              >
-                Show more
-              </button>
-              <hr className="my-4 border-gray-300" />
-            </div>
-          </div>
-
-
-
-
-
-          <div className="flex justify-center space-x-4">
-          <Button
-            variant="secondary"
-            text="Clear"
-            onClick={handleClearAll}
-          />
-          <Button
-            text="Apply"
-            onClick={handleApplyFilters}
-          />
+        <div className="flex justify-center space-x-4">
+          <Button variant="secondary" text="Clear" onClick={handleClearAll} />
+          <Button text="Apply" onClick={handleApplyFilters} />
         </div>
       </div>
     </div>

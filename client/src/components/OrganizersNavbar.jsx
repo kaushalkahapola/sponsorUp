@@ -42,8 +42,8 @@ const OrganizersNavbar = () => {
       path: "/account/dashboard",
     },
     userType === "organizer" && {
-      label: "My Events",
-      path: "/account/myevents",
+      label: "Sponsors",
+      path: "/sponsors",
     },
     {
       label: "Search Events",

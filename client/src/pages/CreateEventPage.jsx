@@ -133,7 +133,6 @@ const CreateEventPage = () => {
       albumPhotos, // Include the album photos
     };
     await createEventFn(eventData);
-    navigate('/account/myevents')
   };
 
   return (
@@ -215,7 +214,11 @@ const CreateEventPage = () => {
                         }}
                       />
                       <div style={{ position: "absolute", top: 0, right: 0 }}>
-                        <Button onClick={handleRemoveFile} text="remove" variant="secondary" />
+                        <Button
+                          onClick={handleRemoveFile}
+                          text="remove"
+                          variant="secondary"
+                        />
                       </div>
                     </div>
                   ) : (
