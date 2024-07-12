@@ -101,10 +101,18 @@ function App() {
               <PrivateRoute element={Proposals} requiredUserType="organizer" />
             }
           />
+          <Route
+            path="/account/settings"
+            element={
+              <PrivateRoute
+                element={ProfileSettingsPage}
+                requiredUserType="any"
+              />
+            }
+          />
           <Route path="/sponsors/:id" element={<SponsorDetailsPage />} />
           <Route path="/eventdetail" element={<EventDetails />} />
           <Route path="/sponsordetails/:id" element={<SponsorDetailsPage />} />
-          <Route path="/profile" element={<ProfileSettingsPage />} />
         </Routes>
       </Router>
       <ToastContainer />

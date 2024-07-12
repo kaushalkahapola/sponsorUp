@@ -60,7 +60,7 @@ const ProfileSettingsPage = () => {
     <Container className="font-poppins">
       <OrganizersNavbar />
       <div className="flex">
-        <OrganizerSideBar />
+        <OrganizerSideBar selectedMenu="Settings" />
         <div className="flex-grow p-4">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center space-x-4 mb-8">
