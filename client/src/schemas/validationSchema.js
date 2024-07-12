@@ -37,12 +37,21 @@ export const packageSchema = object({
 
 export const eventSchema = object({
   coverPhoto: z
-  .any()
-  .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
-  .refine(
-    (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-    "Only .jpg, .jpeg, .png and .webp formats are supported."
-  ).optional(),
+    .any()
+    .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+      "Only .jpg, .jpeg, .png, and .webp formats are supported."
+    ).optional(),
+  albumPhotos: z
+    .array(
+      z.any()
+      .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB per photo.`)
+      .refine(
+        (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+        "Only .jpg, .jpeg, .png, and .webp formats are supported for album photos."
+      )
+    ).optional(),
   name: string().min(1, "Event name is required"),
   description: string().min(1,"Description is required"),
   category: string().min(1,"Category is required"),
