@@ -23,17 +23,17 @@ export const createEventFn = async (data) => {
 
         // Add a new document with an auto-generated id.
         await addDoc(collection(db, "events"), {
-            name: data.name,
+            title: data.name,
             description: data.description,
             category: data.category,
             address: data.address,
-            city: data.city,
+            location: data.city,
             state: data.state,
             country: data.country,
             eventDate: data.eventDate,
             startTime: data.startTime,
-            albumPhotos: albumPhotoUrls, // Store the image URLs in Firestore
-            coverPhotoUrl: coverPhotoUrl, // Store the image URL in Firestore
+            album: albumPhotoUrls, // Store the image URLs in Firestore
+            coverImage: coverPhotoUrl, // Store the image URL in Firestore
         });
         console.log("Document successfully written!");
     } catch (e) {
