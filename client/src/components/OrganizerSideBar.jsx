@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
 import { proposals } from "../dummy_data/data";
+import getUserType from "../firebase/getUserType";
 
 /**
  * Sidebar component for the organizer view.
@@ -24,12 +25,20 @@ const OrganizerSideBar = ({
     Proposals: 0, // Default count for Proposals
   });
 
-  const menuItems = [
+  const organizerMenuItems = [
     { name: "Dashboard", link: "/account/dashboard" },
     // { name: "Calendar", link: "/account/proposals" },
     { name: "My Events", link: "/account/myevents" },
     { name: "Proposals", link: "/account/proposals" },
+    { name: "Settings", link: "/account/settings" },
   ];
+
+  const sponsorMenuItems = [
+    { name: "Proposals", link: "/account/proposals" },
+    { name: "Settings", link: "/account/settings" },
+  ];
+
+  const [menuItems, setMenuItems] = useState(sponsorMenuItems);
 
   useEffect(() => {
     // Simulate fetching notification counts
@@ -44,6 +53,15 @@ const OrganizerSideBar = ({
       }));
     };
 
+    const fetchUserType = () => {
+      getUserType().then((type) => {
+        if (type !== "sponsor") {
+          setMenuItems(organizerMenuItems);
+        }
+      });
+    };
+
+    fetchUserType();
     fetchNotificationCounts(); // Initial fetch
   }, []);
 

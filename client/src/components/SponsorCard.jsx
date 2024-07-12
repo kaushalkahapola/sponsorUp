@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Flex, Box, Avatar, Badge } from "@radix-ui/themes";
 import { Button } from "./Buttons";
+import { Link } from "react-router-dom";
 
 const SponsorCard = ({
   sponsor = {
@@ -70,7 +71,9 @@ const SponsorCard = ({
               </Box>
             </Flex>
             <div className="text-sm">
-              <Button text="learn more" />
+              <Link to={`/sponsors/${sponsor.id}`}>
+                <Button text="learn more" />
+              </Link>
             </div>
           </Flex>
         </Card>

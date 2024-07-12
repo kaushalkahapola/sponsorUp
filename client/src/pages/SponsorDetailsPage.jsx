@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { sponsors, events } from "../dummy_data/data";
 import { Button } from "../components/Buttons";
-import { Container, Grid, Heading, Box, Avatar, Badge, Card, Flex } from "@radix-ui/themes";
+import {
+  Container,
+  Grid,
+  Heading,
+  Box,
+  Avatar,
+  Badge,
+  Card,
+  Flex,
+} from "@radix-ui/themes";
 import EventCard from "../components/EventCard";
 import { FaHeart, FaRegHeart, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -41,16 +50,31 @@ const SponsorDetailsPage = () => {
 
   return (
     <Container>
-      <Heading size="3xl" className="text-center my-5">
-        {sponsor.name}
-      </Heading>
+      <div className="flex py-10">
+        <Heading className="text-3xl pe-10">{sponsor.name}</Heading>
+        <Link to={`./sendproposal`}>
+          <Button text="Send Proposal" />
+        </Link>
+      </div>
       <Grid gap="3" templateColumns="2fr 3fr" className="md:flex">
         <Box maxWidth="700px" height="auto">
-          <Card className="p-5" style={{ height: '100%' }}>
-            <Flex direction="column" align="start" justify="center" gap="5" style={{ height: '100%' }}>
+          <Card className="p-5" style={{ height: "100%" }}>
+            <Flex
+              direction="column"
+              align="start"
+              justify="center"
+              gap="5"
+              style={{ height: "100%" }}
+            >
               <Box>
                 <Flex gap="4">
-                  <Avatar src="/" fallback={"?"} size="6" radius="full" className="cursor-pointer" />
+                  <Avatar
+                    src="/"
+                    fallback={"?"}
+                    size="6"
+                    radius="full"
+                    className="cursor-pointer"
+                  />
                   <Box>
                     <Flex direction="column" align="start" justify="center">
                       <Box className="text-black font-bold">{sponsor.name}</Box>
@@ -63,9 +87,15 @@ const SponsorDetailsPage = () => {
                   <Box className="ml-auto">
                     <Flex gap="2" align="center">
                       {liked ? (
-                        <FaHeart onClick={handleLike} className="cursor-pointer text-primary-500" />
+                        <FaHeart
+                          onClick={handleLike}
+                          className="cursor-pointer text-primary-500"
+                        />
                       ) : (
-                        <FaRegHeart onClick={handleLike} className="cursor-pointer text-primary-500" />
+                        <FaRegHeart
+                          onClick={handleLike}
+                          className="cursor-pointer text-primary-500"
+                        />
                       )}
                       <div>{likes} Likes</div>
                     </Flex>
@@ -73,12 +103,19 @@ const SponsorDetailsPage = () => {
                 </Flex>
               </Box>
               <Box>
-                <Flex direction="column" align="start" justify="center" gapY="4">
+                <Flex
+                  direction="column"
+                  align="start"
+                  justify="center"
+                  gapY="4"
+                >
                   <Box>
                     <Box className="text-sm">{sponsor.description}</Box>
                   </Box>
                   <Box className="text-sm">
-                    <Box className="text-black font-bold mb-2">Interested Categories</Box>
+                    <Box className="text-black font-bold mb-2">
+                      Interested Categories
+                    </Box>
                     <Flex gap="2">
                       {sponsor.categories.map((category, index) => (
                         <Badge key={index} color="blue">
@@ -96,14 +133,18 @@ const SponsorDetailsPage = () => {
           </Card>
         </Box>
         <Box maxWidth="700px" height="auto">
-          <Card className="p-5" style={{ height: '100%' }}>
+          <Card className="p-5" style={{ height: "100%" }}>
             <Heading size="xl" className="text-center my-5">
               Past Sponsored Events
             </Heading>
             <Flex gap="2" align="center" justify="space-between">
               <FaArrowLeft className="cursor-pointer" />
               <Box className="overflow-hidden">
-                <Grid gap="3" templateColumns="repeat(auto-fit, minmax(300px, 1fr))" className="md:flex">
+                <Grid
+                  gap="3"
+                  templateColumns="repeat(auto-fit, minmax(300px, 1fr))"
+                  className="md:flex"
+                >
                   {sponsorEvents.map((event, index) => (
                     <EventCard key={index} event={event} />
                   ))}
@@ -114,20 +155,25 @@ const SponsorDetailsPage = () => {
           </Card>
         </Box>
       </Grid>
-      <Box className="mt-8 bg-primary-500 p-5 rounded-lg" style={{ height: '600px' }}>
+      <Box
+        className="mt-8 bg-primary-500 p-5 rounded-lg"
+        style={{ height: "600px" }}
+      >
         <Heading size="xl" className="text-center text-white mb-5">
           Photo Gallery
         </Heading>
-        <Gallery images={[
-          "https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_640.jpg",
-          "https://cdn.pixabay.com/photo/2019/04/13/22/50/concert-4125832_640.jpg",
-          "https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_640.jpg",
-          "https://cdn.pixabay.com/photo/2016/12/28/20/30/wedding-1937022_640.jpg",
-          "https://cdn.pixabay.com/photo/2016/11/18/17/47/iphone-1836071_640.jpg",
-          "https://cdn.pixabay.com/photo/2020/07/27/13/18/woman-5442400_640.jpg",
-          "https://cdn.pixabay.com/photo/2020/06/07/13/33/fireworks-5270439_640.jpg",
-          "https://cdn.pixabay.com/photo/2017/09/25/18/08/concert-2786075_640.jpg",
-        ]} />
+        <Gallery
+          images={[
+            "https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_640.jpg",
+            "https://cdn.pixabay.com/photo/2019/04/13/22/50/concert-4125832_640.jpg",
+            "https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_640.jpg",
+            "https://cdn.pixabay.com/photo/2016/12/28/20/30/wedding-1937022_640.jpg",
+            "https://cdn.pixabay.com/photo/2016/11/18/17/47/iphone-1836071_640.jpg",
+            "https://cdn.pixabay.com/photo/2020/07/27/13/18/woman-5442400_640.jpg",
+            "https://cdn.pixabay.com/photo/2020/06/07/13/33/fireworks-5270439_640.jpg",
+            "https://cdn.pixabay.com/photo/2017/09/25/18/08/concert-2786075_640.jpg",
+          ]}
+        />
       </Box>
     </Container>
   );
@@ -145,7 +191,9 @@ const Gallery = ({ images }) => {
   }, [images.length]);
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   };
 
   const handleNext = () => {
@@ -153,17 +201,32 @@ const Gallery = ({ images }) => {
   };
 
   return (
-    <Box className="relative flex items-center justify-center" style={{ height: '100%' }}>
-      <FaArrowLeft onClick={handlePrev} className="cursor-pointer absolute left-0 text-white" />
+    <Box
+      className="relative flex items-center justify-center"
+      style={{ height: "100%" }}
+    >
+      <FaArrowLeft
+        onClick={handlePrev}
+        className="cursor-pointer absolute left-0 text-white"
+      />
       <Box className="flex items-center justify-center overflow-hidden h-full w-full">
-        <img src={images[currentIndex]} alt="gallery" className="max-h-full max-w-full object-contain" />
+        <img
+          src={images[currentIndex]}
+          alt="gallery"
+          className="max-h-full max-w-full object-contain"
+        />
       </Box>
-      <FaArrowRight onClick={handleNext} className="cursor-pointer absolute right-0 text-white" />
+      <FaArrowRight
+        onClick={handleNext}
+        className="cursor-pointer absolute right-0 text-white"
+      />
       <Box className="absolute bottom-5 flex justify-center w-full">
         {images.map((_, index) => (
           <span
             key={index}
-            className={`mx-1 h-2 w-2 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-200'}`}
+            className={`mx-1 h-2 w-2 rounded-full ${
+              index === currentIndex ? "bg-white" : "bg-gray-200"
+            }`}
           ></span>
         ))}
       </Box>

@@ -1,8 +1,12 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import { auth, db } from "./firebase";
 
 const getUserType = async (uid) => {
   try {
+    if (!uid) {
+      //get current uid
+      uid = auth.currentUser.uid;
+    }
     const userDocRef = doc(db, "users", uid);
     const userDoc = await getDoc(userDocRef);
 

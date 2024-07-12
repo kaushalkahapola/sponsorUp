@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Container, Grid, Heading, Button } from "@radix-ui/themes";
 import OrganizersNavbar from "../components/OrganizersNavbar";
 import RichTextEditor from "../components/TextEditor";
@@ -7,6 +8,8 @@ import AlbumCarousel from "../components/AlbumCarousel";
 import { Button as CustomButton } from "../components/Buttons";
 import { events } from "../dummy_data/data";
 import Select from "react-select";
+import { toast } from "react-toastify";
+import CreateProposal from "../firebase/CreateProposal";
 
 const maxPackages = 3;
 
@@ -15,6 +18,8 @@ const SendProposalPage = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [event, setEvent] = useState({});
   const [editorHtml, setEditorHtml] = useState("");
+
+  const { sponsorId } = useParams();
 
   const [proposalData, setProposalData] = useState({
     eventId: "",
@@ -84,16 +89,29 @@ const SendProposalPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
     const validPackages = proposalData.sponsorshipPackages.filter(
       (pkg) => pkg.benefits && pkg.price
     );
     const validProposalData = {
       ...proposalData,
       sponsorshipPackages: validPackages,
+      sponsorId: sponsorId,
     };
+
     console.log(validProposalData);
+
+    try {
+      await CreateProposal(validProposalData);
+      toast.success("Proposal created successfully.", {
+        autoClose: 5000, // Close after 5 seconds
+      });
+    } catch (err) {
+      toast.error("Error creating proposal. Please try again later.", {
+        autoClose: 5000, // Close after 5 seconds
+      });
+      console.log(err);
+    }
   };
 
   const handleEventChange = (selectedOption) => {
