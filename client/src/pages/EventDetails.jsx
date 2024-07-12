@@ -4,12 +4,14 @@ import { MdLocationOn } from "react-icons/md";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import HomeHeader from '../components/HomeHeader';
 import Footer from '../components/Footer';
-import EDB from '../assets/EDB.png';
+// import EDB from '../assets/EDB.png';
+import hero from  '../assets/hero.svg';
 import EventCard from '../components/EventCard';
 import SponsorCard from '../components/SponsorCard';
 import AlbumCarousel from '../components/AlbumCarousel';
 
 const EventDetails = () => {
+  const EDB = hero;
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [amounts, setAmounts] = useState({ package1: '', package2: '', package3: '' });
