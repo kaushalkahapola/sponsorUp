@@ -3,11 +3,13 @@ import { Card, Flex, Box, Text } from "@radix-ui/themes";
 import { events, sponsors, proposals } from "../dummy_data/data";
 import { Button } from "./Buttons";
 import { Link } from "react-router-dom";
+import getUserType from "../firebase/getUserType";
 
 const ProposalCard = ({ proposalId }) => {
   const [event, setEvent] = useState({});
   const [sponsor, setSponsor] = useState({});
   const [proposal, setProposal] = useState({});
+  const [userType, setUserType] = useState("");
 
   useEffect(() => {
     // Fetch proposal data
@@ -15,7 +17,7 @@ const ProposalCard = ({ proposalId }) => {
       const proposal = proposals.find((proposal) => proposal.id === id);
       setProposal(proposal);
     };
-
+    setUserType(getUserType());
     fetchProposal(proposalId);
   }, [proposalId]);
 
@@ -50,6 +52,9 @@ const ProposalCard = ({ proposalId }) => {
   };
 
   const getStatusColor = (status) => {
+    if (userType === "sponsor") {
+      return "gray";
+    }
     switch (status) {
       case "Pending":
         return "orange"; // Adjust color for pending status

@@ -98,7 +98,7 @@ function App() {
           <Route
             path="/account/proposals"
             element={
-              <PrivateRoute element={Proposals} requiredUserType="organizer" />
+              <PrivateRoute element={Proposals} requiredUserType="any" />
             }
           />
           <Route
