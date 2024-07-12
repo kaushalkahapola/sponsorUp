@@ -100,7 +100,7 @@ function App() {
               <PrivateRoute element={Proposals} requiredUserType="organizer" />
             }
           />
-          <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
+          <Route path="/sponsors/:id" element={<SponsorDetailsPage />} />
           <Route path="/eventdetail" element={<EventDetails />} />
           <Route path="/sponsordetails/:id" element={<SponsorDetailsPage />} />
         </Routes>
