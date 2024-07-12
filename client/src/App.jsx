@@ -15,9 +15,6 @@ import MyEvents from "./pages/MyEvents";
 import OrganizerDashboard from "./pages/OrganizerDashboard";
 import Proposals from "./pages/Proposals";
 import SponsorDetailsPage from "./pages/SponsorDetailsPage";
-import Test from "./pages/Test";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./privateRoute";
 
 function App() {
@@ -41,21 +38,16 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/landing" element={<LandingPage />} />
-          <Route path="/events/new" element={<CreateEventPage />} />
-          <Route path="/sendproposal" element={<SendProposalPage />} />
-          <Route path="/sponsors" element={<SearchSponsors />} />
-          {/* <Route path="/test" element={<Test />} /> */}
-          <Route path="/events" element={<SearchEventsPage />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="/account/myevents" element={<MyEvents />} />
-          <Route path="/account/dashboard" element={<OrganizerDashboard />} />
-          <Route path="/account/proposals" element={<Proposals />} />
+          <Route path="/events/new" element={<PrivateRoute element={CreateEventPage} requiredUserType="organizer" />} />
+          <Route path="/sendproposal" element={<PrivateRoute element={SendProposalPage} requiredUserType="Sponsor" />} />
+          <Route path="/sponsors" element={<PrivateRoute element={SearchSponsors} requiredUserType="organizer" />} />
+          <Route path="/events" element={<PrivateRoute element={SearchEventsPage} requiredUserType="any" />} />
+          <Route path="/account/myevents" element={<PrivateRoute element={MyEvents} requiredUserType="organizer" />} />
+          <Route path="/account/dashboard" element={<PrivateRoute element={OrganizerDashboard} requiredUserType="organizer" />} />
+          <Route path="/account/proposals" element={<PrivateRoute element={Proposals} requiredUserType="Sponsor" />} />
           <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
-          <Route path="/obq" element={<Obq />} />
         </Routes>
       </Router>
-      {/* <ThemePanel /> */}
-      <ToastContainer />
     </Theme>
   );
 }
