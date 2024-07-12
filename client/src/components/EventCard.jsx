@@ -24,6 +24,8 @@ const EventCard = ({
   event = {
     title: "Sample Event",
     category: "General",
+    eventDate: "",
+    startTime: "",
     datetime: "2022-12-31T23:59:59.999Z",
     description: "This is a sample event description.",
     location: "Sample Location",
@@ -39,7 +41,8 @@ const EventCard = ({
   const {
     title,
     category,
-    datetime,
+    eventDate,
+    startTime,
     description,
     location,
     organizer,
@@ -48,8 +51,8 @@ const EventCard = ({
   } = event;
 
   // Function to format date and time
-  const formatDateTime = (datetime) => {
-    const eventDate = new Date(datetime);
+  const formatDateTime = (eventDate, startTime) => {
+    const eventDateTime = new Date(`${eventDate}T${startTime}`);
     const options = {
       year: "numeric",
       month: "long",
@@ -57,8 +60,11 @@ const EventCard = ({
       hour: "numeric",
       minute: "numeric",
     };
-    const formattedDateTime = eventDate.toLocaleDateString("en-US", options);
-    const day = eventDate.getDate();
+    const formattedDateTime = eventDateTime.toLocaleDateString(
+      "en-US",
+      options
+    );
+    const day = eventDateTime.getDate();
     const suffix =
       day === 1 || day === 21 || day === 31
         ? "st"
@@ -165,7 +171,7 @@ const EventCard = ({
                   </div>
                   <div style={placeTimeStyle}>
                     <AiOutlineClockCircle className="me-1" />{" "}
-                    {formatDateTime(datetime)}
+                    {formatDateTime(eventDate, startTime)}
                   </div>
                 </Box>
                 <Box style={organizerStyle}>
