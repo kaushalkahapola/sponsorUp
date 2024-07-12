@@ -16,6 +16,8 @@ import OrganizerDashboard from "./pages/OrganizerDashboard";
 import Proposals from "./pages/Proposals";
 import SponsorDetailsPage from "./pages/SponsorDetailsPage";
 import PrivateRoute from "./privateRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   useEffect(() => {
@@ -38,16 +40,64 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/landing" element={<LandingPage />} />
-          <Route path="/events/new" element={<PrivateRoute element={CreateEventPage} requiredUserType="organizer" />} />
-          <Route path="/sendproposal" element={<PrivateRoute element={SendProposalPage} requiredUserType="Sponsor" />} />
-          <Route path="/sponsors" element={<PrivateRoute element={SearchSponsors} requiredUserType="organizer" />} />
-          <Route path="/events" element={<PrivateRoute element={SearchEventsPage} requiredUserType="any" />} />
-          <Route path="/account/myevents" element={<PrivateRoute element={MyEvents} requiredUserType="organizer" />} />
-          <Route path="/account/dashboard" element={<PrivateRoute element={OrganizerDashboard} requiredUserType="organizer" />} />
-          <Route path="/account/proposals" element={<PrivateRoute element={Proposals} requiredUserType="Sponsor" />} />
+          <Route
+            path="/events/new"
+            element={
+              <PrivateRoute
+                element={CreateEventPage}
+                requiredUserType="organizer"
+              />
+            }
+          />
+          <Route
+            path="/sendproposal"
+            element={
+              <PrivateRoute
+                element={SendProposalPage}
+                requiredUserType="Sponsor"
+              />
+            }
+          />
+          <Route
+            path="/sponsors"
+            element={
+              <PrivateRoute
+                element={SearchSponsors}
+                requiredUserType="organizer"
+              />
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <PrivateRoute element={SearchEventsPage} requiredUserType="any" />
+            }
+          />
+          <Route
+            path="/account/myevents"
+            element={
+              <PrivateRoute element={MyEvents} requiredUserType="organizer" />
+            }
+          />
+          <Route
+            path="/account/dashboard"
+            element={
+              <PrivateRoute
+                element={OrganizerDashboard}
+                requiredUserType="organizer"
+              />
+            }
+          />
+          <Route
+            path="/account/proposals"
+            element={
+              <PrivateRoute element={Proposals} requiredUserType="Sponsor" />
+            }
+          />
           <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </Theme>
   );
 }
