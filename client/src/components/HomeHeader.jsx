@@ -6,11 +6,14 @@ import { Container, Text } from "@radix-ui/themes";
 const HomeHeader = () => {
   const [open, setOpen] = useState(false);
 
-  let Links = [
-    { name: "Events", link: "/events" },
-    { name: "Sponsors", link: "/sponsors" },
-    { name: "Send Proposal", link: "/sponsors/1/sendproposal" },
-  ];
+  // Scroll to section function
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+    setOpen(false); // Close the menu on mobile after clicking
+  };
 
   return (
     <div className="w-full fixed-navbar border-b border-b-gray-100 px-5 font-poppins bg-white">
@@ -58,13 +61,39 @@ const HomeHeader = () => {
 
           {/* Link items for normal navbar */}
           <div className="hidden md:flex md:items-center md:pb-0 pb-12">
-            {Links.map((link, index) => (
-              <Link key={index} to={link.link}>
-                <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-zinc-500 hover:text-primary duration-500">
-                  {link.name}
-                </span>
-              </Link>
-            ))}
+            {/* <Link to="/events">
+              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-zinc-500 hover:text-primary duration-500">
+                Events
+              </span>
+            </Link>
+            <Link to="/sponsors">
+              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-zinc-500 hover:text-primary duration-500">
+                Sponsors
+              </span>
+            </Link>
+            <Link to="/sponsors/1/sendproposal">
+              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-zinc-500 hover:text-primary duration-500">
+                Send Proposal
+              </span>
+            </Link> */}
+            <span
+              className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-zinc-500 hover:text-primary cursor-pointer duration-500"
+              onClick={() => scrollToSection("home")}
+            >
+              Elevate Your Events
+            </span>
+            <span
+              className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-zinc-500 hover:text-primary cursor-pointer duration-500"
+              onClick={() => scrollToSection("why-choose")}
+            >
+              Why Choose SponsorUp?
+            </span>
+            <span
+              className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-zinc-500 hover:text-primary cursor-pointer duration-500"
+              onClick={() => scrollToSection("how-it-works")}
+            >
+              How It Works
+            </span>
           </div>
 
           {/* Buttons for normal navbar */}
@@ -90,13 +119,39 @@ const HomeHeader = () => {
               open ? "block" : "hidden"
             } md:hidden absolute bg-white top-16 left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in`}
           >
-            {Links.map((link, index) => (
-              <Link key={index} to={link.link}>
-                <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-semibold text-gray-800 hover:text-primary duration-500">
-                  {link.name}
-                </span>
-              </Link>
-            ))}
+            {/* <Link to="/events">
+              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-semibold text-gray-800 hover:text-primary duration-500">
+                Events
+              </span>
+            </Link>
+            <Link to="/sponsors">
+              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-semibold text-gray-800 hover:text-primary duration-500">
+                Sponsors
+              </span>
+            </Link>
+            <Link to="/sponsors/1/sendproposal">
+              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-semibold text-gray-800 hover:text-primary duration-500">
+                Send Proposal
+              </span>
+            </Link> */}
+            <span
+              className="block md:inline-block md:mx-4 md:my-0 my-7 font-semibold text-gray-800 hover:text-primary cursor-pointer duration-500"
+              onClick={() => scrollToSection("elevate-events")}
+            >
+              Elevate Your Events
+            </span>
+            <span
+              className="block md:inline-block md:mx-4 md:my-0 my-7 font-semibold text-gray-800 hover:text-primary cursor-pointer duration-500"
+              onClick={() => scrollToSection("why-choose")}
+            >
+              Why Choose SponsorUp?
+            </span>
+            <span
+              className="block md:inline-block md:mx-4 md:my-0 my-7 font-semibold text-gray-800 hover:text-primary cursor-pointer duration-500"
+              onClick={() => scrollToSection("how-it-works")}
+            >
+              How It Works
+            </span>
             <div className="flex items-center justify-end my-4 mx-8 space-x-2 text-sm">
               <Link to="/signin">
                 <Button text="Sign in" variant="secondary" />

@@ -1,3 +1,8 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "../components/Buttons";
+import { Container, Heading, Text } from "@radix-ui/themes";
+import HomeHeader from "../components/HomeHeader";
 import {
   EnvelopeClosedIcon,
   ArrowRightIcon,
@@ -9,11 +14,6 @@ import whychoose from "../assets/whychoose.svg";
 import howwork from "../assets/howwork.svg";
 import OABImage from "../assets/OAB.png";
 import Footer from "../components/Footer";
-import { Container, Heading, Text } from "@radix-ui/themes";
-import HomeHeader from "../components/HomeHeader";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "../components/Buttons";
 
 const LandingPage = () => {
   const [email, setEmail] = useState("");
@@ -32,6 +32,7 @@ const LandingPage = () => {
         <section
           className="relative bg-cover bg-center h-full pb-28 pt-32"
           style={{ backgroundImage: `url(${TBImage})` }}
+          id="home"
         >
           <div className="absolute inset-0"></div>
           <Container>
@@ -86,20 +87,19 @@ const LandingPage = () => {
           </Container>
         </section>
 
-        {/* Manage Customers */}
-        <section className="relative bg-white py-10 md:py-20">
+        {/* Why Choose Section */}
+        <section className="relative bg-white py-10 md:py-20" id="why-choose">
           <Container>
             <div className="mx-auto px-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="order-2 md:order-1">
                   <img
                     src={whychoose}
-                    alt="MC Image"
+                    alt="Why Choose Image"
                     className="mx-auto md:mr-12 md:ml-0 mb-8 md:mb-0 max-w-full"
                   />
                 </div>
                 <div className="order-1 md:order-2 text-center md:text-left justify-center space-y-5 lg:space-y-8">
-                  {/* <p className="text-gray-600">YOU CAN </p> */}
                   <div className="font-semibold text-violet-700 text-3xl md:text-4xl lg:text-5xl">
                     Why Choose
                     <span className="font-semibold text-black text-3xl md:text-4xl lg:text-5xl">
@@ -143,33 +143,32 @@ const LandingPage = () => {
                       </p>
                     </li>
                   </ul>
-                  {/* <Link
-                    to="/signup"
+                  <a
+                    href="#signup"
                     className="text-violet-700 inline-flex items-center"
                   >
                     Get Started
                     <ArrowRightIcon className="w-5 h-5 ml-1" />
-                  </Link> */}
+                  </a>
                 </div>
               </div>
             </div>
           </Container>
         </section>
 
-        {/* Manage Payments */}
-        <section className="relative bg-white py-10 md:py-20">
+        {/* How It Works Section */}
+        <section className="relative bg-white py-10 md:py-20" id="how-it-works">
           <Container>
             <div className="mx-auto px-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="order-2 md:order-2">
                   <img
                     src={howwork}
-                    alt="MP Image"
+                    alt="How It Works Image"
                     className="mx-auto max-w-full"
                   />
                 </div>
                 <div className="order-1 md:order-1 text-center md:text-left justify-center space-y-5 lg:space-y-8">
-                  {/* <p className="text-gray-600">YOU CAN </p> */}
                   <div className="font-semibold text-violet-700 text-3xl md:text-4xl lg:text-5xl">
                     How It
                     <span className="font-semibold text-black text-3xl md:text-4xl lg:text-5xl">
@@ -207,19 +206,19 @@ const LandingPage = () => {
                       </p>
                     </li>
                   </ul>
-                  {/* <Link
-                    to="/signup"
+                  <a
+                    href="#signup"
                     className="text-violet-700 inline-flex items-center ml-2"
                   >
                     Sign up <ArrowRightIcon className="w-5 h-5 ml-1" />
-                  </Link> */}
+                  </a>
                 </div>
               </div>
             </div>
           </Container>
         </section>
 
-        {/* Payments Section */}
+        {/* Ready to Elevate Section */}
         <section
           className="relative bg-cover bg-center py-20 rounded-xl overflow-hidden mb-10"
           style={{
@@ -230,6 +229,7 @@ const LandingPage = () => {
             marginLeft: "1.25rem",
             marginRight: "1.25rem",
           }}
+          id="signup"
         >
           <div className="absolute inset-0 bg-violet-200 opacity-50"></div>
           <Container>
@@ -237,18 +237,30 @@ const LandingPage = () => {
               <div className="mx-auto text-center px-15 flex flex-col items-center space-y-5">
                 <Heading>Ready to Elevate Your Event?</Heading>
                 <Text>
-                  Join SponsorUp today and start connecting with the right
-                  sponsors.
+                  Join SponsorUp today and start connecting with sponsors who
+                  can take your event to the next level.
                 </Text>
-                <Link to='/signup'><Button text="Sign Up Now" /> </Link>
+                <div className="flex space-x-4">
+                  <Link to="/signin">
+                    <Button
+                      text="Sign in"
+                      variant="secondary"
+                      className="btn bg-gray-50 text-purple-500 md:ml-4 px-3 py-1 rounded duration-50 md:static"
+                    />
+                  </Link>
+                  <Link to="/signup">
+                    <Button
+                      text="Sign Up"
+                      className="btn bg-purple-500 text-white-100 md:ml-4 px-3 py-1 rounded duration-50 md:static"
+                    />
+                  </Link>
+                </div>
               </div>
             </div>
           </Container>
         </section>
-
-        {/* Footer */}
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 };
