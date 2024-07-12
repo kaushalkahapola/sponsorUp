@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {Button} from './Buttons'
-import { Container } from "@radix-ui/themes";
+import { Container, Text } from "@radix-ui/themes";
 
 const HomeHeader = () => {
   const [open, setOpen] = useState(false);
@@ -20,7 +20,7 @@ const HomeHeader = () => {
         <div className="flex items-center justify-between md:w-auto w-full">
           <div className="font-bold text-2xl cursor-default flex items-center gap-1">
             <Link to="/">
-              <span>SponsorUp</span>
+              <Text>Sponsor<span className="text-primary-500">Up</span></Text>
             </Link>
           </div>
           <div className="md:hidden">
@@ -58,7 +58,7 @@ const HomeHeader = () => {
         <div className="hidden md:flex md:items-center md:pb-0 pb-12">
           {Links.map((link, index) => (
             <Link key={index} to={link.link}>
-              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-gray-800 hover:text-primary duration-500">
+              <span className="block md:inline-block md:mx-4 md:my-0 my-7 font-normal text-sm text-zinc-500 hover:text-primary duration-500">
                 {link.name}
               </span>
             </Link>
