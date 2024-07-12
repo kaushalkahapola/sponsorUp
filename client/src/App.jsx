@@ -61,7 +61,7 @@ function App() {
             element={
               <PrivateRoute
                 element={SendProposalPage}
-                requiredUserType="Sponsor"
+                requiredUserType="organizer"
               />
             }
           />
@@ -98,11 +98,12 @@ function App() {
           <Route
             path="/account/proposals"
             element={
-              <PrivateRoute element={Proposals} requiredUserType="Sponsor" />
+              <PrivateRoute element={Proposals} requiredUserType="organizer" />
             }
           />
           <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
-          <Route path='eventdetail' element={<EventDetails/>} />
+          <Route path='/eventdetail' element={<EventDetails/>} />
+          <Route path='/sponsordetails/:id' element={<SponsorDetailsPage/>} />
         </Routes>
       </Router>
       <ToastContainer />
