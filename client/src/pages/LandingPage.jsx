@@ -143,13 +143,13 @@ const LandingPage = () => {
                       </p>
                     </li>
                   </ul>
-                  <Link
+                  {/* <Link
                     to="/signup"
                     className="text-violet-700 inline-flex items-center"
                   >
                     Get Started
                     <ArrowRightIcon className="w-5 h-5 ml-1" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -207,12 +207,12 @@ const LandingPage = () => {
                       </p>
                     </li>
                   </ul>
-                  <Link
+                  {/* <Link
                     to="/signup"
                     className="text-violet-700 inline-flex items-center ml-2"
                   >
                     Sign up <ArrowRightIcon className="w-5 h-5 ml-1" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
