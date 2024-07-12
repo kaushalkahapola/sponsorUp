@@ -6,7 +6,7 @@ import {
   Grid,
   Heading,
   Text,
-  Switch
+  Switch,
   // Textarea,
   // Select,
 } from "@radix-ui/themes";
@@ -18,10 +18,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { eventSchema } from "../schemas/validationSchema";
 import ImageUpload from "../components/ImageUpload";
 import { Button } from "../components/Buttons";
+import { createEventFn } from "../firebase/createEvent";
 
 const CreateEventPage = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [albumPhotos, setAlbumPhotos] = useState([]);
 
   const {
     control,
@@ -119,8 +121,14 @@ const CreateEventPage = () => {
     disabled: uploadedFile !== null,
   });
 
-  const onSubmit = (data) => {
-    console.log("Form Data: ", data);
+  const onSubmit = async (data) => {
+    // Include albumPhotos in the data object
+    const eventData = {
+      ...data,
+      coverPhoto: uploadedFile,
+      albumPhotos, // Include the album photos
+    };
+    await createEventFn(eventData);
   };
 
   return (
@@ -335,7 +343,9 @@ const CreateEventPage = () => {
                     )}
                   />
                   <div className="pt-5">
-                    <ImageUpload />
+                    <ImageUpload
+                      onUpload={(files) => setAlbumPhotos(files)} // Set album photos
+                    />
                   </div>
                 </div>
                 <div ref={locationRef} id="location" className="space-y-3">
@@ -637,7 +647,7 @@ const CreateEventPage = () => {
                       render={({ field }) => (
                         <label className="flex items-center">
                           <Switch
-                            size='3'
+                            size="3"
                             {...field}
                             defaultChecked={field.value}
                             className="mr-2"
