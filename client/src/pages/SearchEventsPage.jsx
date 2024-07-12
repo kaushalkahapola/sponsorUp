@@ -6,6 +6,7 @@ import SearchBar from "../components/SearchBar";
 import EventCard from "../components/EventCard";
 import { events } from "../dummy_data/data";
 import { Button } from "../components/Buttons";
+import getEvents from "../firebase/getEvents";
 
 const SearchEventsPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -15,8 +16,8 @@ const SearchEventsPage = () => {
     types: [],
     languages: [],
   });
-
-  const [filteredEvents, setFilteredEvents] = useState(events);
+  const [eventsList, setEventsList] = useState([]); // State to store events fetched from Firebase
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false); // State for sidebar toggle
 
@@ -26,8 +27,7 @@ const SearchEventsPage = () => {
 
   useEffect(() => {
     const filterEvents = () => {
-      let filtered = events;
-
+      let filtered = eventsList;
       // Apply category filter
       if (filters.categories.length > 0) {
         filtered = filtered.filter((event) =>
@@ -73,6 +73,16 @@ const SearchEventsPage = () => {
   }, [searchText, filters]);
 
   useEffect(() => {
+    const fetchEvents = async () => {
+      const events = await getEvents();
+      setEventsList(events);
+      console.log(events);
+    };
+
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth < 768); // Adjust breakpoint as needed
     };
@@ -115,9 +125,10 @@ const SearchEventsPage = () => {
           )}
           <div className="md:w-3/4">
             <div className="grid px-5 py-7 gap-6 md:grid-cols-1 xl:grid-cols-2">
-              {filteredEvents.map((event, index) => (
-                <EventCard key={index} event={event} />
-              ))}
+              {filteredEvents.length > 0 &&
+                filteredEvents.map((event, index) => (
+                  <EventCard key={index} event={event} />
+                ))}
             </div>
           </div>
         </Grid>
