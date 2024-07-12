@@ -102,7 +102,8 @@ function App() {
             }
           />
           <Route path="/sponsor/:id" element={<SponsorDetailsPage />} />
-          <Route path='eventdetail' element={<EventDetails/>} />
+          <Route path='/eventdetail' element={<EventDetails/>} />
+          <Route path='/sponsordetails/:id' element={<SponsorDetailsPage/>} />
         </Routes>
       </Router>
       <ToastContainer />
