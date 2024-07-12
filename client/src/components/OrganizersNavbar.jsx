@@ -39,7 +39,7 @@ const OrganizersNavbar = () => {
   const links = [
     {
       label: "Home",
-      path: "/",
+      path: "/account/dashboard",
     },
     userType === "organizer" && {
       label: "My Events",
