@@ -7,19 +7,22 @@ import MPImage from "../assets/MP.png";
 import MCImage from "../assets/MC.png";
 import OABImage from "../assets/OAB.png";
 import Footer from "../components/Footer";
+import { Container } from "@radix-ui/themes";
 
 const LandingPage = () => {
   return (
     <div className="font-poppins">
       <HomeHeader />
       <main>
+        
         {/* TB Image Section */}
         <section
           className="relative bg-cover bg-center h-full pb-28 pt-32"
           style={{ backgroundImage: `url(${TBImage})` }}
         >
           <div className="absolute inset-0"></div>
-          <div className="container mx-auto h-full flex items-center justify-center px-5 md:px-10 lg:px-15">
+          <Container>
+          <div className="container mx-auto h-full flex items-center justify-center px-5">
             <div className="grid grid-cols-1 md:grid-cols-2 md:space-x-5 items-center space-y-10">
               {/* Text Content */}
               <div className="order-2 md:order-1 md:px-0 text-center md:text-left">
@@ -59,11 +62,13 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
+          </Container>
         </section>
 
         {/* Manage Payments */}
         <section className="relative bg-white py-10 md:py-20">
-          <div className="container mx-auto px-5 lg:px-10">
+          <Container>
+          <div className="mx-auto px-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="order-2 md:order-1">
                 <img
@@ -95,11 +100,13 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
+          </Container>
         </section>
 
         {/* Manage Customers */}
         <section className="relative bg-white py-10 md:py-20">
-          <div className="container mx-auto px-5 lg:px-10">
+          <Container>
+          <div className="mx-auto px-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="order-2 md:order-2">
                 <img
@@ -129,6 +136,7 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
+          </Container>
         </section>
 
         {/* Payments Section */}
@@ -144,6 +152,7 @@ const LandingPage = () => {
           }}
         >
           <div className="absolute inset-0 bg-violet-200 opacity-50"></div>
+          <Container>
           <div className="relative z-10 text-white flex flex-col justify-center items-center h-full">
             <div className="mx-auto text-center px-15">
               <p className="text-black text-md md:text-lg lg:text-xl font-normal mb-6">
@@ -158,6 +167,7 @@ const LandingPage = () => {
               </button>
             </div>
           </div>
+          </Container>
         </section>
 
         {/* Footer */}
