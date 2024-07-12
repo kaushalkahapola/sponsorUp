@@ -56,7 +56,7 @@ const OrganizersNavbar = () => {
       <Container>
         <Flex align="center" py="3" justify="between">
           <Flex gap="6" align="center">
-            <Link to={userType == "organizer" && '/account/dashboard' || userType == 'sponsor' && '/account/settings' } className="text-gray-400 font-bold text-2xl">
+            <Link to={userType == "organizer" && '/account/dashboard' || userType == 'sponsor' && '/account/settings' || '/' } className="text-gray-400 font-bold text-2xl">
               Sponsor<span className="text-primary">Up</span>
             </Link>
             {/* Links */}
