@@ -18,6 +18,7 @@ import SponsorDetailsPage from "./pages/SponsorDetailsPage";
 import PrivateRoute from "./privateRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Obq from "./pages/Obq";
 
 function App() {
   useEffect(() => {
@@ -40,6 +41,10 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/landing" element={<LandingPage />} />
+          <Route
+            path="/obq"
+            element={<PrivateRoute element={Obq} requiredUserType="any" />}
+          />
           <Route
             path="/events/new"
             element={
