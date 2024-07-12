@@ -9,7 +9,6 @@ const ProposalCard = ({ proposalId }) => {
   const [event, setEvent] = useState({});
   const [sponsor, setSponsor] = useState({});
   const [proposal, setProposal] = useState({});
-  const [userType, setUserType] = useState("");
 
   useEffect(() => {
     // Fetch proposal data
@@ -17,7 +16,6 @@ const ProposalCard = ({ proposalId }) => {
       const proposal = proposals.find((proposal) => proposal.id === id);
       setProposal(proposal);
     };
-    setUserType(getUserType());
     fetchProposal(proposalId);
   }, [proposalId]);
 
@@ -83,10 +81,7 @@ const ProposalCard = ({ proposalId }) => {
                 size="sm"
                 weight="medium"
                 style={{
-                  color:
-                    userType == "sponsor"
-                      ? "gray"
-                      : getStatusColor(proposal.status),
+                  color: getStatusColor(proposal.status),
                 }}
                 className="mb-2 md:mb-0"
               >
