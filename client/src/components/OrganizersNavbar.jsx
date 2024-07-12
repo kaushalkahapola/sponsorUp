@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./Buttons";
 import { Link, useLocation } from "react-router-dom";
+import getUserType from "../firebase/getUserType";
 import { auth } from "../firebase/firebase";
 import {
   Avatar,
@@ -19,13 +20,19 @@ const OrganizersNavbar = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [userType, setUserType] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setUser(user);
+      const userType = await getUserType(user.uid);
+      setUserType(userType);
+      console.log(userType)
+      console.log(user.uid)
     });
+    
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
@@ -36,10 +43,14 @@ const OrganizersNavbar = () => {
       label: "Home",
       path: "/",
     },
-    {
+    userType === "organizer" && {
       label: "My Events",
       path: "/account/myevents",
     },
+    {
+      label: "Search Events",
+      path: "/events",
+    }
   ];
 
   return (
@@ -76,13 +87,13 @@ const OrganizersNavbar = () => {
           {/* Profile and Menu */}
           <Flex gap="3" align="center" className="hidden md:inline-flex">
             {/* Create Event Button */}
-            {location.pathname !== "/events/new" && (
+            {/* {location.pathname !== "/events/new" && userType == "organizer" && (
               <div className="hidden md:block text-sm">
                 <Link to="/events/new">
                   <Button text="+ Create Event" />
                 </Link>
               </div>
-            )}
+            )} */}
             {/* Avatar and Dropdown Menu */}
             <AlertDialog.Root>
               <AlertDialog.Trigger>
@@ -126,6 +137,7 @@ const OrganizersNavbar = () => {
               <DropdownMenu.Content variant="soft">
                 <DropdownMenu.Label>
                   <Text size="2">{user?.email || "example@gmail.com"}</Text>
+                  <Text size = '2'>{userType}</Text>
                 </DropdownMenu.Label>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
@@ -138,7 +150,7 @@ const OrganizersNavbar = () => {
                 className="hidden md:inline-flex"
               >
                 <Text size="2" weight="medium">
-                  {user.displayName || "John Smith"}
+                  {user.displayName || "Hello User"}
                 </Text>
                 <Text size="1" weight="light">
                   {user.email || "example@gmail.com"}
@@ -161,7 +173,7 @@ const OrganizersNavbar = () => {
             </Link>
           ))}
           <div className="flex items-center justify-end my-4 mx-8 space-x-2">
-            {location.pathname !== "/events/new" && (
+            {/* {location.pathname !== "/events/new" && userType == "organizer" && (
               <Link to="/events/new">
                 <Button
                   variant="secondary"
@@ -169,7 +181,7 @@ const OrganizersNavbar = () => {
                   className="btn bg-gray-50 text-purple-500 md:ml-4 px-3 py-1 rounded duration-50 md:static"
                 />
               </Link>
-            )}
+            )} */}
             <AlertDialog.Root>
               <AlertDialog.Trigger>
                 <Button text="Sign Out" />

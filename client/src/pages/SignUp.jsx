@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
@@ -14,6 +14,7 @@ const SignUp = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const emailFromQuery = query.get("email") || "";
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -35,7 +36,8 @@ const SignUp = () => {
       await signUpFn(
         formData.email,
         formData.password,
-        formData.confirmPassword
+        formData.confirmPassword,
+        navigate
       );
     } catch (error) {
       console.error("Error signing Up:", error);
