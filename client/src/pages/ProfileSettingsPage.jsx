@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import OrganizerSideBar from "../components/OrganizerSideBar";
 import OrganizersNavbar from "../components/OrganizersNavbar";
-import { PencilIcon } from "@heroicons/react/solid";
+import { Pencil2Icon } from "@radix-ui/react-icons";
+import { Container } from "@radix-ui/themes";
 
 const defaultProfilePicture =
   "https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/";
@@ -56,7 +57,7 @@ const ProfileSettingsPage = () => {
   const passwordsMatch = profile.password === profile.confirmPassword;
 
   return (
-    <div className="font-poppins">
+    <Container className="font-poppins">
       <OrganizersNavbar />
       <div className="flex">
         <OrganizerSideBar />
@@ -73,7 +74,7 @@ const ProfileSettingsPage = () => {
                   htmlFor="upload-photo"
                   className="absolute bottom-0 right-0 bg-white p-1 rounded-full cursor-pointer shadow-md"
                 >
-                  <PencilIcon className="h-6 w-6 text-gray-700" />
+                  <Pencil2Icon className="h-6 w-6 text-gray-700" />
                   <input
                     type="file"
                     id="upload-photo"
@@ -90,21 +91,25 @@ const ProfileSettingsPage = () => {
                 <input
                   type="text"
                   value={profile.name}
-                  onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+                  onChange={(e) =>
+                    setProfile({ ...profile, name: e.target.value })
+                  }
                   className="flex-grow p-2 border rounded"
                   placeholder="Name"
                 />
-                <PencilIcon className="h-6 w-6 text-gray-700 cursor-pointer" />
+                <Pencil2Icon className="h-6 w-6 text-gray-700 cursor-pointer" />
               </div>
               <div className="flex items-center space-x-4">
                 <input
                   type="text"
                   value={profile.about}
-                  onChange={(e) => setProfile({ ...profile, about: e.target.value })}
+                  onChange={(e) =>
+                    setProfile({ ...profile, about: e.target.value })
+                  }
                   className="flex-grow p-2 border rounded"
                   placeholder="About"
                 />
-                <PencilIcon className="h-6 w-6 text-gray-700 cursor-pointer" />
+                <Pencil2Icon className="h-6 w-6 text-gray-700 cursor-pointer" />
               </div>
               <div className="flex items-center space-x-4">
                 <input
@@ -119,11 +124,13 @@ const ProfileSettingsPage = () => {
                 <input
                   type="text"
                   value={profile.phoneNumber}
-                  onChange={(e) => setProfile({ ...profile, phoneNumber: e.target.value })}
+                  onChange={(e) =>
+                    setProfile({ ...profile, phoneNumber: e.target.value })
+                  }
                   className="flex-grow p-2 border rounded"
                   placeholder="Phone Number"
                 />
-                <PencilIcon className="h-6 w-6 text-gray-700 cursor-pointer" />
+                <Pencil2Icon className="h-6 w-6 text-gray-700 cursor-pointer" />
               </div>
             </div>
 
@@ -138,7 +145,9 @@ const ProfileSettingsPage = () => {
                 <input
                   type="password"
                   value={profile.password}
-                  onChange={(e) => setProfile({ ...profile, password: e.target.value })}
+                  onChange={(e) =>
+                    setProfile({ ...profile, password: e.target.value })
+                  }
                   className="w-full p-2 border rounded"
                   placeholder="New Password"
                 />
@@ -148,7 +157,9 @@ const ProfileSettingsPage = () => {
                     <div
                       className="h-full rounded"
                       style={{
-                        width: `${calculatePasswordStrength(profile.password)}%`,
+                        width: `${calculatePasswordStrength(
+                          profile.password
+                        )}%`,
                         background:
                           calculatePasswordStrength(profile.password) < 30
                             ? "#FF0000"
@@ -169,7 +180,9 @@ const ProfileSettingsPage = () => {
                   placeholder="Re-enter New Password"
                 />
                 {!passwordsMatch && (
-                  <p className="text-red-500 text-sm">Passwords do not match.</p>
+                  <p className="text-red-500 text-sm">
+                    Passwords do not match.
+                  </p>
                 )}
                 {passwordsMatch && (
                   <p className="text-green-500 text-sm">Passwords match.</p>
@@ -179,16 +192,8 @@ const ProfileSettingsPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
 export default ProfileSettingsPage;
-
-
-
-
-
-
-
-

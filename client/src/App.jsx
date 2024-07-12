@@ -20,6 +20,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Obq from "./pages/Obq";
 import EventDetails from "./pages/EventDetails";
+import ProfileSettingsPage from "./pages/ProfileSettingsPage";
 
 function App() {
   useEffect(() => {
@@ -103,6 +104,7 @@ function App() {
           <Route path="/sponsors/:id" element={<SponsorDetailsPage />} />
           <Route path="/eventdetail" element={<EventDetails />} />
           <Route path="/sponsordetails/:id" element={<SponsorDetailsPage />} />
+          <Route path="/profile" element={<ProfileSettingsPage />} />
         </Routes>
       </Router>
       <ToastContainer />
