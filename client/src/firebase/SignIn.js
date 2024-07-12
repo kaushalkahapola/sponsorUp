@@ -1,6 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 import { signInSchema } from "../schemas/validationSchema";
+import getUserType from "./getUserType";
 
 const signInFn = async (email, password, navigate) => {
   try {
@@ -20,7 +21,12 @@ const signInFn = async (email, password, navigate) => {
     );
     const user = userCredential.user;
     console.log("User signed in successfully:", user);
-    navigate("/account/settings");
+    const userType = getUserType();
+    if (userType === "organizer") {
+      navigate("/account/dashboard");
+    } else {
+      navigate("/account/settings");
+    }
     return user;
   } catch (error) {
     console.error("Error signing in:", error.message);

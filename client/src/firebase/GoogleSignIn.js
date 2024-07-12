@@ -21,6 +21,12 @@ const GoogleSignIn = async () => {
       await setDoc(doc(db, "users", user.uid), data);
     }
 
+    if (userType === "organizer") {
+      navigate("/account/dashboard");
+    } else {
+      navigate("/account/settings");
+    }
+
     console.log("User signed in with Google:", user);
     console.log(user);
   } catch (error) {
