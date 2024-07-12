@@ -89,8 +89,7 @@ const SendProposalPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
     const validPackages = proposalData.sponsorshipPackages.filter(
       (pkg) => pkg.benefits && pkg.price
     );
@@ -99,11 +98,18 @@ const SendProposalPage = () => {
       sponsorshipPackages: validPackages,
       sponsorId: sponsorId,
     };
+
     console.log(validProposalData);
+
     try {
-      CreateProposal(validProposalData);
+      await CreateProposal(validProposalData);
+      toast.success("Proposal created successfully.", {
+        autoClose: 5000, // Close after 5 seconds
+      });
     } catch (err) {
-      toast.error("Error creating proposal. Please try again later.");
+      toast.error("Error creating proposal. Please try again later.", {
+        autoClose: 5000, // Close after 5 seconds
+      });
       console.log(err);
     }
   };
